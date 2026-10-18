@@ -101,26 +101,26 @@ h3 { font-size: 1.25rem; margin: 1.4rem 0 0.4rem; }
   display: block;
   border-radius: 4px;
   box-shadow: var(--shadow);
-  background: #ddd;
+  background: var(--paper);
+}
+.portrait.cutout {
+  box-shadow: none;
+  max-width: 320px;
 }
 
 .caption { color: var(--muted); font-size: 0.92rem; margin: 0.35rem 0 0; }
 
 .social { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; padding: 0; margin: 1rem 0; }
 .social a {
-  display: grid;
-  place-items: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 50%;
-  background: var(--ridge);
-  color: #f7f4ee;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  background: transparent;
   text-decoration: none;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
 }
-.social a:hover { background: var(--rust); color: white; }
+.social a img { width: 32px; height: 32px; display: block; }
+.social a:hover { background: transparent; opacity: 0.75; }
 
 .band {
   margin: 2.2rem calc(50% - 50vw) 0.4rem;
@@ -141,6 +141,7 @@ h3 { font-size: 1.25rem; margin: 1.4rem 0 0.4rem; }
   gap: 0.55rem;
   margin: 0.8rem 0 0.3rem;
 }
+.strip.three { grid-template-columns: repeat(3, 1fr); }
 .strip img {
   width: 100%;
   height: 168px;
