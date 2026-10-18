@@ -122,20 +122,29 @@ h3 { font-size: 1.25rem; margin: 1.4rem 0 0.4rem; }
 .social a img { width: 32px; height: 32px; display: block; }
 .social a:hover { background: transparent; opacity: 0.75; }
 
-.front-photos {
-  width: min(var(--max), calc(100% - 2rem));
-  margin: 1.6rem auto 2rem;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 0.7rem;
-}
-.front-photos img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
+.cover { position: relative; }
+.cover-photo, .full-photo {
   display: block;
-  border-radius: 4px;
+  width: 100%;
+  height: auto;
 }
+.cover-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: minmax(140px, 240px) minmax(0, 720px);
+  gap: 1.2rem 1.6rem;
+  align-items: end;
+  padding: 2.2rem 6vw 1.6rem;
+  color: #f7f4ee;
+  background: linear-gradient(to top, rgba(16, 24, 32, 0.78), rgba(16, 24, 32, 0));
+}
+.cover-copy h1, .cover-copy .tagline, .cover-copy p { color: #f7f4ee; }
+.cover-copy h1 { margin-bottom: 0.15rem; }
+.cover-copy .social a { background: rgba(247, 244, 238, 0.92); border-radius: 4px; padding: 3px; }
+.cover-copy .portrait { max-width: 220px; }
 .band {
   margin: 2.2rem calc(50% - 50vw) 0.4rem;
   width: 100vw;
@@ -246,8 +255,8 @@ figure img { border-radius: 3px; box-shadow: var(--shadow); }
 
 @media (max-width: 800px) {
   .hero { grid-template-columns: 1fr; }
-  .front-photos { grid-template-columns: 1fr; }
-  .front-photos img { height: 200px; }
+  .cover-copy { grid-template-columns: 1fr; padding: 1.2rem 1rem 1rem; }
+  .cover-copy .portrait { max-width: 160px; }
   .portrait { max-width: 420px; }
   .strip { grid-template-columns: 1fr 1fr; }
   .strip img { height: 140px; }
