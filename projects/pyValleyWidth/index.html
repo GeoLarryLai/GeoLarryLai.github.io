@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyValleyWidth · Larry Syu-Heng Lai</title>
+  <meta name="description" content="pyValleyWidth measures valley width from a digital terrain model with pytopotoolbox.">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <nav class="nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a><a href="../../blogs.html">Notes</a><a href="../../contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+
+      <figure class="project-hero">
+        <img src="Method_overview.png" width="1164" height="1000" alt="Valley-width method: hillshade, relative elevation, cross-valley profiles, and resampled width">
+        <figcaption>Hillshade and river path, height above the channel, widths from cross-valley profiles, and the resampled width. After Morgan et al. (2026). Profiles on a tight bend can run long. Resampling along the network steadies the map.</figcaption>
+      </figure>
+
+      <h1>pyValleyWidth</h1>
+      <ul class="project-links">
+        <li><a href="https://github.com/GeoLarryLai/pyValleyWidth">GitHub</a></li>
+      </ul>
+
+      <div class="project-summary">
+        <p>pyValleyWidth measures valley width from a digital terrain model. It is built on <a href="https://github.com/TopoToolbox/pytopotoolbox">pytopotoolbox</a>, the Python port of TopoToolbox. The approach follows Paul Morgan’s <a href="https://github.com/PMonroeMorgan/ElevationThresholdValleyWidth">ElevationThresholdValleyWidth</a> workflow, first written in MATLAB for TopoToolbox 2.</p>
+        <p>The code is under active development. It has not been peer-reviewed or fully validated. Use it with caution. If you use the original threshold method, cite Morgan, P. M., Grant, A., Struble, W., LaHusen, S., and Duvall, A. (2026) The damability function: a probabilistic approach to regional landslide dam susceptibility analysis applied to the Oregon Coast Range, USA. <em>Natural Hazards and Earth System Sciences</em>, 26, 1745–1766, <a href="https://doi.org/10.5194/nhess-26-1745-2026">https://doi.org/10.5194/nhess-26-1745-2026</a>. Cite TopoToolbox or pytopotoolbox as well when the routing comes from there.</p>
+
+        <h2>What is in the repository</h2>
+        <ul>
+          <li>An importable package: valley classification, swath widths, an optional variable rim, smoothing along the stream network, the normalized steepness index <em>k</em><sub>sn</sub>, and river-profile figures.</li>
+          <li><code>valley_width_example.ipynb</code>, an end-to-end run on the Big Tujunga DEM shipped with TopoToolbox. It routes flow, can mask to the largest catchment, measures width two ways, and draws maps, <em>k</em><sub>sn</sub>, longitudinal and chi–elevation profiles, and threshold or excess topography. The notebook is the user guide, including notes on stream area, the HAND threshold, swath spacing, smoothing, and saturated transects.</li>
+          <li>The method figure at the top of this page.</li>
+        </ul>
+
+        <h2>Method</h2>
+        <p>Width comes from height above the channel network, a valley polygon, and cross-stream swaths. A profile perpendicular to the channel can overestimate width on a tight bend, so the workflow can resample and smooth widths along the network with a moving window. A variable-rim mode is also available: each transect is clipped to the local divides, and the rim is picked from a sweep of how width changes with the height threshold.</p>
+
+        <h2>Pipeline</h2>
+        <ol>
+          <li><strong>Terrain and streams.</strong> Flow routing and stream extraction with pytopotoolbox. An optional mask keeps the largest connected catchment, so later steps use one basin.</li>
+          <li><strong>Valley mask, two choices inside <code>dem2widths</code>.</strong> A constant HAND threshold treats every cell below a fixed height above the nearest stream as valley, and returns widths and that height field. The variable-rim mode clips each transect to the local drainage divides, sweeps the HAND threshold upward, and takes the last qualifying peak in dW/dT between a noise floor (<code>min_dwdt</code>) and a divide-scale ceiling (<code>max_dwdt</code>). Those per-transect thresholds are lifted onto the stream nodes, smoothed with a rolling median, and passed to the same flood fill. That mode also returns a valley depth. <code>plot_transect_diagnostic</code> draws one transect (map, HAND profile, and the dW/dT sweep) so the two thresholds can be chosen by eye.</li>
+          <li><strong>Widths from swaths.</strong> Cross-stream profiles on the valley raster, with an optional filter when a transect is too short to be trusted.</li>
+          <li><strong>Widths on the network.</strong> Raw widths at the sample points, then a gap-filled, vertex-averaged, Gaussian-smoothed field (<code>smooth_valley_width_on_stream_network</code>).</li>
+          <li><strong>Add-ons in the example notebook.</strong> <em>k</em><sub>sn</sub> from a slope–area fit with fixed concavity, longitudinal and chi–elevation profiles with the trunk highlighted, a trunk profile that pairs width with valley-top height in the variable-rim mode, and threshold or excess topography at a chosen slope (35° in the example).</li>
+        </ol>
+
+        <h2>Installation</h2>
+        <ol>
+          <li>Make a conda or virtual environment with <code>topotoolbox</code> installed, and use that environment as the Jupyter kernel.</li>
+          <li>Place the <code>pyValleyWidth</code> package folder next to the notebooks, or add it to <code>PYTHONPATH</code>.</li>
+          <li>Open <code>valley_width_example.ipynb</code> and run it from top to bottom.</li>
+          <li>For another terrain model, copy those sections and change stream area, the elevation threshold or the variable-rim settings, swath spacing, the minimum radius, and the swath length.</li>
+        </ol>
+        <pre class="install"><code>from pyValleyWidth import dem2widths</code></pre>
+
+        <h2>Package pieces</h2>
+        <ul>
+          <li><code>dem2widths</code> runs routing, drops short streams, builds the valley mask, measures swaths, and returns drainage area and gradient at the width samples.</li>
+          <li><code>valleyclass_elev</code>, <code>swath_width</code>, and <code>peak_valley_width</code> build the mask and find the rim in the variable-threshold mode.</li>
+          <li><code>plot_transect_diagnostic</code> is the three-panel check at one map point.</li>
+          <li><code>stream_utils</code> drops short streams and builds the swath geometry.</li>
+          <li><code>valley_width_stream</code> flattens stream coordinates, smooths width on the network, and orders samples along the trunk.</li>
+          <li><code>ksn_analysis</code> handles the slope–area fit, <em>k</em><sub>sn</sub>, smoothing, and filling empty values along streams.</li>
+          <li><code>river_profile_plots</code> draws the longitudinal profile, the chi–elevation profile, the paired <em>k</em><sub>sn</sub> and valley-width panels, and the threshold and excess-topography figures.</li>
+        </ul>
+      </div>
+
+      <p class="back-link"><a href="../../projects.html">All projects</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Larry Syu-Heng Lai</p>
+      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
+      10611 Exploration Way, Austin, TX 78758</p>
+      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
+      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    </div>
+  </footer>
+</body>
+</html>

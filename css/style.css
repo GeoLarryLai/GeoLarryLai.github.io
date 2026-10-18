@@ -200,6 +200,25 @@ figure img { border-radius: 3px; box-shadow: var(--shadow); }
   border: 1px solid var(--line);
   background: white;
 }
+#resume { scroll-margin-top: 5rem; }
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+  gap: 2rem 2.5rem;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+.about-profile { position: sticky; top: 5.5rem; }
+.about-profile h1 { font-size: 1.55rem; margin-bottom: 0.25rem; }
+.about-profile .degree {
+  margin: 0 0 0.55rem;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-style: italic;
+}
+.about-profile .affiliation { margin: 0; font-size: 0.98rem; }
+.about-profile .portrait { margin-bottom: 0.9rem; }
 
 .site-footer {
   background: var(--ridge);
@@ -217,4 +236,7 @@ figure img { border-radius: 3px; box-shadow: var(--shadow); }
   .strip img { height: 140px; }
   .header-inner { flex-direction: column; align-items: flex-start; }
   .doc iframe { height: 640px; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-profile { position: static; }
+  .about-profile .portrait { max-width: 320px; }
 }

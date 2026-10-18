@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyBasinSubs · Larry Syu-Heng Lai</title>
+  <meta name="description" content="A newer pyBasinSubs package is not published yet. The public BasinSubs repository holds R scripts for Taiwan Coastal Range subsidence.">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <nav class="nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a><a href="../../blogs.html">Notes</a><a href="../../contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+
+      <h1>pyBasinSubs</h1>
+      <ul class="project-links">
+        <li><a href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs on GitHub</a></li>
+      </ul>
+
+      <div class="project-summary">
+        <p>A newer pyBasinSubs package is not published yet. What is public today is <a href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs</a> (v0.1.0): R scripts Larry Syu-Heng Lai wrote for subsidence analysis of syn-orogenic strata in the Coastal Range of eastern Taiwan. The data and the results were produced with collaborators and used in the papers cited below.</p>
+
+        <h2>R scripts</h2>
+        <ul>
+          <li><code>Porosity-depth function.R</code> calculates and plots a global average porosity–depth curve for sandy, muddy, and mean marine sediment.</li>
+          <li><code>Age PB dSL-N.R</code> and <code>Age PB dSL-S.R</code> fit a linear age–thickness model for the composite columns of the northern and southern Coastal Range. The columns are described in Lai et al. (2021) and Lai et al. (2022). The age models place foraminiferal paleobathymetry in time, including by interpolation and extrapolation. Around each age constraint (a unit boundary) the scripts average paleobathymetry and relative sea level, with uncertainties, for the subsidence calculation. Relative sea level is from Miller et al., <em>Science Advances</em> (<a href="https://doi.org/10.1126/sciadv.aaz1346">doi:10.1126/sciadv.aaz1346</a>).</li>
+          <li><code>Subsidence Analysis N.R</code> and <code>Subsidence Analysis S.R</code> decompact and backstrip the northern and southern sections, carry the errors through, and plot geohistory diagrams. Inputs are the porosity–depth functions (<code>Pofun.csv</code>), relative sea level at the age constraints (<code>SL_Unit_N.csv</code> or <code>SL_Unit_S.csv</code>), paleobathymetry at those constraints (<code>PB_Unit_N.csv</code> or <code>PB_Unit_S.csv</code>), unit thickness between the dated heights (<code>Ages_N_new.csv</code> or <code>Ages_S_new.csv</code>), and the lithology fractions in each unit (<code>Litho_N.csv</code> or <code>Litho_S.csv</code>).</li>
+        </ul>
+
+        <h2>Data and result folders</h2>
+        <ul>
+          <li><strong>Thickness.</strong> Unit thickness and its uncertainty between age constraints, paleobathymetry and the average at each constraint, and lithology fractions.</li>
+          <li><strong>Sealevel.</strong> Relative sea level from Miller et al., reorganized, plus the average and uncertainty at each unit boundary.</li>
+          <li><strong>Backstripping.</strong> Compiled porosity–depth functions and grain densities for sandy, muddy, and mean marine sediment, and the global average curves used in the analysis. Sources are in the supplement of Lai et al. (2022).</li>
+          <li><strong>Output results.</strong> The linear age models, the subsidence analysis, and long-term uplift and subsidence rates of Luzon arc crust in eastern Taiwan.</li>
+        </ul>
+
+        <h2>Citation</h2>
+        <p>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. <em>Communications Earth &amp; Environment</em>, 3, 100. <a href="https://doi.org/10.1038/s43247-022-00429-2">https://doi.org/10.1038/s43247-022-00429-2</a></p>
+        <p>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2021) Polygenetic mélange in the retrowedge foredeep of an active arc-continent collision, Coastal Range of eastern Taiwan. <em>Sedimentary Geology</em>, 418, 105901. <a href="https://doi.org/10.1016/j.sedgeo.2021.105901">https://doi.org/10.1016/j.sedgeo.2021.105901</a></p>
+        <p>Code: <a href="https://doi.org/10.5281/zenodo.5823613">Zenodo, doi:10.5281/zenodo.5823613</a>. Data: <a href="https://doi.org/10.6084/m9.figshare.19350530">figshare, doi:10.6084/m9.figshare.19350530</a>.</p>
+      </div>
+
+      <p class="back-link"><a href="../../projects.html">All projects</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Larry Syu-Heng Lai</p>
+      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
+      10611 Exploration Way, Austin, TX 78758</p>
+      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
+      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    </div>
+  </footer>
+</body>
+</html>

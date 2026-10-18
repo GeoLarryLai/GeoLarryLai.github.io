@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyTopoComplexity · Larry Syu-Heng Lai</title>
+  <meta name="description" content="pyTopoComplexity measures land-surface roughness from a digital elevation model with four multiscale methods.">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <nav class="nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a><a href="../../blogs.html">Notes</a><a href="../../contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+
+      <figure class="project-hero">
+        <img src="image/workflow-schematic.png" width="2294" height="2773" alt="Workflow from a digital elevation model through four complexity metrics to exported maps">
+        <figcaption>From a GeoTIFF, through an optional Landlab run, to a choice of metric, a window scale, and exported maps.</figcaption>
+      </figure>
+
+      <h1>pyTopoComplexity</h1>
+      <ul class="project-links">
+        <li><a href="https://github.com/GeoLarryLai/pyTopoComplexity">GitHub</a></li>
+        <li><a href="https://pypi.org/project/pytopocomplexity/">PyPI</a></li>
+        <li><a href="https://doi.org/10.5281/zenodo.11239338">Zenodo</a></li>
+        <li><a href="https://anaconda.org/conda-forge/pytopocomplexity">conda-forge</a></li>
+        <li><a href="https://doi.org/10.5194/esurf-13-417-2025">Paper</a></li>
+      </ul>
+
+      <div class="project-summary">
+        <p>pyTopoComplexity measures topographic complexity, the roughness of a land surface, from a digital elevation model. It carries four methods used in geology, geomorphology, geography, ecology, and oceanography. Each method has an example notebook, with a short account of the theory and example rasters in <code>ExampleDEM</code>. A separate notebook runs a Landlab landscape forward in time. Another prepares a DEM that has empty cells or mismatched units.</p>
+
+        <h2>License and citation</h2>
+        <p>The package is under the GNU Affero General Public License 3.0. If you use the package and the notebooks, cite Lai, L. S.-H., Booth, A. M., Duvall, A. R., and Herzig, E. (2025) Short Communication: Multiscale topographic complexity analysis with pyTopoComplexity. <em>Earth Surface Dynamics</em>, 13(3), 417–435, <a href="https://doi.org/10.5194/esurf-13-417-2025">https://doi.org/10.5194/esurf-13-417-2025</a>.</p>
+
+        <h2>Four methods</h2>
+        <ul>
+          <li><strong>CWTMexHat</strong> (<code>pycwtmexhat.py</code>). Two-dimensional continuous wavelet transform with a Mexican-hat wavelet. The result is a wavelet curvature of the surface.</li>
+          <li><strong>FracD</strong> (<code>pyfracd.py</code>). Local fractal dimension by a variogram, with the standard error and R² of the fit.</li>
+          <li><strong>RugosityIndex</strong> (<code>pyrugosity.py</code>). Rugosity of the surface, including a slope-corrected form.</li>
+          <li><strong>TPI</strong> (<code>pytpi.py</code>). Terrain position index: how high or low a cell sits relative to its neighbors.</li>
+        </ul>
+
+        <h2>Installation</h2>
+        <p>Python 3.10 or newer. Install from PyPI or conda-forge:</p>
+        <pre class="install"><code>pip install pytopocomplexity
+conda install pytopocomplexity</code></pre>
+        <p>The landscape notebook also needs <a href="https://landlab.readthedocs.io/en/latest/installation.html">Landlab</a>. The scientific stack is numpy, scipy, rasterio, dask, matplotlib, tqdm, numba, and statsmodels. The example notebooks add pandas, Jupyter, imageio, and GDAL. <code>environment.yml</code> in the repository builds a matching environment.</p>
+
+        <h2>Wavelet curvature</h2>
+        <p>The Mexican-hat wavelet measures curvature across scales. Booth (2009) used that curvature to pick out and estimate the ages of deep-seated landslide deposits, first in MATLAB. LaHusen et al. (2020) and Herzig et al. (2023) revised that code. In 2024 Larry Syu-Heng Lai, with Alison R. Duvall, rewrote it as this Python module. Import it with <code>from pytopocomplexity import CWTMexHat</code>. The worked example is <code>Example_pycwtmexhat.ipynb</code>.</p>
+
+        <h2>Fractal dimension</h2>
+        <p>Inside a moving window the surface is cut by four vertical planes, along the principal compass directions, so the problem becomes four profiles. The fractal dimension of each profile comes from a variogram: dissimilarity against distance, fit with a power law. The number does not scale one-for-one with roughness, but smoother surfaces tend to sit closer to 2, and rougher surfaces sit higher. The module also returns the standard error and R². The approach follows Fortran shared by Eulogio Pardo-Igúzquiza (Pardo-Igúzquiza and Dowd, 2022). It has been used to map roughness, classify landforms, and read surface structure on Earth and other bodies. Import it with <code>from pytopocomplexity import FracD</code>. See <code>Example_pyfracd.ipynb</code>.</p>
+
+        <h2>Rugosity</h2>
+        <p>The rugosity index is the ratio of surface area to plan area. A flat surface scores 1. Without a slope correction (Jenness, 2004) typical values fall between 1 and 3, and steep ground can go higher. The slope-corrected index, the arc-chord ratio of Du Preez (2015), is a cleaner local measure. Marine geologists use it to class the seafloor, oceanographers to look at small-scale flow, and ecologists to estimate habitat. Import it with <code>from pytopocomplexity import RugosityIndex</code>. See <code>Example_pyrugosity.ipynb</code>.</p>
+
+        <h2>Terrain position index</h2>
+        <p>The terrain position index (Weiss, 2001) is the elevation of a cell minus the mean of its neighborhood. Positive values are high points such as ridges. Negative values are lows such as valleys. Values near zero are flats or even slopes. The absolute value is the size of that contrast, without the sign. The same calculation on bathymetry is the bathymetric position index. Import it with <code>from pytopocomplexity import TPI</code>. See <code>Example_pytpi.ipynb</code>.</p>
+
+        <h2>Landscape evolution</h2>
+        <p><code>Landlab_simulation.ipynb</code> drives a Landlab grid and measures complexity at each step. Hillslope smoothing uses <code>TaylorNonLinearDiffuser</code> from terrainbento (Barnhart et al., 2019), the nonlinear diffusion of Roering et al. (1999). Channel incision uses Landlab’s <code>StreamPowerEroder</code> (Braun and Willett, 2013). The notebook writes GeoTIFFs, figures, and an animation of how roughness changes as the surface diffuses and the streams cut.</p>
+
+        <h2>Example elevation models</h2>
+        <p>The example rasters cover the 2014 Oso landslide and the nearby North Fork Stillaguamish valley, Washington. They were cropped from the Stillaguamish 2014 lidar project (Washington State Department of Transportation), downloaded from the Washington Lidar Portal on 4 April 2024. The set is there so a user can repeat Booth et al. (2017) and compare metrics from other landscapes. Put the whole <code>ExampleDEM</code> folder next to the notebooks. Both the package and the Landlab notebook read grid spacing and feet-or-meters units from the file and report results in SI units.</p>
+        <ul>
+          <li><code>Ososlid2014_f_3ftgrid.tif</code> — NAD83 Washington South (ftUS), EPSG 2286, 3 ft cells, elevation in feet.</li>
+          <li><code>Ososlid2014_m_3ftgrid.tif</code> — NAD83 Washington South, EPSG 32149, about 0.91 m cells, elevation in meters.</li>
+          <li><code>Ososlid2014_f_6ftgrid.tif</code> — EPSG 2286, 6 ft cells, elevation in feet.</li>
+          <li><code>Ososlid2014_m_6ftgrid.tif</code> — EPSG 32149, about 1.83 m cells, elevation in meters.</li>
+        </ul>
+      </div>
+
+      <div class="project-figures">
+        <figure class="logo">
+          <img src="image/pyTopoComplexity_logo.png" width="819" height="769" alt="pyTopoComplexity logo, a line drawing of ridged mountains">
+          <figcaption>Package mark.</figcaption>
+        </figure>
+        <figure>
+          <img src="image/cwtmexhat.png" width="5191" height="3532" alt="Mexican-hat wavelet curvature of a digital elevation model">
+          <figcaption>Wavelet curvature from the Mexican-hat continuous wavelet transform.</figcaption>
+        </figure>
+        <figure>
+          <img src="image/fracd.png" width="4877" height="3574" alt="Local fractal dimension of a digital elevation model">
+          <figcaption>Local fractal dimension from the variogram method.</figcaption>
+        </figure>
+        <figure>
+          <img src="image/rugosity.png" width="5033" height="3550" alt="Rugosity index of a digital elevation model">
+          <figcaption>Rugosity index, including the slope-corrected arc-chord form.</figcaption>
+        </figure>
+        <figure>
+          <img src="image/tpi.png" width="5132" height="3605" alt="Terrain position index of a digital elevation model">
+          <figcaption>Terrain position index. High values are ridges. Low values are valleys.</figcaption>
+        </figure>
+        <figure>
+          <img src="image/Landlab_demo.gif" width="2314" height="1178" alt="Animation of a Landlab landscape run with complexity measured through time">
+          <figcaption>Landlab run: hillslope diffusion and stream incision, with complexity tracked through time.</figcaption>
+        </figure>
+      </div>
+
+      <p class="back-link"><a href="../../projects.html">All projects</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Larry Syu-Heng Lai</p>
+      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
+      10611 Exploration Way, Austin, TX 78758</p>
+      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
+      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    </div>
+  </footer>
+</body>
+</html>

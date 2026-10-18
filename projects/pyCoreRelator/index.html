@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyCoreRelator · Larry Syu-Heng Lai</title>
+  <meta name="description" content="pyCoreRelator correlates sediment cores and well logs bed by bed with dynamic time warping, stratigraphic rules, and correlation-quality scores.">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <nav class="nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a><a href="../../blogs.html">Notes</a><a href="../../contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+
+      <figure class="project-hero logo">
+        <img src="explain_fig/pyCoreRelator_logo.png" width="6495" height="3473" alt="pyCoreRelator logo: a split core with matching beds">
+      </figure>
+
+      <h1>pyCoreRelator</h1>
+      <ul class="project-links">
+        <li><a href="https://github.com/GeoLarryLai/pyCoreRelator">GitHub</a></li>
+        <li><a href="https://pypi.org/project/pycorerelator/">PyPI</a></li>
+        <li><a href="https://doi.org/10.5281/zenodo.17847259">Zenodo</a></li>
+        <li><a href="https://anaconda.org/conda-forge/pycorerelator">conda-forge</a></li>
+      </ul>
+
+      <div class="project-summary">
+        <p>pyCoreRelator correlates sediment cores and physical logs bed by bed. It aligns the signals with dynamic time warping, and it keeps each match inside ordinary stratigraphic rules: superposition, age order, and pinch-outs. The package scores how alike two sections are, on the idea that a closer signal match is a stronger correlation, and those scores are how it chooses a preferred solution. It also prepares the inputs: cleaning and gap filling for logs, and stitching, clipping, and color or brightness profiles for core images.</p>
+
+        <h2>Installation</h2>
+        <p>The package runs on Python 3.9 through 3.13. Python 3.14 is not supported yet, because <code>numba</code> (required by <code>librosa</code>) does not support it. Install from PyPI or conda-forge:</p>
+        <pre class="install"><code>pip install pycorerelator
+conda install pycorerelator</code></pre>
+
+        <h2>Citation</h2>
+        <p>If you use this pre-release, cite Lai, L.S.-H. (2025) pyCoreRelator, Zenodo, <a href="https://doi.org/10.5281/zenodo.17847259">https://doi.org/10.5281/zenodo.17847259</a>. A manuscript on the method and its applications is submitted and in peer review. Questions and collaboration: Larry Syu-Heng Lai, <a href="https://qcl.beg.utexas.edu">Quantitative Clastics Laboratory</a>, Bureau of Economic Geology, The University of Texas at Austin.</p>
+
+        <h2>Key features</h2>
+        <ul>
+          <li>Segment-based dynamic time warping. Cores are split on user-picked depth boundaries (machine-picked boundaries are planned), so pinch-outs and forced datums stay under the user’s control.</li>
+          <li>Interactive datum picking, with a live view, categories, and CSV export.</li>
+          <li>Age constraints that limit which correlation solutions are allowed.</li>
+          <li>Quality scores, and a search for the preferred solution.</li>
+          <li>Warping paths that run the full length of both cores.</li>
+          <li>A null test: synthetic cores, either by random draws or by a Markov chain trained on k-means clusters of the real units.</li>
+          <li>Image-to-log tools for CT scans and RGB photos, including brightness or color profiles, alignment, and stitching.</li>
+          <li>Gap filling with random forest, XGBoost, or LightGBM, with feature weights and trend constraints.</li>
+          <li>Several log types at once (magnetic susceptibility, CT, RGB, density), warped together or separately.</li>
+          <li>Plots of the cost matrix and paths, segment-wise ties, animations, and the spread of solutions.</li>
+        </ul>
+
+        <h2>Correlation quality metrics</h2>
+        <p>Each candidate correlation gets a set of scores:</p>
+        <ul>
+          <li>Pearson’s r between the aligned sequences (a default score).</li>
+          <li>Normalized DTW cost, reported as its complement, nDTWc (a default score).</li>
+          <li>Warping ratio: DTW distance relative to Euclidean distance.</li>
+          <li>Warping efficiency, from path length and alignment quality.</li>
+          <li>Diagonality: 100% means the path sits on the diagonal of the cost matrix.</li>
+          <li>Age overlap, when age constraints are in use.</li>
+        </ul>
+
+        <h2>Inter-unit correlations</h2>
+        <p>Possible bed-to-bed ties are laid out as a directed acyclic graph. Real units sit on even indices. Odd indices are phantom units of zero thickness, the places a bed can pinch out. Paths through that graph are the successions that do not reverse time. Each path is then drawn as one composite warping path: horizontal or vertical steps are the pinch-outs, and a diagonal step ties two real units.</p>
+        <p>Age order throws out paths that contradict the dated markers. What remains is ranked by similarity (Pearson’s r and nDTWc) and can be set next to a human pick. The number of geometrically allowed correlations grows with the unit count. That count follows a Delannoy number. On Cascadia turbidite cores the counted solutions sit near that curve (<a href="https://doi.org/10.6084/m9.figshare.31884166">Lai, 2026, figshare</a>).</p>
+
+        <h2>Statistical evaluation</h2>
+        <p>Pearson’s r and nDTWc only rank solutions inside one setting. They do not say whether a match is better than the similarity you would get from unrelated beds of the same facies. The null test builds that background. Units from the study are pooled and grouped with k-means. The cluster count comes from the elbow method and the Kneedle algorithm. A variable-order Markov model, using up to six preceding units by default, sets the chance of the next cluster. Synthetic columns are stacked to a target thickness or unit count, and each real bed segment is used only once in a given synthetic section, so a distinctive bed cannot repeat and inflate the score. A stationary distribution starts each synthetic column. Many synthetic pairs are then correlated with the same pipeline, which produces a null distribution for each metric.</p>
+        <p>If the real-data distribution sits well above that null (Hedges’ g of 0.8 or more), the match is stronger than shared lithology alone. A smaller or negative g means the correlation is hard to tell from background noise. Age constraints that hold the g value steady, or raise it, support both the age model and the tie. A drop in g means the physical match fights the dates. Dropping age constraints one subset at a time, and watching g move, is a check for hiatuses and for dates that need another look.</p>
+
+        <h2>Example notebooks</h2>
+        <p>The repository includes seven notebooks:</p>
+        <ol>
+          <li>RGB core photos to color logs, including stitching.</li>
+          <li>CT images to brightness logs.</li>
+          <li>Gap filling for core logs.</li>
+          <li>Interactive boundary picking.</li>
+          <li>A full pairwise correlation.</li>
+          <li>Synthetic stratigraphy.</li>
+          <li>Comparison of real correlations with the synthetic null.</li>
+        </ol>
+
+        <h2>Package layout and license</h2>
+        <p>The code is split into correlation analysis (warping, segments, paths, quality, ages, and synthetic tests), preprocessing (CT, RGB, datum picking, and gap filling), and utilities (loading, plotting, and animation). Function notes are in the repository. The license is the GNU Affero General Public License 3.0: if you modify the software and distribute it, or run it as a network service, the modified source stays under the same license.</p>
+      </div>
+
+      <div class="project-figures">
+        <figure>
+          <img src="explain_fig/Fig00-flowchart.png" width="1717" height="680" alt="Flowchart of the pyCoreRelator correlation workflow">
+          <figcaption>Correlation workflow: segment the cores, warp the signals, score the ties, and rank the solutions.</figcaption>
+        </figure>
+        <figure>
+          <img src="explain_fig/Fig01-DAGexplain.png" width="2280" height="1373" alt="Unit-pair index grid and the directed acyclic graph of allowed correlations">
+          <figcaption>Unit pairs between a 3-unit section and a 2-unit section. Even indices are real beds. Odd indices are zero-thickness pinch-outs. White cells tie bed to bed. Gray cells are pinch-outs. The graph on the right is every succession that stays in order.</figcaption>
+        </figure>
+        <figure>
+          <img src="explain_fig/Fig02-DTWvsDAGexplain.png" width="1858" height="1387" alt="Composite dynamic time warping paths built from the correlation graph">
+          <figcaption>Each route through the graph becomes one composite warping path. Dashed steps are the choices inside the cost matrix. Horizontal and vertical steps are pinch-outs. Each solid path is one valid correlation.</figcaption>
+        </figure>
+        <figure>
+          <img src="explain_fig/Fig03-Solution_Puring_and_Ranking.png" width="2168" height="2267" alt="Pruning correlation paths with age order and ranking the ones that remain">
+          <figcaption>From every composite path, to the paths removed because they break age order, to the age-valid ties, to a comparison with human markers, to the pick from Pearson’s r and normalized DTW cost.</figcaption>
+        </figure>
+        <figure>
+          <img src="explain_fig/Fig04-DelannyEstimate.png" width="1699" height="1589" alt="Delannoy-number estimate of how many correlations the graph allows">
+          <figcaption>How the number of allowed correlations grows with the number of units. The dashed curve is the Delannoy-number estimate. Points are pairwise counts from Cascadia turbidite cores (Lai, 2026).</figcaption>
+        </figure>
+        <figure>
+          <img src="explain_fig/Fig05-kmean_MC.png" width="2324" height="2609" alt="k-means facies clusters and a Markov transition used for synthetic sections">
+          <figcaption>Facies groups from k-means on bed thickness and mean log value (magnetic susceptibility, CT number, and luminance) for the Cascadia cores, and a variable-order Markov transition used to stack synthetic sections.</figcaption>
+        </figure>
+        <figure>
+          <img src="explain_fig/Fig06-effectsize_g.png" width="1236" height="1421" alt="Hedges g comparison of real correlations against a null distribution">
+          <figcaption>Real-data similarity (color) against the null distribution (gray). Dashed vertical lines are means. Solid horizontal lines are standard deviations. Hedges’ g of 0.8 or more is the bar for a match that stands above background noise.</figcaption>
+        </figure>
+      </div>
+
+      <p class="back-link"><a href="../../projects.html">All projects</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Larry Syu-Heng Lai</p>
+      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
+      10611 Exploration Way, Austin, TX 78758</p>
+      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
+      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    </div>
+  </footer>
+</body>
+</html>

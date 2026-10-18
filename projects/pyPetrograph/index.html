@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyPetrograph · Larry Syu-Heng Lai</title>
+  <meta name="description" content="pyPetrograph is a machine-learning toolkit for thin-section petrography: hand labels, mineral-map grain counts, and multi-image grain outlines.">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <nav class="nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a><a href="../../blogs.html">Notes</a><a href="../../contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+
+      <figure class="project-hero">
+        <img src="figures/Manual_label_UI.png" width="1429" height="839" alt="Hand-label window on a plane-polarized thin-section photo">
+        <figcaption>Hand labels on a plane-polarized thin section. A few painted examples of pores, grains, or cement train a pixel model for the rest of the photo.</figcaption>
+      </figure>
+
+      <h1>pyPetrograph</h1>
+      <ul class="project-links">
+        <li><a href="https://github.com/GeoLarryLai/pyPetrograph">GitHub</a></li>
+        <li><a href="https://pypi.org/project/pypetrograph/">PyPI</a></li>
+      </ul>
+
+      <div class="project-summary">
+        <p>pyPetrograph (version 0.0.6 in the current notes) is a machine-learning toolkit for thin-section petrography. You can paint features on an RGB photo and train a LightGBM pixel model to map the area percent of each class. The demo treats pores against grains and reads pore area as porosity. You can count grains on a painted mineral map by matching a color legend. Or you can stack several images of the same field, plane-polarized light, cross-polarized light, or others, and segment grains from that overlay.</p>
+        <p>The tool is under development. Use it with caution. Notebooks, interfaces, and numbers can still change. For finer grain boundaries there is optional support for <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a> (Zoltan Sylvester). SAM 2.1 weights, about 860 MB, are a further opt-in on that project’s page, not part of the default install.</p>
+        <p>Larry Syu-Heng Lai leads the current version, from early code written by Zoltan Sylvester, at the Quantitative Clastics Laboratory, Bureau of Economic Geology. The work is also with Priyanka Periwal, Lucy Tingwei Ko, Kelly Hattori, and Amanda Calle, across groups in the Bureau and the <a href="https://www.beg.utexas.edu/research/labs/sem">e-MAGE lab</a>. Example thin sections live in <code>Test images/</code>. Results go to <code>outputs/</code>.</p>
+
+        <h2>Install</h2>
+        <p>From PyPI:</p>
+        <pre class="install"><code>pip install pypetrograph</code></pre>
+        <p>From the repository, create the conda environment in <code>environment.yml</code>, activate <code>pypetrograph</code>, and install the checkout in editable mode. The optional grain-boundary model is a separate install of SegmentEveryGrain into that same environment.</p>
+
+        <h2>Hand labels and area percent</h2>
+        <p><code>pyPetrograph_rgb_porosity.ipynb</code> is the labeling demo. You paint a few examples of each feature you care about (pores, grains, cement, and so on), using color, edge sharpness, and microtexture. A LightGBM pixel classifier learns those examples. Random forest or XGBoost can be used instead. The model maps the rest of the photo and reports the area percent of each class with a confidence range. In the demo, pore area is the porosity.</p>
+
+        <h2>Grain counts on a mineral map</h2>
+        <p><code>pyPetrograph_mineralmap_count.ipynb</code> starts from a color mineral map, one flat color per mineral, plus a legend. It matches pixels to the legend, splits grains that touch, and counts grains in each class. The figure below shows the counts, the table, and the class-share bars.</p>
+
+        <h2>Grains from a multi-image overlay</h2>
+        <p><code>pyPetrograph_multimodal_grains.ipynb</code> is for contacts that one illumination misses. A boundary drawn from plane-polarized light alone can skip a contact that appears only under crossed polars, and the reverse is true as well. The notebook aligns the two views of the same field and stacks them. Grain outlines then proceed in this order:</p>
+        <ol>
+          <li><strong>Watershed.</strong> A first guess from brightness, with no training.</li>
+          <li><strong>SegmentEveryGrain mask.</strong> An optional U-Net. That saved mask is the training target.</li>
+          <li><strong>N-channel U-Net.</strong> About 25 MB, already stored as <code>outputs/models/grain_unet_ppl-xpl.keras</code>, trained on the stacked plane- and cross-polarized images to copy the SegmentEveryGrain mask. The notebook loads that model. It does not train it again.</li>
+        </ol>
+        <p>GrainPlot is a further optional check window. SAM 2.1, about 860 MB and off by default, is only for still finer shapes.</p>
+
+        <h2>License</h2>
+        <p>GNU Affero General Public License 3.0 or later. The license file is in the repository.</p>
+      </div>
+
+      <div class="project-figures">
+        <figure>
+          <img src="figures/Mineralmap-demo.png" width="1066" height="987" alt="Grain counts, a table, and class-share bars from a painted mineral map">
+          <figcaption>Grain counts on a painted mineral map: the map, the count table, and the share of each class.</figcaption>
+        </figure>
+        <figure>
+          <img src="figures/Grain-mapping-mutiimage-overlay.png" width="1530" height="416" alt="Watershed, SegmentEveryGrain target, and U-Net grain outlines on a stacked thin-section image">
+          <figcaption>Three outlines on an aligned stack of plane- and cross-polarized light: watershed, the SegmentEveryGrain training target, and the N-channel U-Net.</figcaption>
+        </figure>
+      </div>
+
+      <p class="back-link"><a href="../../projects.html">All projects</a></p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Larry Syu-Heng Lai</p>
+      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
+      10611 Exploration Way, Austin, TX 78758</p>
+      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
+      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    </div>
+  </footer>
+</body>
+</html>
