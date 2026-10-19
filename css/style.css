@@ -11,7 +11,7 @@
   --ridge-2: #24566a;
   --serif: Palatino, "Palatino Linotype", "Iowan Old Style", Georgia, serif;
   --sans: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
-  --max: 1080px;
+  --max: 100%;
   --shadow: 0 10px 30px rgba(27, 35, 48, 0.08);
 }
 
@@ -24,7 +24,7 @@ body {
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 1.15vw, 1.35rem);
   line-height: 1.6;
 }
 
@@ -54,7 +54,7 @@ a:hover { color: var(--ridge); }
 }
 
 .header-inner, .wrap, .site-footer .wrap {
-  width: min(var(--max), calc(100% - 2rem));
+  width: calc(100% - 6vw);
   margin: 0 auto;
 }
 
@@ -122,43 +122,47 @@ h3 { font-size: 1.25rem; margin: 1.4rem 0 0.4rem; }
 .social a img { width: 32px; height: 32px; display: block; }
 .social a:hover { background: transparent; opacity: 0.75; }
 
-.intro {
-  display: grid;
-  width: 100%;
-  margin-top: -2rem;
+.home-intro {
+  width: calc(100% - 6vw);
+  margin: 0 auto;
+  padding: 2.2rem 0 0.5rem;
 }
-.intro-photo,
-.intro-copy { grid-area: 1 / 1; }
-.intro-photo,
-.ridge-photo {
+.home-intro .intro-copy {
+  position: static;
+  width: 100%;
+  align-self: center;
+  align-items: end;
+  grid-template-columns: minmax(220px, 32vw) minmax(0, 1fr);
+  gap: 0.4rem 2vw;
+  padding: 0;
+}
+.page-banner,
+.closing-photo {
   display: block;
   width: 100%;
-  max-width: 100%;
-  min-width: 0;
   height: auto;
 }
-.intro-photo {
-  align-self: end;
-  justify-self: stretch;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.16) 46%, rgb(0 0 0 / 0.4) 74%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.16) 46%, rgb(0 0 0 / 0.4) 74%, #000 100%);
+.closing { display: grid; width: 100%; margin-top: 2rem; }
+.closing-photo,
+.closing-contact { grid-area: 1 / 1; }
+.closing-photo {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.25) 32%, #000 62%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.25) 32%, #000 62%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
 }
-.intro-copy {
+.closing-contact {
   z-index: 1;
+  align-self: start;
+  width: calc(100% - 6vw);
   justify-self: center;
-  align-self: end;
-  align-items: end;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.35rem 0.85rem;
-  width: min(var(--max), calc(100% - 2rem));
-  min-width: 0;
-  padding: 0 0 0.2rem;
+  padding: 1.4rem 0 0;
   color: var(--ink);
 }
+.closing-contact p { margin: 0.15rem 0; }
+.closing-contact a { color: var(--ink); }
 .intro-copy > * { min-width: 0; }
 .intro-copy h1,
 .intro-copy p { color: var(--ink); }
@@ -191,24 +195,36 @@ h3 { font-size: 1.25rem; margin: 1.4rem 0 0.4rem; }
 .ridge-contact a { color: #f7f4ee; }
 
 .expertises {
-  width: min(var(--max), calc(100% - 2rem));
-  margin: 2.4rem auto 0;
+  width: 100%;
+  margin: 1.5rem 0 0;
+}
+.expertises h2 {
+  width: calc(100% - 6vw);
+  margin: 0 auto 0.2rem;
 }
 .expertise-list {
   list-style: none;
   padding: 0;
-  margin: 0.4rem 0 0;
+  margin: 0;
+}
+.expertise-list li {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.8rem 1.35rem;
+  grid-template-columns: minmax(160px, 22vw) minmax(0, 1fr);
+  gap: 1.2rem 3vw;
+  align-items: center;
+  padding: 1.6rem 3vw;
+  border-top: 1px solid var(--line);
 }
 .expertise-list img {
   width: 100%;
   height: auto;
   display: block;
 }
-.expertise-list h3 { margin: 0.65rem 0 0.3rem; }
-.expertise-list p { margin: 0; }
+.expertise-list h3 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+}
+.expertise-list p { margin: 0; max-width: 46rem; }
 .band {
   margin: 2.2rem calc(50% - 50vw) 0.4rem;
   width: 100vw;
@@ -319,7 +335,8 @@ figure img { border-radius: 3px; box-shadow: var(--shadow); }
 
 @media (max-width: 800px) {
   .hero { grid-template-columns: minmax(0, 1fr); }
-  .expertise-list { grid-template-columns: 1fr; }
+  .home-intro .intro-copy { grid-template-columns: 1fr; }
+  .expertise-list li { grid-template-columns: 1fr; }
   .portrait { max-width: 420px; }
   .strip { grid-template-columns: 1fr 1fr; }
   .strip img { height: 140px; }
