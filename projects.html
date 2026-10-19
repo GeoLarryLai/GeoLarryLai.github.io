@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GitHub Projects · Larry Syu-Heng Lai</title>
-  <meta name="description" content="Larry Syu-Heng Lai, field geologist. Sedimentary processes, landscape evolution, and stratigraphy.">
+  <meta name="description" content="GitHub projects by Larry Syu-Heng Lai: Python tools for stratigraphic correlation, topographic analysis, valley width, petrography, and well logs.">
   <link rel="stylesheet" href="css/style.css">
-  
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -17,56 +17,45 @@
     </div>
   </header>
   <main id="main">
-    <img class="page-banner" src="assets/field-snow-ridge.jpg" alt="A person with a large yellow pack hiking up a snowy ridge toward a summit.">
     <div class="wrap">
 
+      <img class="page-banner" src="assets/field-snow-ridge.jpg" width="2400" height="1350" alt="A person with a large yellow pack hiking up a snowy ridge toward a summit.">
       <h1>GitHub Projects</h1>
-      <p>I build reproducible pipelines and custom algorithms for subsurface logs and land-surface topography when existing tools fall short.</p>
-      <div class="cards">
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyCoreRelator/index.html">pyCoreRelator</a></h3>
+      <p class="lede">I build reproducible pipelines and custom algorithms for subsurface logs and land-surface topography when existing tools fall short.</p>
+      <div class="stagger">
+        <div class="stagger-col">
+          <article class="card" style="--i:1">
+            <h3><a href="projects/pyCoreRelator/index.html">pyCoreRelator <span aria-hidden="true">→</span></a></h3>
             <p>A Python toolkit for pairwise stratigraphic correlation analysis among sediment cores and well-log data.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyTopoComplexity/index.html">pyTopoComplexity</a></h3>
-            <p>A Python package for multiscale topographic complexity analysis.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyValleyWidth/index.html">pyValleyWidth</a></h3>
+          </article>
+          <article class="card" style="--i:3">
+            <h3><a href="projects/pyValleyWidth/index.html">pyValleyWidth <span aria-hidden="true">→</span></a></h3>
             <p>Codes for pytopotoolbox to extract valley width.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyPetrograph/index.html">pyPetrograph</a></h3>
-            <p>ML-applied toolkits for rock thin-section petrographic analysis.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyLogCrafter/index.html">pyLogCrafter</a></h3>
+          </article>
+          <article class="card" style="--i:5">
+            <h3><a href="projects/pyLogCrafter/index.html">pyLogCrafter <span aria-hidden="true">→</span></a></h3>
             <p>Basin-scale well-log quality control, spatial normalization, gap filling, and electrofacies tools. Under development.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyRockImageLab/index.html">pyRockImageLab</a></h3>
-            <p>Rock-photograph workflows for core-box crop, stitch, and mosaic. Under development.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-body">
-            <h3><a href="projects/pyBasinSubs/index.html">pyBasinSubs</a></h3>
+          </article>
+          <article class="card" style="--i:7">
+            <h3><a href="projects/pyBasinSubs/index.html">pyBasinSubs <span aria-hidden="true">→</span></a></h3>
             <p>R scripts for basin subsidence analyses of Taiwan Coastal Range. A newer package is not published yet.</p>
-          </div>
-        </article>
+          </article>
+        </div>
+        <div class="stagger-col">
+          <article class="card" style="--i:2">
+            <h3><a href="projects/pyTopoComplexity/index.html">pyTopoComplexity <span aria-hidden="true">→</span></a></h3>
+            <p>A Python package for multiscale topographic complexity analysis.</p>
+          </article>
+          <article class="card" style="--i:4">
+            <h3><a href="projects/pyPetrograph/index.html">pyPetrograph <span aria-hidden="true">→</span></a></h3>
+            <p>ML-applied toolkits for rock thin-section petrographic analysis.</p>
+          </article>
+          <article class="card" style="--i:6">
+            <h3><a href="projects/pyRockImageLab/index.html">pyRockImageLab <span aria-hidden="true">→</span></a></h3>
+            <p>Rock-photograph workflows for core-box crop, stitch, and mosaic. Under development.</p>
+          </article>
+        </div>
       </div>
-
 
     </div>
   </main>
@@ -79,5 +68,6 @@
       · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
     </div>
   </footer>
+  <script src="js/reveal.js"></script>
 </body>
 </html>
