@@ -150,17 +150,45 @@ h3 { font-size: 1.25rem; margin: 1.4rem 0 0.4rem; }
 .intro-copy {
   z-index: 1;
   justify-self: center;
-  align-self: start;
+  align-self: end;
+  align-items: end;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.35rem 0.85rem;
   width: min(var(--max), calc(100% - 2rem));
   min-width: 0;
-  padding: 1.7rem 0 clamp(7.5rem, 11vw, 12rem);
+  padding: 0 0 0.2rem;
   color: var(--ink);
 }
 .intro-copy > * { min-width: 0; }
 .intro-copy h1,
 .intro-copy p { color: var(--ink); }
 .intro-copy .tagline { color: var(--muted); }
-.intro-copy .portrait { background: transparent; }
+.intro-copy .portrait { background: transparent; margin: 0; }
+.ridge {
+  display: grid;
+  width: 100%;
+}
+.ridge-photo,
+.ridge-contact { grid-area: 1 / 1; }
+.ridge-photo {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.2) 28%, #000 58%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.2) 28%, #000 58%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+.ridge-contact {
+  z-index: 1;
+  align-self: end;
+  width: min(var(--max), calc(100% - 2rem));
+  justify-self: center;
+  margin: 0;
+  padding: 0 0 1.2rem;
+  color: #f7f4ee;
+}
+.ridge-contact p { margin: 0.15rem 0; }
+.ridge-contact a { color: #f7f4ee; }
 
 .expertises {
   width: min(var(--max), calc(100% - 2rem));
