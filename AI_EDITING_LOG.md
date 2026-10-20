@@ -3,7 +3,7 @@ id: AI_EDITING_LOG
 path: AI_EDITING_LOG.md
 audience: LLM
 purpose: domain ledger so new chats skip rediscovery
-updated: 2026-10-19
+updated: 2026-10-20
 quality_gate: visual check at 1440 and phone width, links and images resolve
 ---
 
@@ -73,6 +73,7 @@ References the user cited: rubenkuipers.design (cards, fonts), watracz.com (case
 | Old pages | Delete `blogs.html` and `contact.html` | keep |
 | Images | `.webp` siblings next to PNG/JPG, originals kept | replace originals |
 | pyLogCrafter | Repo is private: never link github.com | |
+| pyRockImageLab | Public on GitHub, AGPL-3.0, GitHub button on the project page | leave private |
 
 ---
 
@@ -161,4 +162,7 @@ Decision: About portrait replaced with the user's reframed photo (576×1024 WebP
 
 ### 2026-10-20 — Drop segyio
 Decision: removed segyio from the About Software tags | Files: about.html | Status: DONE
+
+### 2026-10-20 — pyRockImageLab public + site link
+Decision: user asked to open the repo and link it. LICENSE was already AGPL-3.0; GitHub now reports AGPL-3.0 and visibility public. Project page gained a GitHub pill (PyPI stays, outline), same pattern as pyPetrograph. Checked local page at desktop and 390px. User asked to push | Files: projects/pyRockImageLab/index.html | Status: DONE
 
