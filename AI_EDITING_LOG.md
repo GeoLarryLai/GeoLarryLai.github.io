@@ -159,3 +159,6 @@ Decision: About Skills now five groups (Geoscience, Field and lab, Data analytic
 ### 2026-10-20 — About portrait reframe
 Decision: About portrait replaced with the user's reframed photo (576×1024 WebP). Front page cutout unchanged. Src has `?v=20261020` so browsers don't keep the old file | Files: assets/portrait-full-body.webp, about.html | Status: DONE
 
+### 2026-10-20 — Drop segyio
+Decision: removed segyio from the About Software tags | Files: about.html | Status: DONE
+
