@@ -79,7 +79,7 @@ References the user cited: rubenkuipers.design (cards, fonts), watracz.com (case
 ## CONTRACTS
 
 Break = bug.
-- Repo is public (GitHub Free cannot serve a public site from a private repo). Pages serves https://geolarrylai.github.io. Attach `larrysyuhenglai.com` only after DNS points at GitHub. No further push unless the user asks.
+- Repo is public (GitHub Free cannot serve a public site from a private repo). Pages custom domain is `www.larrysyuhenglai.com` (`CNAME`). The bare domain still forwards to www at Squarespace. No further push unless the user asks.
 - `css/style.css` is the only stylesheet (`projects/project.css` deleted). `js/site.js` = nav toggle, tabs, copy buttons. `js/reveal.js` = stagger-card reveal.
 - Palette: paper `#f4f0e8`, ink `#1b2330`, muted `#5a6370`, rust `#7c341f`, ridge `#1a3948`.
 - Every page uses the shared head (og, favicon, theme-color, `js` class script), header with `.nav-toggle`, and footer with `.footer-contour`. The front page keeps its skydive closing block.
