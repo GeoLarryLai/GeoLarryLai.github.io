@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GitHub Projects · Larry Syu-Heng Lai</title>
   <meta name="description" content="GitHub projects by Larry Syu-Heng Lai: Python tools for stratigraphic correlation, topographic analysis, valley width, petrography, and well logs.">
+  <meta property="og:title" content="GitHub Projects · Larry Syu-Heng Lai">
+  <meta property="og:description" content="Python tools for stratigraphic correlation, topographic analysis, valley width, petrography, and well logs.">
+  <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f0e8">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -13,46 +22,71 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
-      <nav class="nav" aria-label="Site"><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html" aria-current="page">Projects</a><a href="research/index.html">Research</a></nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Site"><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html" aria-current="page">Projects</a><a href="research/index.html">Research</a></nav>
     </div>
   </header>
   <main id="main">
+
+    <header class="page-head contour-bg">
+      <div class="wrap">
+        <p class="label">Code &middot; Python &middot; R</p>
+        <h1>GitHub Projects</h1>
+        <p class="lede">I build reproducible pipelines and custom algorithms for subsurface logs and land-surface topography when existing tools fall short.</p>
+      </div>
+    </header>
+
     <div class="wrap">
 
-      <img class="page-banner" src="assets/field-snow-ridge.jpg" width="2400" height="1350" alt="A person with a large yellow pack hiking up a snowy ridge toward a summit.">
-      <h1>GitHub Projects</h1>
-      <p class="lede">I build reproducible pipelines and custom algorithms for subsurface logs and land-surface topography when existing tools fall short.</p>
+      <figure class="teaser">
+        <img src="assets/field-snow-ridge.webp" width="1800" height="1012" alt="A person with a large yellow pack hiking up a snowy ridge toward a summit.">
+      </figure>
+
       <div class="stagger">
         <div class="stagger-col">
           <article class="card" style="--i:1">
-            <h3><a href="projects/pyCoreRelator/index.html">pyCoreRelator <span aria-hidden="true">→</span></a></h3>
+            <p class="label">Python &middot; Stratigraphic correlation</p>
+            <h3><a href="projects/pyCoreRelator/index.html">pyCoreRelator <span aria-hidden="true">&rarr;</span></a></h3>
             <p>A Python toolkit for pairwise stratigraphic correlation analysis among sediment cores and well-log data.</p>
+            <img src="projects/pyCoreRelator/explain_fig/Fig00-flowchart.png" width="1717" height="680" loading="lazy" alt="Flowchart of the pyCoreRelator correlation workflow.">
           </article>
           <article class="card" style="--i:3">
-            <h3><a href="projects/pyValleyWidth/index.html">pyValleyWidth <span aria-hidden="true">→</span></a></h3>
+            <p class="label">Python &middot; Valley width</p>
+            <h3><a href="projects/pyValleyWidth/index.html">pyValleyWidth <span aria-hidden="true">&rarr;</span></a></h3>
             <p>Codes for pytopotoolbox to extract valley width.</p>
+            <img src="projects/pyValleyWidth/Method_overview.webp" width="1164" height="1000" loading="lazy" alt="Overview of the valley-width extraction method.">
           </article>
           <article class="card" style="--i:5">
-            <h3><a href="projects/pyLogCrafter/index.html">pyLogCrafter <span aria-hidden="true">→</span></a></h3>
+            <p class="label">Python &middot; Well logs &middot; In development</p>
+            <h3><a href="projects/pyLogCrafter/index.html">pyLogCrafter <span aria-hidden="true">&rarr;</span></a></h3>
             <p>Basin-scale well-log quality control, spatial normalization, gap filling, and electrofacies tools. Under development.</p>
+            <img src="projects/pyLogCrafter/pyLogCrafter_logo.webp" width="1800" height="1249" loading="lazy" alt="pyLogCrafter logo, two wavy log curves above the name.">
           </article>
           <article class="card" style="--i:7">
-            <h3><a href="projects/pyBasinSubs/index.html">pyBasinSubs <span aria-hidden="true">→</span></a></h3>
+            <p class="label">R &middot; Basin subsidence</p>
+            <h3><a href="projects/pyBasinSubs/index.html">pyBasinSubs <span aria-hidden="true">&rarr;</span></a></h3>
             <p>R scripts for basin subsidence analyses of Taiwan Coastal Range. A newer package is not published yet.</p>
+            <span class="card-tile contour-bg" style="--cpos: 30% 60%" aria-hidden="true"></span>
           </article>
         </div>
         <div class="stagger-col">
           <article class="card" style="--i:2">
-            <h3><a href="projects/pyTopoComplexity/index.html">pyTopoComplexity <span aria-hidden="true">→</span></a></h3>
+            <p class="label">Python &middot; Topographic analysis</p>
+            <h3><a href="projects/pyTopoComplexity/index.html">pyTopoComplexity <span aria-hidden="true">&rarr;</span></a></h3>
             <p>A Python package for multiscale topographic complexity analysis.</p>
+            <img src="projects/pyTopoComplexity/image/cwtmexhat.webp" width="1800" height="1225" loading="lazy" alt="Wavelet curvature of a digital elevation model.">
           </article>
           <article class="card" style="--i:4">
-            <h3><a href="projects/pyPetrograph/index.html">pyPetrograph <span aria-hidden="true">→</span></a></h3>
+            <p class="label">Python &middot; Petrography</p>
+            <h3><a href="projects/pyPetrograph/index.html">pyPetrograph <span aria-hidden="true">&rarr;</span></a></h3>
             <p>ML-applied toolkits for rock thin-section petrographic analysis.</p>
+            <img src="projects/pyPetrograph/figures/Mineralmap-demo.webp" width="1066" height="987" loading="lazy" alt="Mineral map of a thin section from pyPetrograph.">
           </article>
           <article class="card" style="--i:6">
-            <h3><a href="projects/pyRockImageLab/index.html">pyRockImageLab <span aria-hidden="true">→</span></a></h3>
+            <p class="label">Python &middot; Rock images &middot; In development</p>
+            <h3><a href="projects/pyRockImageLab/index.html">pyRockImageLab <span aria-hidden="true">&rarr;</span></a></h3>
             <p>Rock-photograph workflows for core-box crop, stitch, and mosaic. Under development.</p>
+            <span class="card-tile contour-bg" style="--cpos: 80% 20%" aria-hidden="true"></span>
           </article>
         </div>
       </div>
@@ -60,14 +94,12 @@
     </div>
   </main>
   <footer class="site-footer">
-    <div class="wrap">
-      <p>Larry Syu-Heng Lai</p>
-      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
-      10611 Exploration Way, Austin, TX 78758</p>
-      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
-      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    <div class="footer-contour" aria-hidden="true"></div>
+    <div class="wrap footer-base">
+      <p class="footer-copy">&copy; 2026 Larry Syu-Heng Lai</p>
     </div>
   </footer>
   <script src="js/reveal.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

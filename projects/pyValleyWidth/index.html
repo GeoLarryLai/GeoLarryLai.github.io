@@ -5,53 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyValleyWidth · Larry Syu-Heng Lai</title>
   <meta name="description" content="pyValleyWidth measures valley width from a digital terrain model with pytopotoolbox.">
+  <meta property="og:title" content="pyValleyWidth · Larry Syu-Heng Lai">
+  <meta property="og:description" content="pyValleyWidth measures valley width from a digital terrain model with pytopotoolbox.">
+  <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f0e8">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
   <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../project.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
-      <nav class="nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a></nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a></nav>
     </div>
   </header>
   <main id="main">
+
+    <header class="page-head contour-bg">
+      <div class="wrap">
+        <a class="back" href="../../projects.html">&larr; Projects</a>
+        <p class="label">Python &middot; Valley width</p>
+        <h1>pyValleyWidth</h1>
+        <p class="lede">pyValleyWidth measures valley width from a digital terrain model.</p>
+        <ul class="btn-row">
+          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyValleyWidth">GitHub</a></li>
+        </ul>
+        <ul class="facts">
+          <li><b>Status</b>Under active development</li>
+          <li><b>Built on</b>pytopotoolbox</li>
+          <li><b>Example data</b>Big Tujunga DEM</li>
+        </ul>
+      </div>
+    </header>
+
     <div class="wrap">
 
-      <figure class="project-hero">
-        <img src="Method_overview.png" width="1164" height="1000" alt="Valley-width method: hillshade, relative elevation, cross-valley profiles, and resampled width">
-        <figcaption>Hillshade and river path, height above the channel, widths from cross-valley profiles, and the resampled width. After Morgan et al. (2026). Profiles on a tight bend can run long. Resampling along the network steadies the map.</figcaption>
+      <figure class="teaser block">
+        <img src="Method_overview.webp" width="1164" height="1000" alt="Valley-width method: hillshade, relative elevation, cross-valley profiles, and resampled width">
+        <figcaption class="fig-cap">Hillshade and river path, height above the channel, widths from cross-valley profiles, and the resampled width. After Morgan et al. (2026). Profiles on a tight bend can run long. Resampling along the network steadies the map.</figcaption>
       </figure>
 
-      <h1>pyValleyWidth</h1>
-      <ul class="project-links">
-        <li><a href="https://github.com/GeoLarryLai/pyValleyWidth">GitHub</a></li>
-      </ul>
+      <section class="block">
+        <h2>Overview</h2>
+        <div class="prose">
+          <p>pyValleyWidth is built on <a href="https://github.com/TopoToolbox/pytopotoolbox">pytopotoolbox</a>, the Python port of TopoToolbox. The approach follows Paul Morgan’s <a href="https://github.com/PMonroeMorgan/ElevationThresholdValleyWidth">ElevationThresholdValleyWidth</a> workflow, first written in MATLAB for TopoToolbox 2.</p>
+          <p>The code is under active development. It has not been peer-reviewed or fully validated. Use it with caution.</p>
+        </div>
+      </section>
 
-      <div class="project-summary">
-        <p>pyValleyWidth measures valley width from a digital terrain model. It is built on <a href="https://github.com/TopoToolbox/pytopotoolbox">pytopotoolbox</a>, the Python port of TopoToolbox. The approach follows Paul Morgan’s <a href="https://github.com/PMonroeMorgan/ElevationThresholdValleyWidth">ElevationThresholdValleyWidth</a> workflow, first written in MATLAB for TopoToolbox 2.</p>
-        <p>The code is under active development. It has not been peer-reviewed or fully validated. Use it with caution. If you use the original threshold method, cite Morgan, P. M., Grant, A., Struble, W., LaHusen, S., and Duvall, A. (2026) The damability function: a probabilistic approach to regional landslide dam susceptibility analysis applied to the Oregon Coast Range, USA. <em>Natural Hazards and Earth System Sciences</em>, 26, 1745–1766, <a href="https://doi.org/10.5194/nhess-26-1745-2026">https://doi.org/10.5194/nhess-26-1745-2026</a>. Cite TopoToolbox or pytopotoolbox as well when the routing comes from there.</p>
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Importable package</h3><p>Valley classification, swath widths, an optional variable rim, smoothing along the stream network, the normalized steepness index <em>k</em><sub>sn</sub>, and river-profile figures.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Example notebook</h3><p><code>valley_width_example.ipynb</code>, an end-to-end run on the Big Tujunga DEM shipped with TopoToolbox. It routes flow, can mask to the largest catchment, measures width two ways, and draws maps, <em>k</em><sub>sn</sub>, longitudinal and chi–elevation profiles, and threshold or excess topography.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Method figure</h3><p>The method figure at the top of this page.</p></div>
+        </div>
+      </section>
 
-        <h2>What is in the repository</h2>
-        <ul>
-          <li>An importable package: valley classification, swath widths, an optional variable rim, smoothing along the stream network, the normalized steepness index <em>k</em><sub>sn</sub>, and river-profile figures.</li>
-          <li><code>valley_width_example.ipynb</code>, an end-to-end run on the Big Tujunga DEM shipped with TopoToolbox. It routes flow, can mask to the largest catchment, measures width two ways, and draws maps, <em>k</em><sub>sn</sub>, longitudinal and chi–elevation profiles, and threshold or excess topography. The notebook is the user guide, including notes on stream area, the HAND threshold, swath spacing, smoothing, and saturated transects.</li>
-          <li>The method figure at the top of this page.</li>
-        </ul>
-
-        <h2>Method</h2>
-        <p>Width comes from height above the channel network, a valley polygon, and cross-stream swaths. A profile perpendicular to the channel can overestimate width on a tight bend, so the workflow can resample and smooth widths along the network with a moving window. A variable-rim mode is also available: each transect is clipped to the local divides, and the rim is picked from a sweep of how width changes with the height threshold.</p>
-
-        <h2>Pipeline</h2>
-        <ol>
-          <li><strong>Terrain and streams.</strong> Flow routing and stream extraction with pytopotoolbox. An optional mask keeps the largest connected catchment, so later steps use one basin.</li>
-          <li><strong>Valley mask, two choices inside <code>dem2widths</code>.</strong> A constant HAND threshold treats every cell below a fixed height above the nearest stream as valley, and returns widths and that height field. The variable-rim mode clips each transect to the local drainage divides, sweeps the HAND threshold upward, and takes the last qualifying peak in dW/dT between a noise floor (<code>min_dwdt</code>) and a divide-scale ceiling (<code>max_dwdt</code>). Those per-transect thresholds are lifted onto the stream nodes, smoothed with a rolling median, and passed to the same flood fill. That mode also returns a valley depth. <code>plot_transect_diagnostic</code> draws one transect (map, HAND profile, and the dW/dT sweep) so the two thresholds can be chosen by eye.</li>
-          <li><strong>Widths from swaths.</strong> Cross-stream profiles on the valley raster, with an optional filter when a transect is too short to be trusted.</li>
-          <li><strong>Widths on the network.</strong> Raw widths at the sample points, then a gap-filled, vertex-averaged, Gaussian-smoothed field (<code>smooth_valley_width_on_stream_network</code>).</li>
-          <li><strong>Add-ons in the example notebook.</strong> <em>k</em><sub>sn</sub> from a slope–area fit with fixed concavity, longitudinal and chi–elevation profiles with the trunk highlighted, a trunk profile that pairs width with valley-top height in the variable-rim mode, and threshold or excess topography at a chosen slope (35° in the example).</li>
-        </ol>
-
+      <section class="block">
         <h2>Installation</h2>
         <ol>
           <li>Make a conda or virtual environment with <code>topotoolbox</code> installed, and use that environment as the Jupyter kernel.</li>
@@ -60,30 +78,77 @@
           <li>For another terrain model, copy those sections and change stream area, the elevation threshold or the variable-rim settings, swath spacing, the minimum radius, and the swath length.</li>
         </ol>
         <pre class="install"><code>from pyValleyWidth import dem2widths</code></pre>
+      </section>
 
-        <h2>Package pieces</h2>
-        <ul>
-          <li><code>dem2widths</code> runs routing, drops short streams, builds the valley mask, measures swaths, and returns drainage area and gradient at the width samples.</li>
-          <li><code>valleyclass_elev</code>, <code>swath_width</code>, and <code>peak_valley_width</code> build the mask and find the rim in the variable-threshold mode.</li>
-          <li><code>plot_transect_diagnostic</code> is the three-panel check at one map point.</li>
-          <li><code>stream_utils</code> drops short streams and builds the swath geometry.</li>
-          <li><code>valley_width_stream</code> flattens stream coordinates, smooths width on the network, and orders samples along the trunk.</li>
-          <li><code>ksn_analysis</code> handles the slope–area fit, <em>k</em><sub>sn</sub>, smoothing, and filling empty values along streams.</li>
-          <li><code>river_profile_plots</code> draws the longitudinal profile, the chi–elevation profile, the paired <em>k</em><sub>sn</sub> and valley-width panels, and the threshold and excess-topography figures.</li>
-        </ul>
-      </div>
+      <section class="block">
+        <h2>Citation</h2>
+        <p>If you use the original threshold method, cite:</p>
+        <div class="cite-box" data-copy-root>
+          <p class="label">Cite</p>
+          <p data-copy-src>Morgan, P. M., Grant, A., Struble, W., LaHusen, S., and Duvall, A. (2026) The damability function: a probabilistic approach to regional landslide dam susceptibility analysis applied to the Oregon Coast Range, USA. <em>Natural Hazards and Earth System Sciences</em>, 26, 1745–1766, <a href="https://doi.org/10.5194/nhess-26-1745-2026">https://doi.org/10.5194/nhess-26-1745-2026</a>.</p>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>Cite TopoToolbox or pytopotoolbox as well when the routing comes from there.</p>
+      </section>
 
-      <p class="back-link"><a href="../../projects.html">All projects</a></p>
+      <section class="block">
+        <h2>How it works</h2>
+        <details class="how">
+          <summary>What is in the repository</summary>
+          <div class="how-body">
+            <ul>
+              <li>An importable package: valley classification, swath widths, an optional variable rim, smoothing along the stream network, the normalized steepness index <em>k</em><sub>sn</sub>, and river-profile figures.</li>
+              <li><code>valley_width_example.ipynb</code>, an end-to-end run on the Big Tujunga DEM shipped with TopoToolbox. It routes flow, can mask to the largest catchment, measures width two ways, and draws maps, <em>k</em><sub>sn</sub>, longitudinal and chi–elevation profiles, and threshold or excess topography. The notebook is the user guide, including notes on stream area, the HAND threshold, swath spacing, smoothing, and saturated transects.</li>
+              <li>The method figure at the top of this page.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="how">
+          <summary>Method</summary>
+          <div class="how-body"><p>Width comes from height above the channel network, a valley polygon, and cross-stream swaths. A profile perpendicular to the channel can overestimate width on a tight bend, so the workflow can resample and smooth widths along the network with a moving window. A variable-rim mode is also available: each transect is clipped to the local divides, and the rim is picked from a sweep of how width changes with the height threshold.</p></div>
+        </details>
+        <details class="how">
+          <summary>Pipeline</summary>
+          <div class="how-body">
+            <ol>
+              <li><strong>Terrain and streams.</strong> Flow routing and stream extraction with pytopotoolbox. An optional mask keeps the largest connected catchment, so later steps use one basin.</li>
+              <li><strong>Valley mask, two choices inside <code>dem2widths</code>.</strong> A constant HAND threshold treats every cell below a fixed height above the nearest stream as valley, and returns widths and that height field. The variable-rim mode clips each transect to the local drainage divides, sweeps the HAND threshold upward, and takes the last qualifying peak in dW/dT between a noise floor (<code>min_dwdt</code>) and a divide-scale ceiling (<code>max_dwdt</code>). Those per-transect thresholds are lifted onto the stream nodes, smoothed with a rolling median, and passed to the same flood fill. That mode also returns a valley depth. <code>plot_transect_diagnostic</code> draws one transect (map, HAND profile, and the dW/dT sweep) so the two thresholds can be chosen by eye.</li>
+              <li><strong>Widths from swaths.</strong> Cross-stream profiles on the valley raster, with an optional filter when a transect is too short to be trusted.</li>
+              <li><strong>Widths on the network.</strong> Raw widths at the sample points, then a gap-filled, vertex-averaged, Gaussian-smoothed field (<code>smooth_valley_width_on_stream_network</code>).</li>
+              <li><strong>Add-ons in the example notebook.</strong> <em>k</em><sub>sn</sub> from a slope–area fit with fixed concavity, longitudinal and chi–elevation profiles with the trunk highlighted, a trunk profile that pairs width with valley-top height in the variable-rim mode, and threshold or excess topography at a chosen slope (35° in the example).</li>
+            </ol>
+          </div>
+        </details>
+        <details class="how">
+          <summary>Package pieces</summary>
+          <div class="how-body">
+            <ul>
+              <li><code>dem2widths</code> runs routing, drops short streams, builds the valley mask, measures swaths, and returns drainage area and gradient at the width samples.</li>
+              <li><code>valleyclass_elev</code>, <code>swath_width</code>, and <code>peak_valley_width</code> build the mask and find the rim in the variable-threshold mode.</li>
+              <li><code>plot_transect_diagnostic</code> is the three-panel check at one map point.</li>
+              <li><code>stream_utils</code> drops short streams and builds the swath geometry.</li>
+              <li><code>valley_width_stream</code> flattens stream coordinates, smooths width on the network, and orders samples along the trunk.</li>
+              <li><code>ksn_analysis</code> handles the slope–area fit, <em>k</em><sub>sn</sub>, smoothing, and filling empty values along streams.</li>
+              <li><code>river_profile_plots</code> draws the longitudinal profile, the chi–elevation profile, the paired <em>k</em><sub>sn</sub> and valley-width panels, and the threshold and excess-topography figures.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <a class="next-link" href="../pyPetrograph/index.html">
+        <span class="label">Next project</span>
+        <strong>pyPetrograph <span aria-hidden="true">&rarr;</span></strong>
+        <em>ML-applied toolkits for rock thin-section petrographic analysis.</em>
+      </a>
+
     </div>
   </main>
   <footer class="site-footer">
-    <div class="wrap">
-      <p>Larry Syu-Heng Lai</p>
-      <p>Room 3.128B, Bureau of Economic Geology, The University of Texas at Austin<br>
-      10611 Exploration Way, Austin, TX 78758</p>
-      <p><a href="mailto:larrysyuhenglai@gmail.com">larrysyuhenglai@gmail.com</a>
-      · <a href="mailto:larry.lai@beg.utexas.edu">larry.lai@beg.utexas.edu</a></p>
+    <div class="footer-contour" aria-hidden="true"></div>
+    <div class="wrap footer-base">
+      <p class="footer-copy">&copy; 2026 Larry Syu-Heng Lai</p>
     </div>
   </footer>
+  <script src="../../js/site.js"></script>
 </body>
 </html>
