@@ -150,3 +150,9 @@ Decision: front intro fades in top to bottom on load (`.fx`, `--d` order); exper
 
 ### 2026-10-19 — Publish
 Decision: user asked to push and make the site public. Repo set public, Pages enabled from main /, CNAME larrysyuhenglai.com. DNS records are the user's step at the registrar | Files: CNAME, this log | Status: DONE
+### 2026-10-19 — Résumé / CV buttons
+Decision: each Résumé and Academic CV card on About has blue "Google Doc" (opens /edit) and "PDF" (direct /export?format=pdf) buttons at the upper right (`.doc-head`, `.doc-actions`, `.btn-blue`; wraps under the title on phones). User pasted the same Résumé link twice; CV buttons use the Doc ID already embedded on the page. Both PDF exports return application/pdf. Not pushed yet | Files: about.html, css/style.css | Status: DONE
+
+### 2026-10-20 — Skills list rewrite
+Decision: About Skills now five groups (Geoscience, Field and lab, Data analytics, Programming, Software) with the user's exact items, first letter of each skill uppercase | Files: about.html | Status: DONE
+

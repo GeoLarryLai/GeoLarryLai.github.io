@@ -380,7 +380,16 @@ figure img { border-radius: 12px; }
   border-radius: 10px;
   background: white;
 }
-.doc h2 { margin: 0.4rem 0.4rem 0.8rem; font-size: 1.3rem; }
+.doc h2 { margin: 0; font-size: 1.3rem; }
+.doc-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; margin: 0.4rem 0.4rem 0.8rem; }
+.doc-actions { display: flex; gap: 0.5rem; }
+.btn-blue {
+  display: inline-block; padding: 0.4rem 1.05rem; border-radius: 999px;
+  background: #2563b8; color: #fff; border: 1.5px solid #2563b8;
+  font-size: 0.9rem; font-weight: 700; line-height: 1.3; text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-blue:hover { background: #1b4c92; border-color: #1b4c92; color: #fff; }
 #resume { scroll-margin-top: 5rem; }
 
 /* About: the full-length photo and key facts stay in view at the left. */
