@@ -102,7 +102,7 @@ Break = bug.
 - `pyLogCrafter_explain_1080p.mp4` (28 MB) is unused now; delete only if the user says so.
 - The in-app browser caches `css/style.css`; force a fresh load with `fetch(url,{cache:"reload"})` then reload before testing CSS changes.
 - Local server: run `python3 -m http.server 8765 --bind 127.0.0.1` as a background terminal (a `nohup` from a short shell dies).
-- `portrait-full-body.webp` is waist-up (only tall photo available).
+- `portrait-full-body.webp` on About is the reframed chest-up photo (576×1024). The front page uses `portrait-cutout-hd.webp`.
 - Unknown facts left blank: pyValleyWidth version/license/install; pyPetrograph Python version; pyBasinSubs license; research project years, funding, coordinates (except Eastern Taiwan "23.5N 121.4E", taken from the plan).
 - Enforce HTTPS on the custom domain after DNS propagates (GitHub Settings, Pages).
 
@@ -155,4 +155,7 @@ Decision: each Résumé and Academic CV card on About has blue "Google Doc" (ope
 
 ### 2026-10-20 — Skills list rewrite
 Decision: About Skills now five groups (Geoscience, Field and lab, Data analytics, Programming, Software) with the user's exact items, first letter of each skill uppercase | Files: about.html | Status: DONE
+
+### 2026-10-20 — About portrait reframe
+Decision: About portrait replaced with the user's reframed photo (576×1024 WebP). Front page cutout unchanged. Src has `?v=20261020` so browsers don't keep the old file | Files: assets/portrait-full-body.webp, about.html | Status: DONE
 

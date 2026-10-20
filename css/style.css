@@ -392,7 +392,7 @@ figure img { border-radius: 12px; }
 .btn-blue:hover { background: #1b4c92; border-color: #1b4c92; color: #fff; }
 #resume { scroll-margin-top: 5rem; }
 
-/* About: the full-length photo and key facts stay in view at the left. */
+/* About: the portrait and key facts stay in view at the left. */
 .about-layout {
   display: grid;
   grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
