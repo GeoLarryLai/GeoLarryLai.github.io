@@ -126,10 +126,10 @@
       "page": "projects/pyPetrograph/index.html",
       "description": "ML-applied toolkits for rock thin-section petrographic analysis.",
       "image": {
-        "src": "projects/pyPetrograph/figures/Mineralmap-demo.webp",
-        "width": 1066,
-        "height": 987,
-        "alt": "Mineral map of a thin section from pyPetrograph."
+        "src": "projects/pyPetrograph/figures/app_web_outputs.webp",
+        "width": 1200,
+        "height": 712,
+        "alt": "pyPetrograph browser app Outputs step: knolling sheet and export buttons."
       },
       "pypi": "pypetrograph",
       "conda": null,

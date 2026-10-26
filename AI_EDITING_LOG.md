@@ -177,3 +177,4 @@ Decision: every project page now Overview → visuals → Key features. pyCoreRe
 - pyBasinSubs: separated published R code (BasinSubs, 2022 paper, Zenodo, BSD-3) from the Python version on the way.
 - Citation boxes: removed Copy buttons (install-block copy buttons and JS kept).
 - 2026-10-26: removed all status rows/labels/sentences from project pages (Larry: no status anywhere).
+- 2026-10-26: pyPetrograph card image -> figures/app_web_outputs.webp (1200x712).
