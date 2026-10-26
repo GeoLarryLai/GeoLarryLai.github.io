@@ -64,6 +64,21 @@
       </section>
 
       <section class="block">
+        <figure class="media-block">
+          <video controls muted playsinline preload="metadata" poster="explain_fig/correlation-algorithm-poster.webp" width="1280" height="720" aria-label="Animation explaining how pyCoreRelator finds and ranks core correlations"><source src="explain_fig/correlation-algorithm-720p.mp4" type="video/mp4"></video>
+          <figcaption>How the correlation search works. Flooding surfaces mark the tops of stratigraphic units in two cores, and the question is which units match. Dynamic time warping aligns the two log signals. Every allowed bed-to-bed match is laid out as a route through a graph, so the search covers all possible correlations. Each one is scored by how alike the signals are (Pearson’s r and normalized warping cost), and age constraints from a depth-age model remove the ones that break time order. The top-ranked solution matches the correct answer.</figcaption>
+        </figure>
+      </section>
+
+      <section class="block">
+        <div class="gallery three">
+          <figure><img src="explain_fig/Fig01-DAGexplain.webp" width="1800" height="1084" loading="lazy" alt="Unit-pair index grid and the directed acyclic graph of allowed correlations"><figcaption>Unit pairs between a 3-unit section and a 2-unit section. Even indices are real beds. Odd indices are zero-thickness pinch-outs. White cells tie bed to bed. Gray cells are pinch-outs. The graph on the right is every succession that stays in order.</figcaption></figure>
+          <figure><img src="explain_fig/Fig02-DTWvsDAGexplain.webp" width="1800" height="1344" loading="lazy" alt="Composite dynamic time warping paths built from the correlation graph"><figcaption>Each route through the graph becomes one composite warping path. Dashed steps are the choices inside the cost matrix. Horizontal and vertical steps are pinch-outs. Each solid path is one valid correlation.</figcaption></figure>
+          <figure><img src="explain_fig/Fig03-Solution_Puring_and_Ranking.webp" width="1800" height="1882" loading="lazy" alt="Pruning correlation paths with age order and ranking the ones that remain"><figcaption>From every composite path, to the paths removed because they break age order, to the age-valid ties, to a comparison with human markers, to the pick from Pearson’s r and normalized DTW cost.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
           <div class="feature"><span class="num">01</span><h3>Segment-based dynamic time warping</h3><p>Cores are split on user-picked depth boundaries (machine-picked boundaries are planned), so pinch-outs and forced datums stay under the user’s control.</p></div>
@@ -76,12 +91,14 @@
       </section>
 
       <section class="block">
-        <h2>Results</h2>
+        <figure class="media-block">
+          <video controls muted playsinline preload="metadata" poster="explain_fig/correlation-confidence-poster.webp" width="1280" height="720" aria-label="Animation explaining how pyCoreRelator tests whether a correlation is meaningful, using Cascadia turbidite cores"><source src="explain_fig/correlation-confidence-720p.mp4" type="video/mp4"></video>
+          <figcaption>How confident is a correlation? Applied to turbidite cores from the Cascadia margin, the same search runs on closely spaced cores and on cores far apart, with radiocarbon ages as constraints. To tell a real match from beds that only look alike, the package builds synthetic sections from the real beds with a Markov chain, correlates hundreds of synthetic pairs, and uses them as a baseline. The effect size (Hedges’ g) then shows how far each real correlation stands above that baseline. Applied along the whole margin, cores close to canyons, which get more sediment from land, give weaker and more uncertain matches.</figcaption>
+        </figure>
+      </section>
+
+      <section class="block">
         <div class="gallery">
-          <figure class="wide"><img src="explain_fig/Fig01-DAGexplain.webp" width="1800" height="1084" loading="lazy" alt="Unit-pair index grid and the directed acyclic graph of allowed correlations"><figcaption>Unit pairs between a 3-unit section and a 2-unit section. Even indices are real beds. Odd indices are zero-thickness pinch-outs. White cells tie bed to bed. Gray cells are pinch-outs. The graph on the right is every succession that stays in order.</figcaption></figure>
-          <figure><img src="explain_fig/Fig02-DTWvsDAGexplain.webp" width="1800" height="1344" loading="lazy" alt="Composite dynamic time warping paths built from the correlation graph"><figcaption>Each route through the graph becomes one composite warping path. Dashed steps are the choices inside the cost matrix. Horizontal and vertical steps are pinch-outs. Each solid path is one valid correlation.</figcaption></figure>
-          <figure><img src="explain_fig/Fig03-Solution_Puring_and_Ranking.webp" width="1800" height="1882" loading="lazy" alt="Pruning correlation paths with age order and ranking the ones that remain"><figcaption>From every composite path, to the paths removed because they break age order, to the age-valid ties, to a comparison with human markers, to the pick from Pearson’s r and normalized DTW cost.</figcaption></figure>
-          <figure><img src="explain_fig/Fig04-DelannyEstimate.webp" width="1699" height="1589" loading="lazy" alt="Delannoy-number estimate of how many correlations the graph allows"><figcaption>How the number of allowed correlations grows with the number of units. The dashed curve is the Delannoy-number estimate. Points are pairwise counts from Cascadia turbidite cores (Lai, 2026).</figcaption></figure>
           <figure><img src="explain_fig/Fig05-kmean_MC.webp" width="1800" height="2021" loading="lazy" alt="k-means facies clusters and a Markov transition used for synthetic sections"><figcaption>Facies groups from k-means on bed thickness and mean log value (magnetic susceptibility, CT number, and luminance) for the Cascadia cores, and a variable-order Markov transition used to stack synthetic sections.</figcaption></figure>
           <figure><img src="explain_fig/Fig06-effectsize_g.webp" width="1236" height="1421" loading="lazy" alt="Hedges g comparison of real correlations against a null distribution"><figcaption>Real-data similarity (color) against the null distribution (gray). Dashed vertical lines are means. Solid horizontal lines are standard deviations. Hedges’ g of 0.8 or more is the bar for a match that stands above background noise.</figcaption></figure>
         </div>
@@ -100,13 +117,17 @@
 
       <section class="block">
         <h2>Citation</h2>
-        <p>If you use this pre-release, cite:</p>
+        <p>If you use pyCoreRelator, cite the paper and the software:</p>
         <div class="cite-box" data-copy-root>
-          <p class="label">Cite</p>
+          <p class="label">Paper</p>
+          <p data-copy-src>Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. <em>Sedimentology</em>.</p>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <div class="cite-box" data-copy-root>
+          <p class="label">Software</p>
           <p data-copy-src>Lai, L.S.-H. (2025) pyCoreRelator, Zenodo, <a href="https://doi.org/10.5281/zenodo.17847259">https://doi.org/10.5281/zenodo.17847259</a>.</p>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>A manuscript on the method and its applications is submitted and in peer review. Questions and collaboration: Larry Syu-Heng Lai, <a href="https://qcl.beg.utexas.edu">Quantitative Clastics Laboratory</a>, Bureau of Economic Geology, The University of Texas at Austin.</p>
       </section>
 
       <section class="block">

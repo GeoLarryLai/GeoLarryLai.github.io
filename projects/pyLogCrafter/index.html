@@ -48,11 +48,20 @@
 
     <div class="wrap">
 
+      <section class="block">
+        <h2>Overview</h2>
+        <div class="prose">
+          <p>pyLogCrafter is aimed at large sets of LAS files with incomplete coverage, mixed vendors and vintages, and uneven quality.</p>
+          <p>In reservoir analysis and basin modeling, log QC is often the slow step before the science can start. The package is being built to automate cleaning and normalization, then to learn how several log types sit together at one place and depth. With that local context it can fill missing intervals and, in many cases, estimate a curve that was never measured. A new borehole that has only gamma ray is the example: the other curves are reasoned estimates, not new measurements. Preprocessed, gap-filled multi-log sets are also meant to feed automated stratigraphic correlation and tops picking (for example ChronoLog), and to support QC, high-resolution stratigraphy, geomodeling, and core-calibrated lithofacies work.</p>
+          <p>The name is reserved on PyPI as version 0.0.1. It is under active development and not ready for use. Anyone who tries a build is responsible for checking every output, and for decisions, risks, or errors that follow from using it. A fuller release is still to come. The public listing is proprietary: copyright 2026 Larry Syu-Heng Lai, all rights reserved.</p>
+        </div>
+      </section>
+
       <figure class="teaser block">
         <video controls autoplay muted playsinline preload="metadata" poster="videos/pyLogCrafter_explain_1080p-poster.webp" width="1280" height="720" aria-label="Full overview video of the pyLogCrafter well-log workflow">
           <source src="videos/pyLogCrafter_explain_720p.mp4" type="video/mp4">
         </video>
-        <figcaption class="fig-cap">Full overview, about two minutes. It opens on a map of the wells and then walks through neighbors, cleaning, tops, alignment, QC, normalization, gap filling, and export. The shorter clips below are those steps.</figcaption>
+        <figcaption class="fig-cap">Full overview, about two minutes. It opens on a map of the wells and then walks through neighbors, cleaning, tops, alignment, QC, normalization, gap filling, and export.</figcaption>
       </figure>
 
       <section class="block">
@@ -65,61 +74,10 @@
         </div>
       </section>
 
-      <section class="block">
-        <h2>Overview</h2>
-        <div class="prose">
-          <p>pyLogCrafter is aimed at large sets of LAS files with incomplete coverage, mixed vendors and vintages, and uneven quality.</p>
-          <p>In reservoir analysis and basin modeling, log QC is often the slow step before the science can start. The package is being built to automate cleaning and normalization, then to learn how several log types sit together at one place and depth. With that local context it can fill missing intervals and, in many cases, estimate a curve that was never measured. A new borehole that has only gamma ray is the example: the other curves are reasoned estimates, not new measurements. Preprocessed, gap-filled multi-log sets are also meant to feed automated stratigraphic correlation and tops picking (for example ChronoLog), and to support QC, high-resolution stratigraphy, geomodeling, and core-calibrated lithofacies work.</p>
-          <p>The name is reserved on PyPI as version 0.0.1. It is under active development and not ready for use. Anyone who tries a build is responsible for checking every output, and for decisions, risks, or errors that follow from using it. A fuller release is still to come. The public listing is proprietary: copyright 2026 Larry Syu-Heng Lai, all rights reserved.</p>
-        </div>
-      </section>
-
-      <section class="block">
-        <h2>Workflow clips</h2>
-        <div class="gallery">
-          <figure class="wide">
-            <video controls preload="none" poster="videos/S0Hook-poster.webp" width="1920" height="1080" aria-label="Opening title clip"><source src="videos/S0Hook.mp4" type="video/mp4"></video>
-            <figcaption>Opening title: machine learning-assisted well-log processing and prediction.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S1Neighbors-poster.webp" width="1920" height="1080" aria-label="K-nearest neighbors clip"><source src="videos/S1Neighbors.mp4" type="video/mp4"></video>
-            <figcaption>K-nearest neighbors: find the nearby wells on the map.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S2Rules-poster.webp" width="1920" height="1080" aria-label="Data cleaning clip"><source src="videos/S2Rules.mp4" type="video/mp4"></video>
-            <figcaption>Data cleaning. Original raw gamma-ray logs for a target well and its neighbors.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S3Tops-poster.webp" width="1920" height="1080" aria-label="Formation tops clip"><source src="videos/S3Tops.mp4" type="video/mp4"></video>
-            <figcaption>Known formation tops mark corresponding positions from well to well.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S4Align-poster.webp" width="1920" height="1080" aria-label="Log alignment clip"><source src="videos/S4Align.mp4" type="video/mp4"></video>
-            <figcaption>Reference logs in relative time, flattened on the tops.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S5Judge-poster.webp" width="1920" height="1080" aria-label="QC against neighbors clip"><source src="videos/S5Judge.mp4" type="video/mp4"></video>
-            <figcaption>QC against neighbors: the measured log compared with a regional reference inside a sliding window.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S6Normalize-poster.webp" width="1920" height="1080" aria-label="Regional auto-normalization clip"><source src="videos/S6Normalize.mp4" type="video/mp4"></video>
-            <figcaption>Regional auto-normalization. Two-point scaling to the P10 and P90 of the regional reference.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S7Fill-poster.webp" width="1920" height="1080" aria-label="Gap filling clip"><source src="videos/S7Fill.mp4" type="video/mp4"></video>
-            <figcaption>Fill gaps and curves that were never measured, across gamma ray, density, neutron porosity, sonic, resistivity, and photoelectric factor.</figcaption>
-          </figure>
-          <figure>
-            <video controls preload="none" poster="videos/S8Finale-poster.webp" width="1920" height="1080" aria-label="Export clip"><source src="videos/S8Finale.mp4" type="video/mp4"></video>
-            <figcaption>QC’d curves and machine-learning imputations combined, ready to export.</figcaption>
-          </figure>
-        </div>
-      </section>
-
       <a class="next-link" href="../pyRockImageLab/index.html">
         <span class="label">Next project</span>
         <strong>pyRockImageLab <span aria-hidden="true">&rarr;</span></strong>
-        <em>Rock-photograph workflows for core-box crop, stitch, and mosaic. Under development.</em>
+        <em>Crop, orthorectify, stitch, and mosaic geological core photographs.</em>
       </a>
 
     </div>
