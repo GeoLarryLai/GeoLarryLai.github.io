@@ -35,9 +35,11 @@ def badges(p):
 
 
 def card(p, i):
-    img = p.get("image")
-    media = (f'\n            <img src="{e(img["src"])}" width="{img["width"]}" height="{img["height"]}" loading="lazy" alt="{e(img["alt"])}">'
-             if img else f'\n            <span class="card-tile contour-bg" style="--cpos: {p.get("tile", "50% 50%")}" aria-hidden="true"></span>')
+    imgs = p.get("images") or ([p["image"]] if p.get("image") else [])
+    tag = lambda img: f'<img src="{e(img["src"])}" width="{img["width"]}" height="{img["height"]}" loading="lazy" alt="{e(img["alt"])}">'
+    media = ((f'\n            {tag(imgs[0])}' if len(imgs) == 1 else
+              '\n            <div class="card-figs">' + "".join(tag(i) for i in imgs) + '</div>')
+             if imgs else f'\n            <span class="card-tile contour-bg" style="--cpos: {p.get("tile", "50% 50%")}" aria-hidden="true"></span>')
     cite = ""
     if p.get("citation"):
         cite = (f'\n            <div class="cite-box cite-line" data-copy-root><p data-copy-src>{e(p["citation"])}</p>'

@@ -1,5 +1,5 @@
 {
-  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (concept DOI only).",
+  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (concept DOI only). A card may use 'images' (a list, stacked) instead of 'image'.",
   "themes": [
     {
       "id": "strat",
@@ -97,18 +97,26 @@
       "label": "Python · Valley and canyon width",
       "page": "projects/pyValleyWidth/index.html",
       "description": "Measure valley width from a DTM with an elevation-threshold method, built on pytopotoolbox.",
-      "image": {
-        "src": "projects/pyValleyWidth/figures/CongoCanyon_1_map_channel.webp",
-        "width": 1800,
-        "height": 511,
-        "alt": "Congo Canyon bathymetry with the main channel traced."
-      },
       "pypi": "pyvalleywidth",
       "conda": null,
       "zenodo": "10.5281/zenodo.23656980",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyValleyWidth. Zenodo, https://doi.org/10.5281/zenodo.23656980",
-      "pepy": false
+      "pepy": false,
+      "images": [
+        {
+          "src": "projects/pyValleyWidth/figures/CongoCanyon_3_canyon_width.webp",
+          "width": 1800,
+          "height": 485,
+          "alt": "Congo Canyon width along the channel."
+        },
+        {
+          "src": "projects/pyValleyWidth/figures/CongoCanyon_4_long_profile.webp",
+          "width": 1800,
+          "height": 737,
+          "alt": "Congo Canyon long profile with channel steepness, canyon width and canyon-top depth."
+        }
+      ]
     },
     {
       "name": "pyPetrograph",
