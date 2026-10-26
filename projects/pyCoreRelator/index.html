@@ -65,7 +65,7 @@
 
       <section class="block">
         <figure class="media-block">
-          <video controls muted playsinline preload="metadata" poster="explain_fig/correlation-algorithm-poster.webp" width="1280" height="720" aria-label="Animation explaining how pyCoreRelator finds and ranks core correlations"><source src="explain_fig/correlation-algorithm-720p.mp4" type="video/mp4"></video>
+          <video controls autoplay muted playsinline preload="metadata" poster="explain_fig/correlation-algorithm-poster.webp" width="1280" height="720" aria-label="Animation explaining how pyCoreRelator finds and ranks core correlations"><source src="explain_fig/correlation-algorithm-720p.mp4" type="video/mp4"></video>
           <figcaption>How the correlation search works. Flooding surfaces mark the tops of stratigraphic units in two cores, and the question is which units match. Dynamic time warping aligns the two log signals. Every allowed bed-to-bed match is laid out as a route through a graph, so the search covers all possible correlations. Each one is scored by how alike the signals are (Pearson’s r and normalized warping cost), and age constraints from a depth-age model remove the ones that break time order. The top-ranked solution matches the correct answer.</figcaption>
         </figure>
       </section>
@@ -92,7 +92,7 @@
 
       <section class="block">
         <figure class="media-block">
-          <video controls muted playsinline preload="metadata" poster="explain_fig/correlation-confidence-poster.webp" width="1280" height="720" aria-label="Animation explaining how pyCoreRelator tests whether a correlation is meaningful, using Cascadia turbidite cores"><source src="explain_fig/correlation-confidence-720p.mp4" type="video/mp4"></video>
+          <video controls autoplay muted playsinline preload="metadata" poster="explain_fig/correlation-confidence-poster.webp" width="1280" height="720" aria-label="Animation explaining how pyCoreRelator tests whether a correlation is meaningful, using Cascadia turbidite cores"><source src="explain_fig/correlation-confidence-720p.mp4" type="video/mp4"></video>
           <figcaption>How confident is a correlation? Applied to turbidite cores from the Cascadia margin, the same search runs on closely spaced cores and on cores far apart, with radiocarbon ages as constraints. To tell a real match from beds that only look alike, the package builds synthetic sections from the real beds with a Markov chain, correlates hundreds of synthetic pairs, and uses them as a baseline. The effect size (Hedges’ g) then shows how far each real correlation stands above that baseline. Applied along the whole margin, cores close to canyons, which get more sediment from land, give weaker and more uncertain matches.</figcaption>
         </figure>
       </section>
@@ -118,15 +118,13 @@
       <section class="block">
         <h2>Citation</h2>
         <p>If you use pyCoreRelator, cite the paper and the software:</p>
-        <div class="cite-box" data-copy-root>
+        <div class="cite-box">
           <p class="label">Paper</p>
-          <p data-copy-src>Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. <em>Sedimentology</em>.</p>
-          <button class="copy" type="button">Copy</button>
+          <p>Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. <em>Sedimentology</em>.</p>
         </div>
-        <div class="cite-box" data-copy-root>
+        <div class="cite-box">
           <p class="label">Software</p>
-          <p data-copy-src>Lai, L.S.-H. (2025) pyCoreRelator, Zenodo, <a href="https://doi.org/10.5281/zenodo.17847259">https://doi.org/10.5281/zenodo.17847259</a>.</p>
-          <button class="copy" type="button">Copy</button>
+          <p>Lai, L.S.-H. (2025) pyCoreRelator, Zenodo, <a href="https://doi.org/10.5281/zenodo.17847259">https://doi.org/10.5281/zenodo.17847259</a>.</p>
         </div>
       </section>
 

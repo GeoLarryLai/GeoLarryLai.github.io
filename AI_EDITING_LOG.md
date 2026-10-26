@@ -169,3 +169,10 @@ Decision: user asked to open the repo and link it. LICENSE was already AGPL-3.0;
 
 ### 2026-10-26 — Project pages reorder, README figures, data-driven Projects page
 Decision: every project page now Overview → visuals → Key features. pyCoreRelator: Fig00, Overview, correlation-algorithm animation, Figs 1–3 (3-col, captions only), Key features, correlation-confidence animation, Figs 5–6; Sedimentology paper cited before Zenodo. Gallery "Fig. N —" counter removed site-wide. pyLogCrafter workflow clips removed (files deleted). README figures added (pyRockImageLab, pyValleyWidth Congo + Ifremer credit, pyPetrograph v0.1.1 app/AMICS). Projects page generated from `data/projects.json` by `tools/build_projects.py` (theme groups, badges, copyable citation, `hidden` flag) | Files: projects.html, data/, tools/, css/style.css, projects/*/index.html | Status: DONE
+
+## EDIT_LOG 2026-10-26 — Task 4
+- pyLogCrafter: removed PyPI button/text and card PyPI badge; version 0.5.0; QCL credit; overview and features expanded from the private README (no code, data, paths, or repo link).
+- Projects page: removed status labels and "Under development." from cards; removed card Copy-button padding CSS.
+- pyCoreRelator: both animations autoplay.
+- pyBasinSubs: separated published R code (BasinSubs, 2022 paper, Zenodo, BSD-3) from the Python version on the way.
+- Citation boxes: removed Copy buttons (install-block copy buttons and JS kept).

@@ -711,6 +711,5 @@ body.home .home-intro, body.home .expertises { position: relative; z-index: 1; }
 .card .badges a { display: block; }
 .card .badges + img, .card .badges + .card-tile { margin-top: 1.1rem; }
 .card .cite-line { margin-top: 1.1rem; }
-.card .cite-line p { padding-right: 4.8rem; }
 .card .card-figs { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.1rem; }
 .card .card-figs img, .card .card-figs img:last-child:not(:first-child), .card .card-figs img:first-child { margin: 0; width: 100%; height: auto; }

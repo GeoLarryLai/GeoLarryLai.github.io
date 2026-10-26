@@ -42,8 +42,7 @@ def card(p, i):
              if imgs else f'\n            <span class="card-tile contour-bg" style="--cpos: {p.get("tile", "50% 50%")}" aria-hidden="true"></span>')
     cite = ""
     if p.get("citation"):
-        cite = (f'\n            <div class="cite-box cite-line" data-copy-root><p data-copy-src>{e(p["citation"])}</p>'
-                f'<button class="copy" type="button">Copy</button></div>')
+        cite = f'\n            <div class="cite-box cite-line"><p>{e(p["citation"])}</p></div>'
     return (f'          <article class="card" style="--i:{i}">\n'
             f'            <p class="label">{e(p["label"]).replace("·", "&middot;")}</p>\n'
             f'            <h3><a href="{e(p["page"])}">{e(p["name"])} <span aria-hidden="true">&rarr;</span></a></h3>\n'
