@@ -1,0 +1,152 @@
+{
+  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (concept DOI only).",
+  "themes": [
+    {
+      "id": "strat",
+      "title": "Stratigraphy and subsurface",
+      "label": "Cores, well logs, and basins"
+    },
+    {
+      "id": "topo",
+      "title": "Landscapes and seafloor",
+      "label": "Topography and bathymetry"
+    },
+    {
+      "id": "rock",
+      "title": "Rock images",
+      "label": "Thin sections and core photos"
+    }
+  ],
+  "projects": [
+    {
+      "name": "pyCoreRelator",
+      "theme": "strat",
+      "hidden": false,
+      "label": "Python · Stratigraphic correlation",
+      "page": "projects/pyCoreRelator/index.html",
+      "description": "A Python toolkit for pairwise stratigraphic correlation analysis among sediment cores and well-log data.",
+      "image": {
+        "src": "projects/pyCoreRelator/explain_fig/Fig00-flowchart.webp",
+        "width": 1717,
+        "height": 680,
+        "alt": "Flowchart of the pyCoreRelator correlation workflow."
+      },
+      "pypi": "pycorerelator",
+      "conda": "pycorerelator",
+      "zenodo": "10.5281/zenodo.17847259",
+      "crate": null,
+      "citation": "Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. Sedimentology."
+    },
+    {
+      "name": "pyLogCrafter",
+      "theme": "strat",
+      "hidden": false,
+      "label": "Python · Well logs · In development",
+      "page": "projects/pyLogCrafter/index.html",
+      "description": "Basin-scale well-log quality control, spatial normalization, gap filling, and electrofacies tools. Under development.",
+      "image": {
+        "src": "projects/pyLogCrafter/pyLogCrafter_logo.webp",
+        "width": 1800,
+        "height": 1249,
+        "alt": "pyLogCrafter logo, two wavy log curves above the name."
+      },
+      "pypi": "pylogcrafter",
+      "conda": null,
+      "zenodo": null,
+      "crate": null,
+      "citation": null
+    },
+    {
+      "name": "pyBasinSubs",
+      "theme": "strat",
+      "hidden": false,
+      "label": "R · Basin subsidence",
+      "page": "projects/pyBasinSubs/index.html",
+      "description": "R scripts for basin subsidence analyses of Taiwan Coastal Range.",
+      "image": null,
+      "tile": "30% 60%",
+      "pypi": null,
+      "conda": null,
+      "zenodo": "10.5281/zenodo.5823612",
+      "crate": null,
+      "citation": "Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. Communications Earth & Environment, 3, 100. https://doi.org/10.1038/s43247-022-00429-2"
+    },
+    {
+      "name": "pyTopoComplexity",
+      "theme": "topo",
+      "hidden": false,
+      "label": "Python · Topographic analysis",
+      "page": "projects/pyTopoComplexity/index.html",
+      "description": "A Python package for multiscale topographic complexity analysis.",
+      "image": {
+        "src": "projects/pyTopoComplexity/image/cwtmexhat.webp",
+        "width": 1800,
+        "height": 1225,
+        "alt": "Wavelet curvature of a digital elevation model."
+      },
+      "pypi": "pytopocomplexity",
+      "conda": "pytopocomplexity",
+      "zenodo": "10.5281/zenodo.11239338",
+      "crate": null,
+      "citation": "Lai, L. S.-H., Booth, A. M., Duvall, A. R., and Herzig, E. (2025) Short Communication: Multiscale topographic complexity analysis with pyTopoComplexity. Earth Surface Dynamics, 13(3), 417–435, https://doi.org/10.5194/esurf-13-417-2025"
+    },
+    {
+      "name": "pyValleyWidth",
+      "theme": "topo",
+      "hidden": false,
+      "label": "Python · Valley and canyon width",
+      "page": "projects/pyValleyWidth/index.html",
+      "description": "Measure valley width from a DTM with an elevation-threshold method, built on pytopotoolbox.",
+      "image": {
+        "src": "projects/pyValleyWidth/figures/CongoCanyon_1_map_channel.webp",
+        "width": 1800,
+        "height": 511,
+        "alt": "Congo Canyon bathymetry with the main channel traced."
+      },
+      "pypi": "pyvalleywidth",
+      "conda": null,
+      "zenodo": "10.5281/zenodo.23656980",
+      "crate": null,
+      "citation": "Lai, L.S.-H. (2026) pyValleyWidth. Zenodo, https://doi.org/10.5281/zenodo.23656980",
+      "pepy": false
+    },
+    {
+      "name": "pyPetrograph",
+      "theme": "rock",
+      "hidden": false,
+      "label": "Python · Petrography",
+      "page": "projects/pyPetrograph/index.html",
+      "description": "ML-applied toolkits for rock thin-section petrographic analysis.",
+      "image": {
+        "src": "projects/pyPetrograph/figures/Mineralmap-demo.webp",
+        "width": 1066,
+        "height": 987,
+        "alt": "Mineral map of a thin section from pyPetrograph."
+      },
+      "pypi": "pypetrograph",
+      "conda": null,
+      "zenodo": "10.5281/zenodo.23659316",
+      "crate": null,
+      "citation": "Lai, L.S.-H. (2026) pyPetrograph. Zenodo, https://doi.org/10.5281/zenodo.23659316"
+    },
+    {
+      "name": "pyRockImageLab",
+      "theme": "rock",
+      "hidden": false,
+      "label": "Python · Core photos · In development",
+      "page": "projects/pyRockImageLab/index.html",
+      "description": "Interactive tools to crop, orthorectify, stitch and mosaic geological core and outcrop photographs.",
+      "image": {
+        "src": "projects/pyRockImageLab/figures/ExampleCore_2563-2566_box_crop.webp",
+        "width": 959,
+        "height": 847,
+        "alt": "Picking the corners of a core-box segment and the cropped, orthorectified segment."
+      },
+      "pypi": "pyrockimagelab",
+      "conda": null,
+      "zenodo": "10.5281/zenodo.23656974",
+      "crate": null,
+      "citation": "Lai, L.S.-H. (2026) pyRockImageLab. Zenodo, https://doi.org/10.5281/zenodo.23656974"
+    }
+  ]
+}

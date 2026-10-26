@@ -166,3 +166,6 @@ Decision: removed segyio from the About Software tags | Files: about.html | Stat
 ### 2026-10-20 — pyRockImageLab public + site link
 Decision: user asked to open the repo and link it. LICENSE was already AGPL-3.0; GitHub now reports AGPL-3.0 and visibility public. Project page gained a GitHub pill (PyPI stays, outline), same pattern as pyPetrograph. Checked local page at desktop and 390px. User asked to push | Files: projects/pyRockImageLab/index.html | Status: DONE
 
+
+### 2026-10-26 — Project pages reorder, README figures, data-driven Projects page
+Decision: every project page now Overview → visuals → Key features. pyCoreRelator: Fig00, Overview, correlation-algorithm animation, Figs 1–3 (3-col, captions only), Key features, correlation-confidence animation, Figs 5–6; Sedimentology paper cited before Zenodo. Gallery "Fig. N —" counter removed site-wide. pyLogCrafter workflow clips removed (files deleted). README figures added (pyRockImageLab, pyValleyWidth Congo + Ifremer credit, pyPetrograph v0.1.1 app/AMICS). Projects page generated from `data/projects.json` by `tools/build_projects.py` (theme groups, badges, copyable citation, `hidden` flag) | Files: projects.html, data/, tools/, css/style.css, projects/*/index.html | Status: DONE

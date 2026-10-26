@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GitHub Projects · Larry Syu-Heng Lai</title>
-  <meta name="description" content="GitHub projects by Larry Syu-Heng Lai: Python tools for stratigraphic correlation, topographic analysis, valley width, petrography, and well logs.">
+  <meta name="description" content="GitHub projects by Larry Syu-Heng Lai: Python tools for stratigraphic correlation, well logs, topographic analysis, valley and canyon width, petrography, and core photos.">
   <meta property="og:title" content="GitHub Projects · Larry Syu-Heng Lai">
-  <meta property="og:description" content="Python tools for stratigraphic correlation, topographic analysis, valley width, petrography, and well logs.">
+  <meta property="og:description" content="Python tools for stratigraphic correlation, well logs, topographic analysis, valley and canyon width, petrography, and core photos.">
   <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -42,54 +42,95 @@
         <img src="assets/field-snow-ridge.webp" width="1800" height="1012" alt="A person with a large yellow pack hiking up a snowy ridge toward a summit.">
       </figure>
 
-      <div class="stagger">
+      <!-- BEGIN projects (generated from data/projects.json) -->
+      <section class="theme" id="strat">
+        <p class="label theme-head">Cores, well logs, and basins</p>
+        <h2>Stratigraphy and subsurface</h2>
+        <div class="stagger">
         <div class="stagger-col">
           <article class="card" style="--i:1">
             <p class="label">Python &middot; Stratigraphic correlation</p>
             <h3><a href="projects/pyCoreRelator/index.html">pyCoreRelator <span aria-hidden="true">&rarr;</span></a></h3>
             <p>A Python toolkit for pairwise stratigraphic correlation analysis among sediment cores and well-log data.</p>
-            <img src="projects/pyCoreRelator/explain_fig/Fig00-flowchart.png" width="1717" height="680" loading="lazy" alt="Flowchart of the pyCoreRelator correlation workflow.">
+            <ul class="badges"><li><a href="https://pypi.org/project/pycorerelator/"><img src="https://img.shields.io/pypi/v/pycorerelator.svg" alt="PyPI version" height="20" loading="lazy"></a></li><li><a href="https://pepy.tech/project/pycorerelator"><img src="https://static.pepy.tech/badge/pycorerelator" alt="Downloads" height="20" loading="lazy"></a></li><li><a href="https://anaconda.org/conda-forge/pycorerelator"><img src="https://img.shields.io/conda/vn/conda-forge/pycorerelator.svg" alt="conda-forge version" height="20" loading="lazy"></a></li><li><a href="https://anaconda.org/conda-forge/pycorerelator"><img src="https://img.shields.io/conda/dn/conda-forge/pycorerelator.svg" alt="conda-forge downloads" height="20" loading="lazy"></a></li><li><a href="https://doi.org/10.5281/zenodo.17847259"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.17847259.svg" alt="DOI 10.5281/zenodo.17847259" height="20" loading="lazy"></a></li></ul>
+            <img src="projects/pyCoreRelator/explain_fig/Fig00-flowchart.webp" width="1717" height="680" loading="lazy" alt="Flowchart of the pyCoreRelator correlation workflow.">
+            <div class="cite-box cite-line" data-copy-root><p data-copy-src>Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. Sedimentology.</p><button class="copy" type="button">Copy</button></div>
           </article>
           <article class="card" style="--i:3">
-            <p class="label">Python &middot; Valley width</p>
-            <h3><a href="projects/pyValleyWidth/index.html">pyValleyWidth <span aria-hidden="true">&rarr;</span></a></h3>
-            <p>Codes for pytopotoolbox to extract valley width.</p>
-            <img src="projects/pyValleyWidth/Method_overview.webp" width="1164" height="1000" loading="lazy" alt="Overview of the valley-width extraction method.">
-          </article>
-          <article class="card" style="--i:5">
-            <p class="label">Python &middot; Well logs &middot; In development</p>
-            <h3><a href="projects/pyLogCrafter/index.html">pyLogCrafter <span aria-hidden="true">&rarr;</span></a></h3>
-            <p>Basin-scale well-log quality control, spatial normalization, gap filling, and electrofacies tools. Under development.</p>
-            <img src="projects/pyLogCrafter/pyLogCrafter_logo.webp" width="1800" height="1249" loading="lazy" alt="pyLogCrafter logo, two wavy log curves above the name.">
-          </article>
-          <article class="card" style="--i:7">
             <p class="label">R &middot; Basin subsidence</p>
             <h3><a href="projects/pyBasinSubs/index.html">pyBasinSubs <span aria-hidden="true">&rarr;</span></a></h3>
-            <p>R scripts for basin subsidence analyses of Taiwan Coastal Range. A newer package is not published yet.</p>
+            <p>R scripts for basin subsidence analyses of Taiwan Coastal Range.</p>
+            <ul class="badges"><li><a href="https://doi.org/10.5281/zenodo.5823612"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5823612.svg" alt="DOI 10.5281/zenodo.5823612" height="20" loading="lazy"></a></li></ul>
             <span class="card-tile contour-bg" style="--cpos: 30% 60%" aria-hidden="true"></span>
+            <div class="cite-box cite-line" data-copy-root><p data-copy-src>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. Communications Earth &amp; Environment, 3, 100. https://doi.org/10.1038/s43247-022-00429-2</p><button class="copy" type="button">Copy</button></div>
           </article>
         </div>
         <div class="stagger-col">
           <article class="card" style="--i:2">
+            <p class="label">Python &middot; Well logs &middot; In development</p>
+            <h3><a href="projects/pyLogCrafter/index.html">pyLogCrafter <span aria-hidden="true">&rarr;</span></a></h3>
+            <p>Basin-scale well-log quality control, spatial normalization, gap filling, and electrofacies tools. Under development.</p>
+            <ul class="badges"><li><a href="https://pypi.org/project/pylogcrafter/"><img src="https://img.shields.io/pypi/v/pylogcrafter.svg" alt="PyPI version" height="20" loading="lazy"></a></li><li><a href="https://pepy.tech/project/pylogcrafter"><img src="https://static.pepy.tech/badge/pylogcrafter" alt="Downloads" height="20" loading="lazy"></a></li></ul>
+            <img src="projects/pyLogCrafter/pyLogCrafter_logo.webp" width="1800" height="1249" loading="lazy" alt="pyLogCrafter logo, two wavy log curves above the name.">
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section class="theme" id="topo">
+        <p class="label theme-head">Topography and bathymetry</p>
+        <h2>Landscapes and seafloor</h2>
+        <div class="stagger">
+        <div class="stagger-col">
+          <article class="card" style="--i:4">
             <p class="label">Python &middot; Topographic analysis</p>
             <h3><a href="projects/pyTopoComplexity/index.html">pyTopoComplexity <span aria-hidden="true">&rarr;</span></a></h3>
             <p>A Python package for multiscale topographic complexity analysis.</p>
+            <ul class="badges"><li><a href="https://pypi.org/project/pytopocomplexity/"><img src="https://img.shields.io/pypi/v/pytopocomplexity.svg" alt="PyPI version" height="20" loading="lazy"></a></li><li><a href="https://pepy.tech/project/pytopocomplexity"><img src="https://static.pepy.tech/badge/pytopocomplexity" alt="Downloads" height="20" loading="lazy"></a></li><li><a href="https://anaconda.org/conda-forge/pytopocomplexity"><img src="https://img.shields.io/conda/vn/conda-forge/pytopocomplexity.svg" alt="conda-forge version" height="20" loading="lazy"></a></li><li><a href="https://anaconda.org/conda-forge/pytopocomplexity"><img src="https://img.shields.io/conda/dn/conda-forge/pytopocomplexity.svg" alt="conda-forge downloads" height="20" loading="lazy"></a></li><li><a href="https://doi.org/10.5281/zenodo.11239338"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.11239338.svg" alt="DOI 10.5281/zenodo.11239338" height="20" loading="lazy"></a></li></ul>
             <img src="projects/pyTopoComplexity/image/cwtmexhat.webp" width="1800" height="1225" loading="lazy" alt="Wavelet curvature of a digital elevation model.">
+            <div class="cite-box cite-line" data-copy-root><p data-copy-src>Lai, L. S.-H., Booth, A. M., Duvall, A. R., and Herzig, E. (2025) Short Communication: Multiscale topographic complexity analysis with pyTopoComplexity. Earth Surface Dynamics, 13(3), 417–435, https://doi.org/10.5194/esurf-13-417-2025</p><button class="copy" type="button">Copy</button></div>
           </article>
-          <article class="card" style="--i:4">
+        </div>
+        <div class="stagger-col">
+          <article class="card" style="--i:5">
+            <p class="label">Python &middot; Valley and canyon width</p>
+            <h3><a href="projects/pyValleyWidth/index.html">pyValleyWidth <span aria-hidden="true">&rarr;</span></a></h3>
+            <p>Measure valley width from a DTM with an elevation-threshold method, built on pytopotoolbox.</p>
+            <ul class="badges"><li><a href="https://pypi.org/project/pyvalleywidth/"><img src="https://img.shields.io/pypi/v/pyvalleywidth.svg" alt="PyPI version" height="20" loading="lazy"></a></li><li><a href="https://doi.org/10.5281/zenodo.23656980"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23656980.svg" alt="DOI 10.5281/zenodo.23656980" height="20" loading="lazy"></a></li></ul>
+            <img src="projects/pyValleyWidth/figures/CongoCanyon_1_map_channel.webp" width="1800" height="511" loading="lazy" alt="Congo Canyon bathymetry with the main channel traced.">
+            <div class="cite-box cite-line" data-copy-root><p data-copy-src>Lai, L.S.-H. (2026) pyValleyWidth. Zenodo, https://doi.org/10.5281/zenodo.23656980</p><button class="copy" type="button">Copy</button></div>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section class="theme" id="rock">
+        <p class="label theme-head">Thin sections and core photos</p>
+        <h2>Rock images</h2>
+        <div class="stagger">
+        <div class="stagger-col">
+          <article class="card" style="--i:6">
             <p class="label">Python &middot; Petrography</p>
             <h3><a href="projects/pyPetrograph/index.html">pyPetrograph <span aria-hidden="true">&rarr;</span></a></h3>
             <p>ML-applied toolkits for rock thin-section petrographic analysis.</p>
+            <ul class="badges"><li><a href="https://pypi.org/project/pypetrograph/"><img src="https://img.shields.io/pypi/v/pypetrograph.svg" alt="PyPI version" height="20" loading="lazy"></a></li><li><a href="https://pepy.tech/project/pypetrograph"><img src="https://static.pepy.tech/badge/pypetrograph" alt="Downloads" height="20" loading="lazy"></a></li><li><a href="https://doi.org/10.5281/zenodo.23659316"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23659316.svg" alt="DOI 10.5281/zenodo.23659316" height="20" loading="lazy"></a></li></ul>
             <img src="projects/pyPetrograph/figures/Mineralmap-demo.webp" width="1066" height="987" loading="lazy" alt="Mineral map of a thin section from pyPetrograph.">
-          </article>
-          <article class="card" style="--i:6">
-            <p class="label">Python &middot; Rock images &middot; In development</p>
-            <h3><a href="projects/pyRockImageLab/index.html">pyRockImageLab <span aria-hidden="true">&rarr;</span></a></h3>
-            <p>Rock-photograph workflows for core-box crop, stitch, and mosaic. Under development.</p>
-            <span class="card-tile contour-bg" style="--cpos: 80% 20%" aria-hidden="true"></span>
+            <div class="cite-box cite-line" data-copy-root><p data-copy-src>Lai, L.S.-H. (2026) pyPetrograph. Zenodo, https://doi.org/10.5281/zenodo.23659316</p><button class="copy" type="button">Copy</button></div>
           </article>
         </div>
-      </div>
+        <div class="stagger-col">
+          <article class="card" style="--i:7">
+            <p class="label">Python &middot; Core photos &middot; In development</p>
+            <h3><a href="projects/pyRockImageLab/index.html">pyRockImageLab <span aria-hidden="true">&rarr;</span></a></h3>
+            <p>Interactive tools to crop, orthorectify, stitch and mosaic geological core and outcrop photographs.</p>
+            <ul class="badges"><li><a href="https://pypi.org/project/pyrockimagelab/"><img src="https://img.shields.io/pypi/v/pyrockimagelab.svg" alt="PyPI version" height="20" loading="lazy"></a></li><li><a href="https://pepy.tech/project/pyrockimagelab"><img src="https://static.pepy.tech/badge/pyrockimagelab" alt="Downloads" height="20" loading="lazy"></a></li><li><a href="https://doi.org/10.5281/zenodo.23656974"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23656974.svg" alt="DOI 10.5281/zenodo.23656974" height="20" loading="lazy"></a></li></ul>
+            <img src="projects/pyRockImageLab/figures/ExampleCore_2563-2566_box_crop.webp" width="959" height="847" loading="lazy" alt="Picking the corners of a core-box segment and the cropped, orthorectified segment.">
+            <div class="cite-box cite-line" data-copy-root><p data-copy-src>Lai, L.S.-H. (2026) pyRockImageLab. Zenodo, https://doi.org/10.5281/zenodo.23656974</p><button class="copy" type="button">Copy</button></div>
+          </article>
+        </div>
+        </div>
+      </section>
+      <!-- END projects -->
 
     </div>
   </main>
