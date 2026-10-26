@@ -40,7 +40,7 @@
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23659316">Zenodo</a></li>
         </ul>
         <ul class="facts">
-          <li><b>Version</b>0.1.1</li>
+          <li><b>Version</b>0.2.0</li>
           <li><b>Python</b>3.10 to 3.12</li>
           <li><b>License</b>AGPL-3.0 or later</li>
           <li><b>Status</b>Under development</li>
@@ -54,7 +54,7 @@
         <h2>Overview</h2>
         <div class="prose">
           <p>pyPetrograph helps measure what is in a thin-section photo. You can paint a few examples of each feature on a photo and let a pixel model map the area percent of each class (pore area as porosity in the demo). You can count grains on a painted mineral map by matching a color legend. You can stack plane- and cross-polarized images of the same field and outline grains from that stack. Or, from an automated-mineralogy (AMICS) set of a backscatter image, a mineral map, and a legend, you can outline every grain and name it from the map.</p>
-          <p>A desktop app runs the AMICS workflow step by step in one window, so you can see and fix each result before you export. The tool is still under development, so notebooks and numbers can change. Grain outlining uses <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a> by Zoltan Sylvester, installed separately.</p>
+          <p>A browser app runs the AMICS workflow step by step on a local page in your web browser (nothing is uploaded), so you can see and fix each result before you export. The tool is still under development, so notebooks and numbers can change. Grain outlining uses <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a> by Zoltan Sylvester, installed separately.</p>
           <p>Larry Syu-Heng Lai develops pyPetrograph. Part of the first notebook grew from early code by Zoltan Sylvester. The project started as a collaboration with Priyanka Periwal, Lucy Tingwei Ko, Kelly Hattori, and Amanda Calle.</p>
         </div>
       </section>
@@ -75,13 +75,13 @@
       </section>
 
       <section class="block">
-        <h2>Desktop app</h2>
-        <p>The app walks through the AMICS workflow: files, legend, image and footer, non-grain regions, scale, grain outlines, minerals, grain size, and outputs. Nothing is saved until you press an export button.</p>
+        <h2>Browser app</h2>
+        <p>Start it with <code>pypetrograph-app</code> (or its alias <code>pypetrograph-web</code>). It walks through the AMICS workflow: files, legend, image and footer, non-grain regions, scale, grain outlines, minerals, grain size, and outputs. Nothing is saved until you press an export button, and the exports match notebook 4 exactly.</p>
         <div class="gallery">
-          <figure><img src="figures/app_legend.webp" width="1200" height="712" loading="lazy" alt="App legend step"><figcaption>Legend: names read from the legend image, which you can edit, add, delete, or recolor.</figcaption></figure>
-          <figure><img src="figures/app_nongrain.webp" width="1200" height="712" loading="lazy" alt="App non-grain regions step"><figcaption>Non-grain regions: click epoxy or holes, and the blue tint shows what is left out.</figcaption></figure>
-          <figure><img src="figures/app_minerals.webp" width="1200" height="691" loading="lazy" alt="App minerals step"><figcaption>Minerals: one row per mineral, marked as an exact color match, reassigned, or not found.</figcaption></figure>
-          <figure><img src="figures/app_outputs.webp" width="1200" height="691" loading="lazy" alt="App outputs step"><figcaption>Outputs: the knolling sheet and the buttons that export tables and figures.</figcaption></figure>
+          <figure><img src="figures/app_web_legend.webp" width="1200" height="712" loading="lazy" alt="Browser app legend step"><figcaption>Legend: names read from the legend image, which you can edit, add, delete, or recolor.</figcaption></figure>
+          <figure><img src="figures/app_web_segmentation_running.webp" width="1200" height="712" loading="lazy" alt="Browser app grain segmentation step"><figcaption>Grain outlines: SegmentEveryGrain runs with live progress, and you can click or draw a box to add a grain.</figcaption></figure>
+          <figure><img src="figures/app_web_minerals.webp" width="1200" height="712" loading="lazy" alt="Browser app minerals step"><figcaption>Minerals: one row per mineral, marked as an exact color match, reassigned, or not found.</figcaption></figure>
+          <figure><img src="figures/app_web_outputs.webp" width="1200" height="712" loading="lazy" alt="Browser app outputs step"><figcaption>Outputs: the knolling sheet and the buttons that export tables and figures.</figcaption></figure>
         </div>
       </section>
 
@@ -91,23 +91,27 @@
           <div class="feature"><span class="num">01</span><h3>Hand labels and area percent</h3><p>Paint a few examples of each class, and a LightGBM pixel model maps the photo and reports the area percent of each class.</p></div>
           <div class="feature"><span class="num">02</span><h3>Grain counts on a mineral map</h3><p>Match pixels to a color legend, split grains that touch, and count the grains in each class.</p></div>
           <div class="feature"><span class="num">03</span><h3>Grains from stacked images</h3><p>Line up plane- and cross-polarized views of one field and outline grains from the stack.</p></div>
-          <div class="feature"><span class="num">04</span><h3>AMICS workflow and app</h3><p>Read the legend, outline grains on the backscatter image, name each grain from the mineral map, and export counts, grain sizes, figures, and a knolling sheet.</p></div>
+          <div class="feature"><span class="num">04</span><h3>AMICS workflow and browser app</h3><p>Read the legend, outline grains on the backscatter image, name each grain from the mineral map, and export counts, grain sizes, figures, and a knolling sheet.</p></div>
         </div>
       </section>
 
       <section class="block">
         <h2>Installation</h2>
-        <p>Needs Python 3.10 to 3.12. Install from PyPI:</p>
+        <p>Needs Python 3.10 to 3.12. Install from PyPI (this includes the browser app; about 930 MB in total):</p>
         <div class="tabs" data-copy-root>
           <pre data-copy-src><code>pip install pyPetrograph</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>The desktop app needs one more step:</p>
+        <p>Grain outlining needs <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a>, installed separately into the same environment:</p>
         <div class="tabs" data-copy-root>
-          <pre data-copy-src><code>pip install "pyPetrograph[app]"</code></pre>
+          <pre data-copy-src><code>pip install segmenteverygrain</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>Grain outlining needs <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a>, installed into the same environment with <a href="https://github.com/zsylvester/segmenteverygrain#installation">its own instructions</a>. Without it, everything else still works, and the app greys out the outlining step.</p>
+        <p>Without it, everything else still works, and the app greys out the outlining step. Then start the app:</p>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pypetrograph-app</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
       </section>
 
       <section class="block">
