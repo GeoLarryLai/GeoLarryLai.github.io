@@ -37,9 +37,11 @@
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyPetrograph">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pypetrograph/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23659316">Zenodo</a></li>
         </ul>
         <ul class="facts">
-          <li><b>Version</b>0.0.6</li>
+          <li><b>Version</b>0.1.1</li>
+          <li><b>Python</b>3.10 to 3.12</li>
           <li><b>License</b>AGPL-3.0 or later</li>
           <li><b>Status</b>Under development</li>
         </ul>
@@ -48,47 +50,73 @@
 
     <div class="wrap">
 
+      <section class="block">
+        <h2>Overview</h2>
+        <div class="prose">
+          <p>pyPetrograph helps measure what is in a thin-section photo. You can paint a few examples of each feature on a photo and let a pixel model map the area percent of each class (pore area as porosity in the demo). You can count grains on a painted mineral map by matching a color legend. You can stack plane- and cross-polarized images of the same field and outline grains from that stack. Or, from an automated-mineralogy (AMICS) set of a backscatter image, a mineral map, and a legend, you can outline every grain and name it from the map.</p>
+          <p>A desktop app runs the AMICS workflow step by step in one window, so you can see and fix each result before you export. The tool is still under development, so notebooks and numbers can change. Grain outlining uses <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a> by Zoltan Sylvester, installed separately.</p>
+          <p>Larry Syu-Heng Lai develops pyPetrograph. Part of the first notebook grew from early code by Zoltan Sylvester. The project started as a collaboration with Priyanka Periwal, Lucy Tingwei Ko, Kelly Hattori, and Amanda Calle.</p>
+        </div>
+      </section>
+
       <figure class="teaser block">
         <img src="figures/Manual_label_UI.webp" width="1429" height="839" alt="Hand-label window on a plane-polarized thin-section photo">
         <figcaption class="fig-cap">Hand labels on a plane-polarized thin section. A few painted examples of pores, grains, or cement train a pixel model for the rest of the photo.</figcaption>
       </figure>
 
       <section class="block">
-        <h2>Key features</h2>
-        <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Hand labels and area percent</h3><p>You can paint features on an RGB photo and train a LightGBM pixel model to map the area percent of each class.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Grain counts on a mineral map</h3><p>You can count grains on a painted mineral map by matching a color legend.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Grains from a multi-image overlay</h3><p>You can stack several images of the same field, plane-polarized light, cross-polarized light, or others, and segment grains from that overlay.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Optional finer boundaries</h3><p>For finer grain boundaries there is optional support for SegmentEveryGrain (Zoltan Sylvester).</p></div>
-        </div>
-      </section>
-
-      <section class="block">
-        <h2>Overview</h2>
-        <div class="prose">
-          <p>You can paint features on an RGB photo and train a LightGBM pixel model to map the area percent of each class. The demo treats pores against grains and reads pore area as porosity. You can count grains on a painted mineral map by matching a color legend. Or you can stack several images of the same field, plane-polarized light, cross-polarized light, or others, and segment grains from that overlay.</p>
-          <p>The tool is under development. Use it with caution. Notebooks, interfaces, and numbers can still change. For finer grain boundaries there is optional support for <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a> (Zoltan Sylvester). SAM 2.1 weights, about 860 MB, are a further opt-in on that project’s page, not part of the default install.</p>
-          <p>Larry Syu-Heng Lai leads the current version, from early code written by Zoltan Sylvester, at the Quantitative Clastics Laboratory, Bureau of Economic Geology. The work is also with Priyanka Periwal, Lucy Tingwei Ko, Kelly Hattori, and Amanda Calle, across groups in the Bureau and the <a href="https://www.beg.utexas.edu/research/labs/sem">e-MAGE lab</a>. Example thin sections live in <code>Test images/</code>. Results go to <code>outputs/</code>.</p>
-        </div>
-      </section>
-
-      <section class="block">
-        <h2>Results</h2>
         <div class="gallery">
           <figure><img src="figures/Mineralmap-demo.webp" width="1066" height="987" loading="lazy" alt="Grain counts, a table, and class-share bars from a painted mineral map"><figcaption>Grain counts on a painted mineral map: the map, the count table, and the share of each class.</figcaption></figure>
-          <figure class="wide"><img src="figures/Grain-mapping-mutiimage-overlay.webp" width="1530" height="416" loading="lazy" alt="Watershed, SegmentEveryGrain target, and U-Net grain outlines on a stacked thin-section image"><figcaption>Three outlines on an aligned stack of plane- and cross-polarized light: watershed, the SegmentEveryGrain training target, and the N-channel U-Net.</figcaption></figure>
+          <figure><img src="figures/amics_10B_knolling.webp" width="1200" height="1145" loading="lazy" alt="Knolling sheet of all grains sorted by mineral"><figcaption>A knolling sheet: every grain from one field, sorted by mineral and size.</figcaption></figure>
+          <figure class="wide"><img src="figures/Grain-mapping-mutiimage-overlay.webp" width="1530" height="416" loading="lazy" alt="Watershed, SegmentEveryGrain target, and U-Net grain outlines on a stacked thin-section image"><figcaption>Three sets of grain outlines on stacked plane- and cross-polarized light: a quick watershed guess, the SegmentEveryGrain mask, and a small model trained to copy that mask.</figcaption></figure>
+          <figure><img src="figures/amics_10B_segmentation.webp" width="1200" height="924" loading="lazy" alt="Grain outlines on a backscatter electron image"><figcaption>Grain outlines on a backscatter image from an AMICS set.</figcaption></figure>
+          <figure><img src="figures/amics_10B_composition.webp" width="1200" height="606" loading="lazy" alt="Grains painted by mineral with a percent bar"><figcaption>Each grain painted by its mineral, with the share of grains per mineral.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Desktop app</h2>
+        <p>The app walks through the AMICS workflow: files, legend, image and footer, non-grain regions, scale, grain outlines, minerals, grain size, and outputs. Nothing is saved until you press an export button.</p>
+        <div class="gallery">
+          <figure><img src="figures/app_legend.webp" width="1200" height="712" loading="lazy" alt="App legend step"><figcaption>Legend: names read from the legend image, which you can edit, add, delete, or recolor.</figcaption></figure>
+          <figure><img src="figures/app_nongrain.webp" width="1200" height="712" loading="lazy" alt="App non-grain regions step"><figcaption>Non-grain regions: click epoxy or holes, and the blue tint shows what is left out.</figcaption></figure>
+          <figure><img src="figures/app_minerals.webp" width="1200" height="691" loading="lazy" alt="App minerals step"><figcaption>Minerals: one row per mineral, marked as an exact color match, reassigned, or not found.</figcaption></figure>
+          <figure><img src="figures/app_outputs.webp" width="1200" height="691" loading="lazy" alt="App outputs step"><figcaption>Outputs: the knolling sheet and the buttons that export tables and figures.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Hand labels and area percent</h3><p>Paint a few examples of each class, and a LightGBM pixel model maps the photo and reports the area percent of each class.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Grain counts on a mineral map</h3><p>Match pixels to a color legend, split grains that touch, and count the grains in each class.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Grains from stacked images</h3><p>Line up plane- and cross-polarized views of one field and outline grains from the stack.</p></div>
+          <div class="feature"><span class="num">04</span><h3>AMICS workflow and app</h3><p>Read the legend, outline grains on the backscatter image, name each grain from the mineral map, and export counts, grain sizes, figures, and a knolling sheet.</p></div>
         </div>
       </section>
 
       <section class="block">
         <h2>Installation</h2>
-        <p>From PyPI:</p>
-        <pre class="install"><code>pip install pypetrograph</code></pre>
-        <p>From the repository, create the conda environment in <code>environment.yml</code>, activate <code>pypetrograph</code>, and install the checkout in editable mode. The optional grain-boundary model is a separate install of SegmentEveryGrain into that same environment.</p>
+        <p>Needs Python 3.10 to 3.12. Install from PyPI:</p>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install pyPetrograph</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>The desktop app needs one more step:</p>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install "pyPetrograph[app]"</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>Grain outlining needs <a href="https://github.com/zsylvester/segmenteverygrain">SegmentEveryGrain</a>, installed into the same environment with <a href="https://github.com/zsylvester/segmenteverygrain#installation">its own instructions</a>. Without it, everything else still works, and the app greys out the outlining step.</p>
       </section>
 
       <section class="block">
-        <h2>License</h2>
+        <h2>License and citation</h2>
+        <div class="cite-box" data-copy-root>
+          <p class="label">Cite</p>
+          <p data-copy-src>Lai, L.S.-H. (2026) pyPetrograph, Zenodo, <a href="https://doi.org/10.5281/zenodo.23659316">https://doi.org/10.5281/zenodo.23659316</a>.</p>
+          <button class="copy" type="button">Copy</button>
+        </div>
         <p>GNU Affero General Public License 3.0 or later. The license file is in the repository.</p>
       </section>
 
@@ -96,16 +124,16 @@
         <h2>How it works</h2>
         <details class="how">
           <summary>Hand labels and area percent</summary>
-          <div class="how-body"><p><code>pyPetrograph_rgb_porosity.ipynb</code> is the labeling demo. You paint a few examples of each feature you care about (pores, grains, cement, and so on), using color, edge sharpness, and microtexture. A LightGBM pixel classifier learns those examples. Random forest or XGBoost can be used instead. The model maps the rest of the photo and reports the area percent of each class with a confidence range. In the demo, pore area is the porosity.</p></div>
+          <div class="how-body"><p><code>pyPetrograph_1_rgb_porosity.ipynb</code> is the labeling demo. You paint a few examples of each feature you care about (pores, grains, cement, and so on), using color, edge sharpness, and microtexture. A LightGBM pixel classifier learns those examples. Random forest or XGBoost can be used instead. The model maps the rest of the photo and reports the area percent of each class with a confidence range. In the demo, pore area is the porosity.</p></div>
         </details>
         <details class="how">
           <summary>Grain counts on a mineral map</summary>
-          <div class="how-body"><p><code>pyPetrograph_mineralmap_count.ipynb</code> starts from a color mineral map, one flat color per mineral, plus a legend. It matches pixels to the legend, splits grains that touch, and counts grains in each class. The figure below shows the counts, the table, and the class-share bars.</p></div>
+          <div class="how-body"><p><code>pyPetrograph_2_mineralmap_count.ipynb</code> starts from a color mineral map, one flat color per mineral, plus a legend. It matches pixels to the legend, splits grains that touch, and counts grains in each class.</p></div>
         </details>
         <details class="how">
           <summary>Grains from a multi-image overlay</summary>
           <div class="how-body">
-            <p><code>pyPetrograph_multimodal_grains.ipynb</code> is for contacts that one illumination misses. A boundary drawn from plane-polarized light alone can skip a contact that appears only under crossed polars, and the reverse is true as well. The notebook aligns the two views of the same field and stacks them. Grain outlines then proceed in this order:</p>
+            <p><code>pyPetrograph_3_multimodal_grains.ipynb</code> is for contacts that one illumination misses. A boundary drawn from plane-polarized light alone can skip a contact that appears only under crossed polars, and the reverse is true as well. The notebook aligns the two views of the same field and stacks them. Grain outlines then proceed in this order:</p>
             <ol>
               <li><strong>Watershed.</strong> A first guess from brightness, with no training.</li>
               <li><strong>SegmentEveryGrain mask.</strong> An optional U-Net. That saved mask is the training target.</li>

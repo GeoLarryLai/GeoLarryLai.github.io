@@ -33,62 +33,88 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Valley width</p>
         <h1>pyValleyWidth</h1>
-        <p class="lede">pyValleyWidth measures valley width from a digital terrain model.</p>
+        <p class="lede">pyValleyWidth measures valley and canyon width from a digital terrain model or a bathymetry grid.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyValleyWidth">GitHub</a></li>
+          <li><a class="btn-pill outline" href="https://pypi.org/project/pyvalleywidth/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23656980">Zenodo</a></li>
         </ul>
         <ul class="facts">
           <li><b>Status</b>Under active development</li>
           <li><b>Built on</b>pytopotoolbox</li>
-          <li><b>Example data</b>Big Tujunga DEM</li>
+          <li><b>License</b>AGPL-3.0 or later</li>
+          <li><b>Examples</b>Congo Canyon, Big Tujunga</li>
         </ul>
       </div>
     </header>
 
     <div class="wrap">
 
-      <figure class="teaser block">
-        <img src="Method_overview.webp" width="1164" height="1000" alt="Valley-width method: hillshade, relative elevation, cross-valley profiles, and resampled width">
-        <figcaption class="fig-cap">Hillshade and river path, height above the channel, widths from cross-valley profiles, and the resampled width. After Morgan et al. (2026). Profiles on a tight bend can run long. Resampling along the network steadies the map.</figcaption>
-      </figure>
-
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyValleyWidth is built on <a href="https://github.com/TopoToolbox/pytopotoolbox">pytopotoolbox</a>, the Python port of TopoToolbox. The approach follows Paul Morgan’s <a href="https://github.com/PMonroeMorgan/ElevationThresholdValleyWidth">ElevationThresholdValleyWidth</a> workflow, first written in MATLAB for TopoToolbox 2.</p>
-          <p>The code is under active development. It has not been peer-reviewed or fully validated. Use it with caution.</p>
+          <p>pyValleyWidth was first made to measure the width of mountain river valleys. It now also works on the seafloor. At each cross-section it finds where the valley or canyon “spills over” its rims, so the edge can sit at a different height along the channel instead of one fixed value. Together with channel-steepness and long-profile tools, this gives a quick way to see how a canyon’s width, depth, and steepness change downstream.</p>
+          <p>It is built on <a href="https://github.com/TopoToolbox/pytopotoolbox">pytopotoolbox</a> and follows Paul Morgan’s <a href="https://github.com/PMonroeMorgan/ElevationThresholdValleyWidth">ElevationThresholdValleyWidth</a> workflow. The code is under active development and has not been peer-reviewed or fully validated, so use it with caution.</p>
         </div>
+      </section>
+
+      <figure class="teaser block">
+        <img src="Method_overview.webp" width="1164" height="1000" alt="Valley-width method: hillshade, relative elevation, cross-valley profiles, and resampled width">
+        <figcaption class="fig-cap">Hillshade and river path, height above the channel, widths from cross-valley profiles, and the resampled width. After Morgan et al. (2026).</figcaption>
+      </figure>
+
+      <section class="block">
+        <h2>Example: Congo Canyon</h2>
+        <p>The Congo Canyon notebook runs the method on a 60 m bathymetry grid offshore West Africa.</p>
+        <div class="gallery">
+          <figure class="wide"><img src="figures/CongoCanyon_1_map_channel.webp" width="1800" height="511" loading="lazy" alt="Congo Canyon bathymetry with the main channel traced"><figcaption>The bathymetry grid with the traced main canyon channel.</figcaption></figure>
+          <figure class="wide"><img src="figures/CongoCanyon_2_canyon_outline.webp" width="1800" height="511" loading="lazy" alt="Canyon floor outline"><figcaption>The canyon floor, outlined from the rim found at every cross-section.</figcaption></figure>
+          <figure class="wide"><img src="figures/CongoCanyon_3_canyon_width.webp" width="1800" height="485" loading="lazy" alt="Canyon width along the channel"><figcaption>Canyon width along the channel, smoothed downstream.</figcaption></figure>
+          <figure class="wide"><img src="figures/CongoCanyon_4_long_profile.webp" width="1800" height="737" loading="lazy" alt="Long profile with channel steepness, canyon width and canyon-top depth"><figcaption>Long profile: the channel colored by steepness, with canyon width (blue) and canyon-top depth (red). Distance is measured upstream from the deep-sea end of the channel.</figcaption></figure>
+          <figure class="wide"><img src="figures/CongoCanyon_5_canyon_depth.webp" width="1800" height="488" loading="lazy" alt="Canyon depth along the channel"><figcaption>Canyon depth (rim height above the channel floor) along the channel.</figcaption></figure>
+        </div>
+        <p class="fig-cap">Data credit: derived from the Ifremer Congo (Zaire) deep-sea fan multibeam bathymetry compilation (ZAIANGO 1 and 2, ZAIANGOCAR, ZAIANGO-OBS-BIOL, REPREZAI Leg 1, WACS, and CONGOLOBE cruises); cropped, resampled to 60 m, and smoothed. Ifremer, Géosciences Marines (2019), <a href="https://doi.org/10.12770/d1076601-82a9-42a2-9d30-d0be8b2481a7">https://doi.org/10.12770/d1076601-82a9-42a2-9d30-d0be8b2481a7</a>.</p>
       </section>
 
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Importable package</h3><p>Valley classification, swath widths, an optional variable rim, smoothing along the stream network, the normalized steepness index <em>k</em><sub>sn</sub>, and river-profile figures.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Example notebook</h3><p><code>valley_width_example.ipynb</code>, an end-to-end run on the Big Tujunga DEM shipped with TopoToolbox. It routes flow, can mask to the largest catchment, measures width two ways, and draws maps, <em>k</em><sub>sn</sub>, longitudinal and chi–elevation profiles, and threshold or excess topography.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Method figure</h3><p>The method figure at the top of this page.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Two ways to find the edge</h3><p>One fixed height above the channel everywhere, or a rim found separately at each cross-section.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Land and seafloor</h3><p>Works on mountain terrain models and on seafloor bathymetry.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Downstream profiles</h3><p>Width, depth, and channel steepness (<em>k</em><sub>sn</sub>) along the channel, with maps and long profiles.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Two example notebooks</h3><p>The Congo Canyon (seafloor) and Big Tujunga (mountain valley) examples run from top to bottom.</p></div>
         </div>
       </section>
 
       <section class="block">
         <h2>Installation</h2>
-        <ol>
-          <li>Make a conda or virtual environment with <code>topotoolbox</code> installed, and use that environment as the Jupyter kernel.</li>
-          <li>Place the <code>pyValleyWidth</code> package folder next to the notebooks, or add it to <code>PYTHONPATH</code>.</li>
-          <li>Open <code>valley_width_example.ipynb</code> and run it from top to bottom.</li>
-          <li>For another terrain model, copy those sections and change stream area, the elevation threshold or the variable-rim settings, swath spacing, the minimum radius, and the swath length.</li>
-        </ol>
-        <pre class="install"><code>from pyValleyWidth import dem2widths</code></pre>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install pyvalleywidth</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>This also installs <code>topotoolbox</code>.</p>
       </section>
 
       <section class="block">
         <h2>Citation</h2>
-        <p>If you use the original threshold method, cite:</p>
         <div class="cite-box" data-copy-root>
-          <p class="label">Cite</p>
+          <p class="label">Software</p>
+          <p data-copy-src>Lai, L.S.-H. (2026) pyValleyWidth, Zenodo, <a href="https://doi.org/10.5281/zenodo.23656980">https://doi.org/10.5281/zenodo.23656980</a>.</p>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>If you use the threshold method, also cite:</p>
+        <div class="cite-box" data-copy-root>
+          <p class="label">Method</p>
           <p data-copy-src>Morgan, P. M., Grant, A., Struble, W., LaHusen, S., and Duvall, A. (2026) The damability function: a probabilistic approach to regional landslide dam susceptibility analysis applied to the Oregon Coast Range, USA. <em>Natural Hazards and Earth System Sciences</em>, 26, 1745–1766, <a href="https://doi.org/10.5194/nhess-26-1745-2026">https://doi.org/10.5194/nhess-26-1745-2026</a>.</p>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>Cite TopoToolbox or pytopotoolbox as well when the routing comes from there.</p>
+        <p>Please also cite pytopotoolbox:</p>
+        <div class="cite-box" data-copy-root>
+          <p class="label">pytopotoolbox</p>
+          <p data-copy-src>William Kearney, Boris Gailleton, Theophil Bringezu, ginaarnau, Luca Malatesta, François Faure, &amp; Xiaochuan Ye. (2026). TopoToolbox/pytopotoolbox [Computer software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.16742408">https://doi.org/10.5281/zenodo.16742408</a></p>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>pyValleyWidth is under the GNU Affero General Public License 3.0 or later. pytopotoolbox is under the GNU GPL.</p>
       </section>
 
       <section class="block">
@@ -99,7 +125,6 @@
             <ul>
               <li>An importable package: valley classification, swath widths, an optional variable rim, smoothing along the stream network, the normalized steepness index <em>k</em><sub>sn</sub>, and river-profile figures.</li>
               <li><code>valley_width_example.ipynb</code>, an end-to-end run on the Big Tujunga DEM shipped with TopoToolbox. It routes flow, can mask to the largest catchment, measures width two ways, and draws maps, <em>k</em><sub>sn</sub>, longitudinal and chi–elevation profiles, and threshold or excess topography. The notebook is the user guide, including notes on stream area, the HAND threshold, swath spacing, smoothing, and saturated transects.</li>
-              <li>The method figure at the top of this page.</li>
             </ul>
           </div>
         </details>

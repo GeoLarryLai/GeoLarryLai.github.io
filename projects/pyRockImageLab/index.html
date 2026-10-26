@@ -33,16 +33,17 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Rock images &middot; In development</p>
         <h1>pyRockImageLab</h1>
-        <p class="lede">pyRockImageLab (<code>pyrockimagelab</code>) is for rock-photograph workflows.</p>
+        <p class="lede">pyRockImageLab (<code>pyrockimagelab</code>) crops, orthorectifies, stitches, and mosaics geological core photographs.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyRockImageLab">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pyrockimagelab/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23656974">Zenodo</a></li>
         </ul>
         <ul class="facts">
           <li><b>Status</b>Under development</li>
-          <li><b>Version</b>0.0.1</li>
+          <li><b>Version</b>0.0.3</li>
           <li><b>License</b>AGPL-3.0 or later</li>
-          <li><b>Python</b>3.9+</li>
+          <li><b>Python</b>3.10+</li>
         </ul>
       </div>
     </header>
@@ -50,11 +51,47 @@
     <div class="wrap">
 
       <section class="block">
-        <span class="card-tile contour-bg" style="--cpos: 50% 50%" aria-hidden="true"></span>
+        <h2>Overview</h2>
         <div class="prose">
-          <p>The work underway is core-box crop, stitch, and mosaic. Later room is planned for hand samples, outcrop photos, and machine-learning identification.</p>
-          <p>The name is reserved on PyPI as version 0.0.1. It is under development and not ready for use. A fuller release is on the way. The public listing uses the GNU Affero General Public License 3.0 or later, and it targets Python 3.9 or newer.</p>
+          <p>pyRockImageLab turns core photographs into clean, measurable images. It starts from a low-resolution photo of a whole core box: you pick the four corners of each core segment, and the tool cuts it out and straightens it into an orthorectified strip. It then stitches high-resolution close-up photos along that segment into one detailed mosaic. Corner picks are saved, so a later run can start from the same picks.</p>
+          <p>The package is under development. Hand samples, outcrop photos, and machine-learning identification are planned later.</p>
         </div>
+      </section>
+
+      <section class="block">
+        <div class="gallery">
+          <figure><img src="figures/ExampleCore_2563-2566_box_crop.webp" width="959" height="847" loading="lazy" alt="QuadPicker corner selection on a core-box photo and the cropped core segment"><figcaption>Left: picking the four corners of a core-box segment in QuadPicker. Right: the cropped, orthorectified segment (2563–2566 ft).</figcaption></figure>
+          <figure><img src="figures/ExampleCore_2563-2566_hr.webp" width="963" height="907" loading="lazy" alt="Cropped close-up photos beside the stitched high-resolution mosaic"><figcaption>The six cropped close-up photos, numbered in stitching order (left), beside the stitched high-resolution mosaic of 2563–2566 ft (right).</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Crop and orthorectify</h3><p>Pick four corners on a box photo and get a straight, orthorectified core segment (QuadPicker).</p></div>
+          <div class="feature"><span class="num">02</span><h3>Stitch and mosaic</h3><p>Stitch high-resolution close-ups along a segment into one mosaic.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Reusable picks</h3><p>Corner picks are saved, so a later run can start from the same corners.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Notebook and command line</h3><p>A worked example notebook on a small example core, and a <code>pyrockimagelab</code> command.</p></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Installation</h2>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install pyrockimagelab</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>Interactive corner picking needs a desktop plotting window (Qt or Tk, or the macOS default).</p>
+      </section>
+
+      <section class="block">
+        <h2>License and citation</h2>
+        <div class="cite-box" data-copy-root>
+          <p class="label">Cite</p>
+          <p data-copy-src>Lai, L.S.-H. (2026) pyRockImageLab, Zenodo, <a href="https://doi.org/10.5281/zenodo.23656974">https://doi.org/10.5281/zenodo.23656974</a>.</p>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>GNU Affero General Public License 3.0 or later.</p>
       </section>
 
       <a class="next-link" href="../pyBasinSubs/index.html">

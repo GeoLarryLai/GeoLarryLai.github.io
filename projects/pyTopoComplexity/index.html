@@ -53,25 +53,8 @@
 
     <div class="wrap">
 
-      <figure class="teaser block">
-        <video autoplay muted loop playsinline preload="metadata" poster="image/Landlab_poster.webp" width="2314" height="1178" aria-label="Animation of a Landlab landscape run with complexity measured through time">
-          <source src="image/Landlab_demo.mp4" type="video/mp4">
-        </video>
-        <figcaption class="fig-cap">Landlab run: hillslope diffusion and stream incision, with complexity tracked through time.</figcaption>
-      </figure>
-
       <section class="block">
-        <h2>Four methods</h2>
-        <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>CWTMexHat</h3><p>(<code>pycwtmexhat.py</code>). Two-dimensional continuous wavelet transform with a Mexican-hat wavelet. The result is a wavelet curvature of the surface.</p></div>
-          <div class="feature"><span class="num">02</span><h3>FracD</h3><p>(<code>pyfracd.py</code>). Local fractal dimension by a variogram, with the standard error and R² of the fit.</p></div>
-          <div class="feature"><span class="num">03</span><h3>RugosityIndex</h3><p>(<code>pyrugosity.py</code>). Rugosity of the surface, including a slope-corrected form.</p></div>
-          <div class="feature"><span class="num">04</span><h3>TPI</h3><p>(<code>pytpi.py</code>). Terrain position index: how high or low a cell sits relative to its neighbors.</p></div>
-        </div>
-      </section>
-
-      <section class="block">
-        <h2>Workflow</h2>
+        <h2>Overview</h2>
         <div class="split">
           <figure class="teaser">
             <img src="image/workflow-schematic.webp" width="1800" height="2176" loading="lazy" alt="Workflow from a digital elevation model through four complexity metrics to exported maps">
@@ -83,13 +66,29 @@
         </div>
       </section>
 
+      <figure class="teaser block">
+        <video autoplay muted loop playsinline preload="metadata" poster="image/Landlab_poster.webp" width="2314" height="1178" aria-label="Animation of a Landlab landscape run with complexity measured through time">
+          <source src="image/Landlab_demo.mp4" type="video/mp4">
+        </video>
+        <figcaption class="fig-cap">Landlab run: hillslope diffusion and stream incision, with complexity tracked through time.</figcaption>
+      </figure>
+
       <section class="block">
-        <h2>Results</h2>
         <div class="gallery">
           <figure><img src="image/cwtmexhat.webp" width="1800" height="1225" loading="lazy" alt="Mexican-hat wavelet curvature of a digital elevation model"><figcaption>Wavelet curvature from the Mexican-hat continuous wavelet transform.</figcaption></figure>
           <figure><img src="image/fracd.webp" width="1800" height="1319" loading="lazy" alt="Local fractal dimension of a digital elevation model"><figcaption>Local fractal dimension from the variogram method.</figcaption></figure>
           <figure><img src="image/rugosity.webp" width="1800" height="1270" loading="lazy" alt="Rugosity index of a digital elevation model"><figcaption>Rugosity index, including the slope-corrected arc-chord form.</figcaption></figure>
           <figure><img src="image/tpi.webp" width="1800" height="1264" loading="lazy" alt="Terrain position index of a digital elevation model"><figcaption>Terrain position index. High values are ridges. Low values are valleys.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>CWTMexHat</h3><p>(<code>pycwtmexhat.py</code>). Two-dimensional continuous wavelet transform with a Mexican-hat wavelet. The result is a wavelet curvature of the surface.</p></div>
+          <div class="feature"><span class="num">02</span><h3>FracD</h3><p>(<code>pyfracd.py</code>). Local fractal dimension by a variogram, with the standard error and R² of the fit.</p></div>
+          <div class="feature"><span class="num">03</span><h3>RugosityIndex</h3><p>(<code>pyrugosity.py</code>). Rugosity of the surface, including a slope-corrected form.</p></div>
+          <div class="feature"><span class="num">04</span><h3>TPI</h3><p>(<code>pytpi.py</code>). Terrain position index: how high or low a cell sits relative to its neighbors.</p></div>
         </div>
       </section>
 
