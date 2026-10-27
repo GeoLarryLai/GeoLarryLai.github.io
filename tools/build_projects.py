@@ -12,22 +12,17 @@ e = lambda s: html.escape(s, quote=True)
 
 
 def badges(p):
+    """Version badges only (PyPI, crates.io, conda-forge)."""
     out = []
     if p.get("pypi"):
         n = p["pypi"]
         out.append((f"https://pypi.org/project/{n}/", f"https://img.shields.io/pypi/v/{n}.svg", "PyPI version"))
-        if p.get("pepy", True):
-            out.append((f"https://pepy.tech/project/{n}", f"https://static.pepy.tech/badge/{n}", "Downloads"))
     if p.get("crate"):
         n = p["crate"]
         out.append((f"https://crates.io/crates/{n}", f"https://img.shields.io/crates/v/{n}.svg", "crates.io version"))
     if p.get("conda"):
         n = p["conda"]
         out.append((f"https://anaconda.org/conda-forge/{n}", f"https://img.shields.io/conda/vn/conda-forge/{n}.svg", "conda-forge version"))
-        out.append((f"https://anaconda.org/conda-forge/{n}", f"https://img.shields.io/conda/dn/conda-forge/{n}.svg", "conda-forge downloads"))
-    if p.get("zenodo"):
-        d = p["zenodo"]
-        out.append((f"https://doi.org/{d}", f"https://zenodo.org/badge/DOI/{d}.svg", f"DOI {d}"))
     if not out:
         return ""
     li = "".join(f'<li><a href="{e(h)}"><img src="{e(s)}" alt="{e(a)}" height="20" loading="lazy"></a></li>' for h, s, a in out)
