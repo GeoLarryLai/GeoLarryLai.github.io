@@ -179,3 +179,4 @@ Decision: every project page now Overview → visuals → Key features. pyCoreRe
 - 2026-10-26: removed all status rows/labels/sentences from project pages (Larry: no status anywhere).
 - 2026-10-26: pyPetrograph card image -> figures/app_web_outputs.webp (1200x712).
 - 2026-10-26: pyRockImageLab card image -> figures/app_web_mark_sections.webp (1440x860, app 'Mark core sections' step).
+- 2026-10-26: pyRockImageLab page: new 'Browser app' section (two autoplay/loop demo videos + WebP posters in projects/pyRockImageLab/videos/) between Key features and Installation; version 0.1.0; removed QuadPicker/desktop-plot-window wording for the 0.1.0 browser app.

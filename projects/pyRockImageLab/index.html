@@ -40,7 +40,7 @@
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23656974">Zenodo</a></li>
         </ul>
         <ul class="facts">
-          <li><b>Version</b>0.0.3</li>
+          <li><b>Version</b>0.1.0</li>
           <li><b>License</b>AGPL-3.0 or later</li>
           <li><b>Python</b>3.10+</li>
         </ul>
@@ -59,7 +59,7 @@
 
       <section class="block">
         <div class="gallery">
-          <figure><img src="figures/ExampleCore_2563-2566_box_crop.webp" width="959" height="847" loading="lazy" alt="QuadPicker corner selection on a core-box photo and the cropped core segment"><figcaption>Left: picking the four corners of a core-box segment in QuadPicker. Right: the cropped, orthorectified segment (2563–2566 ft).</figcaption></figure>
+          <figure><img src="figures/ExampleCore_2563-2566_box_crop.webp" width="959" height="847" loading="lazy" alt="Corner selection on a core-box photo and the cropped core segment"><figcaption>Left: picking the four corners of a core-box segment. Right: the cropped, orthorectified segment (2563–2566 ft).</figcaption></figure>
           <figure><img src="figures/ExampleCore_2563-2566_hr.webp" width="963" height="907" loading="lazy" alt="Cropped close-up photos beside the stitched high-resolution mosaic"><figcaption>The six cropped close-up photos, numbered in stitching order (left), beside the stitched high-resolution mosaic of 2563–2566 ft (right).</figcaption></figure>
         </div>
       </section>
@@ -67,11 +67,26 @@
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Crop and orthorectify</h3><p>Pick four corners on a box photo and get a straight, orthorectified core segment (QuadPicker).</p></div>
+          <div class="feature"><span class="num">01</span><h3>Crop and orthorectify</h3><p>Pick four corners on a box photo and get a straight, orthorectified core segment.</p></div>
           <div class="feature"><span class="num">02</span><h3>Stitch and mosaic</h3><p>Stitch high-resolution close-ups along a segment into one mosaic.</p></div>
           <div class="feature"><span class="num">03</span><h3>Reusable picks</h3><p>Corner picks are saved, so a later run can start from the same corners.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Notebook and command line</h3><p>A worked example notebook on a small example core, and a <code>pyrockimagelab</code> command.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Browser app, notebook, command line</h3><p>A browser app (<code>pyrockimagelab-app</code>), a worked example notebook on a small example core, and a <code>pyrockimagelab</code> command.</p></div>
         </div>
+      </section>
+
+      <section class="block">
+        <h2>Browser app</h2>
+        <div class="prose">
+          <p>Run <code>pyrockimagelab-app</code> and it opens in your web browser, with two jobs.</p>
+        </div>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyRockImageLab_crop_demo-poster.webp" width="1920" height="1080" aria-label="Crop core-box photo demo in the pyRockImageLab browser app"><source src="videos/pyRockImageLab_crop_demo.mp4" type="video/mp4"></video>
+          <figcaption>Crop core-box photo: click the corners of each core section in a core-box photo, and the app saves each section as a straightened image labelled with its depth.</figcaption>
+        </figure>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyRockImageLab_stitch_demo-poster.webp" width="1920" height="1080" aria-label="Stitch close-up photos demo in the pyRockImageLab browser app"><source src="videos/pyRockImageLab_stitch_demo.mp4" type="video/mp4"></video>
+          <figcaption>Stitch close-up photos: join close-up photos along one core section into one long high-resolution image.</figcaption>
+        </figure>
       </section>
 
       <section class="block">
@@ -80,7 +95,7 @@
           <pre data-copy-src><code>pip install pyrockimagelab</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>Interactive corner picking needs a desktop plotting window (Qt or Tk, or the macOS default).</p>
+        <p>Start the app with <code>pyrockimagelab-app</code>; it opens in your web browser.</p>
       </section>
 
       <section class="block">
