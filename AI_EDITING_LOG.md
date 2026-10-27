@@ -178,3 +178,4 @@ Decision: every project page now Overview → visuals → Key features. pyCoreRe
 - Citation boxes: removed Copy buttons (install-block copy buttons and JS kept).
 - 2026-10-26: removed all status rows/labels/sentences from project pages (Larry: no status anywhere).
 - 2026-10-26: pyPetrograph card image -> figures/app_web_outputs.webp (1200x712).
+- 2026-10-26: pyRockImageLab card image -> figures/app_web_mark_sections.webp (1440x860, app 'Mark core sections' step).
