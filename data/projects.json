@@ -106,7 +106,7 @@
       "hidden": false,
       "label": "Python · R",
       "page": "projects/pyBasinSubs/index.html",
-      "description": "pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's a new Python package that extends my original R code, BasinSubs (Lai et al., 2021, *Sedimentary Geology*; Lai et al., 2022, *Communications Earth & Environment*), which stays available as its own repo.",
+      "description": "pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers.",
       "image": {
         "src": "projects/pyBasinSubs/figures/hero_geohistory_north_sea_30-4-1.webp",
         "width": 1400,

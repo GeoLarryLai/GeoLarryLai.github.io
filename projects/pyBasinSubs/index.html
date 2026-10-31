@@ -33,10 +33,11 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; R &middot; Basin subsidence</p>
         <h1>pyBasinSubs</h1>
-        <p class="lede">pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's a new Python package that extends my original R code, BasinSubs (Lai et al., 2021, <em>Sedimentary Geology</em>; Lai et al., 2022, <em>Communications Earth &amp; Environment</em>), which stays available as its own repo.</p>
+        <p class="lede">pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyBasinSubs">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pybasinsubs/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.1038/s43247-022-00429-2">Paper</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832018">Zenodo</a></li>
           <li><a class="btn-pill outline" href="https://github.com/GeoLarryLai/BasinSubs">Original R code (BasinSubs)</a></li>
         </ul>
@@ -54,8 +55,8 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's the Python version, and an extension, of my original R code, <a href="#r-code">BasinSubs</a>.</p>
-          <p>pyBasinSubs brings that backstripping workflow into Python and goes further: Monte Carlo uncertainty, thermal history and maturity, 2-D flexural backstripping and section restoration, CSV templates and apps for your own data. The <code>legacy</code> module reproduces the BasinSubs R results, and <code>legacy.py</code> and the bundled BasinSubs data keep their BSD-3-Clause notice.</p>
+          <p>pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's the Python version, and an extension, of my original R code, <a href="#r-code">BasinSubs</a>, which I wrote for our work on the Coastal Range of eastern Taiwan (<a href="https://doi.org/10.1038/s43247-022-00429-2">Lai et al., 2022, <em>Communications Earth &amp; Environment</em></a>).</p>
+          <p>pyBasinSubs brings that backstripping workflow into Python and goes further: Monte Carlo uncertainty, thermal history and maturity, 2-D flexural backstripping and section restoration, CSV templates and apps for your own data.</p>
         </div>
       </section>
 
@@ -87,13 +88,13 @@
       <section class="block" id="r-code">
         <h2>The original R code</h2>
         <div class="prose">
-          <p><a href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs</a> is the original set of R scripts from Larry Syu-Heng Lai&rsquo;s University of Oregon research on the Coastal Range of eastern Taiwan. It is tied to that research: the data and results were made with collaborators for the 2022 <em>Communications Earth &amp; Environment</em> paper and the 2021 <em>Sedimentary Geology</em> paper. It stays archived as published, on <a href="https://doi.org/10.5281/zenodo.5823612">Zenodo</a>, under the BSD-3-Clause license.</p>
+          <p><a href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs</a> is the original set of R scripts from Larry Syu-Heng Lai&rsquo;s University of Oregon research on the Coastal Range of eastern Taiwan. It is tied to that research: the data and results were made with collaborators for the 2022 <em>Communications Earth &amp; Environment</em> paper. It stays archived as published, on <a href="https://doi.org/10.5281/zenodo.5823612">Zenodo</a>, under the BSD-3-Clause license.</p>
           <ul>
             <li><strong>Porosity and age models.</strong> A global average porosity–depth curve, and linear age–thickness models that place paleo-water depth and relative sea level at each dated unit boundary.</li>
             <li><strong>Subsidence analysis.</strong> Decompaction and backstripping of the northern and southern sections, with errors carried through, and geohistory plots.</li>
             <li><strong>Data and results.</strong> Unit thickness, paleo-water depth, sea level, porosity–depth data, and the long-term uplift and subsidence rates of the arc crust.</li>
           </ul>
-          <p>pyBasinSubs is a separate, general Python package. Its <code>legacy</code> mode reproduces the BasinSubs R results, and that part keeps the BSD-3-Clause notice.</p>
+          <p>pyBasinSubs is a separate, general Python package.</p>
         </div>
       </section>
 
