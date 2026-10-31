@@ -48,17 +48,33 @@
         <h2>Overview</h2>
         <div class="prose">
           <p>pyLogCrafter cleans large sets of well logs, lines them up without erasing real geology, and fills gaps from companion logs and nearby wells. It is built for large collections of LAS files where every well is incomplete, with mixed vendors, curve names, units, and coverage.</p>
-          <p>In reservoir analysis and basin modeling, log quality control is often the slow step before the science can start. The package reads many LAS files, sorts out curve names and units, joins runs from the same well, and flags samples that are out of range, flat, or out of step with nearby wells. Formation tops line the wells up, and each well is rescaled against its neighbors, so a tool shift can be removed without forcing one basin-wide average curve. A missing stretch is filled from that well’s other logs and the shape of nearby wells, not drawn as a straight line. Similar log patterns can be grouped into electrofacies, porosity and permeability can be calibrated to core, and plots cover single wells, maps, and cross-sections. Cleaned, gap-filled logs can also feed automated correlation and tops picking.</p>
           <p>pyLogCrafter is developed by Larry Syu-Heng Lai at the <a href="https://qcl.beg.utexas.edu/">Quantitative Clastics Laboratory (QCL)</a>, Bureau of Economic Geology, The University of Texas at Austin. It is not open source: Larry Lai and QCL hold the source, and use can be arranged by contacting them. Check every output before relying on it.</p>
         </div>
       </section>
 
-      <figure class="teaser block">
+      <section class="block">
+        <h2>Animations</h2>
+        <h3>Part 1: Clean, line up, and fill the logs</h3>
+        <div class="prose">
+          <p>In reservoir analysis and basin modeling, log quality control is often the slow step before the science can start. The package reads many LAS files, sorts out curve names and units, joins runs from the same well, and flags samples that are out of range, flat, or out of step with nearby wells. Formation tops line the wells up, and each well is rescaled against its neighbors, so a tool shift can be removed without forcing one basin-wide average curve. A missing stretch is filled from that well’s other logs and the shape of nearby wells, not drawn as a straight line. Similar log patterns can be grouped into electrofacies, porosity and permeability can be calibrated to core, and plots cover single wells, maps, and cross-sections. Cleaned, gap-filled logs can also feed automated correlation and tops picking.</p>
+        </div>
+        <figure class="teaser">
         <video controls autoplay muted playsinline preload="metadata" poster="videos/pyLogCrafter_explain_1080p-poster.webp" width="1280" height="720" aria-label="Full overview video of the pyLogCrafter well-log workflow">
           <source src="videos/pyLogCrafter_explain_720p.mp4" type="video/mp4">
         </video>
         <figcaption class="fig-cap">Full overview, about two minutes. It opens on a map of the wells and then walks through neighbors, cleaning, tops, alignment, QC, normalization, gap filling, and export.</figcaption>
-      </figure>
+        </figure>
+        <h3>Part 2: Extend to the whole basin</h3>
+        <div class="prose">
+          <p>Most wells have logs, but only a few have real rock data, and the wells with precious cores often come with poor or incomplete logs. The usual fix is to drop those wells, and I've often seen 90+% of the well data get tossed that way, like throwing out most of a puzzle because a few pieces are chipped. After Part 1, every well in the Delaware Mountain Group has a complete set of 6 log types. Part 2 shows pyLogCrafter automating core-to-log calibration from there, giving lithofacies predictions (deterministic and probabilistic) and porosity and permeability estimates for every well, at every depth. The early results look promising to me: whole-basin lithofacies and property models that are ready for stratigraphic correlation (they aren't correlated yet), for scaling up to 3D geomodeling, and maybe for laying better groundwork for future GeoAI model training.</p>
+        </div>
+        <figure class="teaser">
+        <video controls autoplay muted playsinline preload="metadata" poster="videos/pyLogCrafter2_full_1080p-poster.webp" width="1920" height="1080" aria-label="Part 2 video: pyLogCrafter core-to-log calibration across the whole basin">
+          <source src="videos/pyLogCrafter2_full_1080p.mp4" type="video/mp4">
+        </video>
+        <figcaption class="fig-cap">Starting from the QC-ed, gap-filled logs from Part 1, pyLogCrafter calibrates the logs against core data and predicts lithofacies, porosity and permeability for 10,000+ wells across the Delaware Mountain Group, Permian Basin.</figcaption>
+        </figure>
+      </section>
 
       <section class="block">
         <h2>Key features</h2>
