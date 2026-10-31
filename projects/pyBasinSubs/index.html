@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; R &middot; Basin subsidence</p>
         <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" style="width:clamp(40px,2rem + 2vw,56px);height:auto" alt="">pyBasinSubs</h1>
-        <p class="lede">pyBasinSubs rebuilds how a sedimentary basin sank and filled through time. It is the Python version and extension of the original BasinSubs R code.</p>
+        <p class="lede">pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's a new Python package that extends my original R code, BasinSubs (Lai et al., 2021, <em>Sedimentary Geology</em>; Lai et al., 2022, <em>Communications Earth &amp; Environment</em>), which stays available as its own repo.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyBasinSubs">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pybasinsubs/">PyPI</a></li>
@@ -53,33 +53,33 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyBasinSubs takes a column of dated sedimentary layers, removes their compaction and the weight of water and sediment, and shows how fast the basin floor went down or up through time. It adds uncertainty from Monte Carlo runs, thermal and maturity history, and 2D sections restored through time.</p>
-          <p>It grew out of the original R scripts, <a href="#r-code">BasinSubs</a>, written for the 2022 paper on eastern Taiwan. The R code stays as published; pyBasinSubs is a new, general package that works on any basin. It is early-stage research software, so check results before use.</p>
+          <p>pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's the Python version, and an extension, of my original R code, <a href="#r-code">BasinSubs</a>.</p>
+          <p>pyBasinSubs brings that backstripping workflow into Python and goes further: Monte Carlo uncertainty, thermal history and maturity, 2-D flexural backstripping and section restoration, CSV templates and apps for your own data. The <code>legacy</code> module reproduces the BasinSubs R results, and <code>legacy.py</code> and the bundled BasinSubs data keep their BSD-3-Clause notice.</p>
         </div>
       </section>
 
       <figure class="teaser block">
         <img src="figures/hero_geohistory_north_sea_30-4-1.webp" width="1400" height="969" alt="Geohistory of North Sea well 30/4-1">
-        <figcaption class="fig-cap">Geohistory of North Sea well 30/4-1.</figcaption>
+        <figcaption class="fig-cap">A geohistory (burial) plot for North Sea well 30/4-1, showing how the basin sank and filled through time.</figcaption>
       </figure>
 
       <section class="block">
         <h2>Examples</h2>
         <p>Example notebooks cover each feature, from Taiwan to the North Sea.</p>
         <div class="gallery">
-          <figure><img src="figures/nb3_geohistory_N.webp" width="996" height="644" loading="lazy" alt="Tectonic subsidence with uncertainty"><figcaption>Northern Coastal Range, Taiwan: total and tectonic subsidence with uncertainty bands.</figcaption></figure>
-          <figure><img src="figures/nb6_maturity_viking_30-4-1.webp" width="1312" height="523" loading="lazy" alt="Burial temperature and maturity"><figcaption>North Sea well 30/4-1: burial temperature and maturity with oil and gas windows.</figcaption></figure>
-          <figure class="wide"><img src="figures/nb8_viking_restored_sequence.webp" width="1600" height="1320" loading="lazy" alt="Section restored through time"><figcaption>North Viking Graben: a 2D section restored through time by flexural backstripping.</figcaption></figure>
+          <figure><img src="figures/nb3_geohistory_N.webp" width="996" height="644" loading="lazy" alt="Tectonic subsidence with uncertainty"><figcaption>Northern Coastal Range (Taiwan): a geohistory with total and tectonic subsidence and their uncertainty bands.</figcaption></figure>
+          <figure><img src="figures/nb6_maturity_viking_30-4-1.webp" width="1312" height="523" loading="lazy" alt="Burial temperature and maturity"><figcaption>North Sea well 30/4-1: burial temperature and maturity (Easy%Ro), with the oil and gas windows marked.</figcaption></figure>
+          <figure class="wide"><img src="figures/nb8_viking_restored_sequence.webp" width="1600" height="1320" loading="lazy" alt="Section restored through time"><figcaption>A 2-D section across the North Viking Graben, restored step by step through time by flexural backstripping.</figcaption></figure>
         </div>
       </section>
 
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Backstripping</h3><p>1D backstripping with Monte Carlo uncertainty, erosion, and over-compaction.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Porosity and water depth</h3><p>Porosity–depth fits with confidence bands, and past water depth from foraminifera.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Thermal history</h3><p>Geotherms, stretching-factor fits, and maturity with oil and gas windows.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Sections and your data</h3><p>2D flexural backstripping and fault restoration, CSV templates, and desktop and browser apps.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Backstripping</h3><p>1-D backstripping with Monte Carlo uncertainty (reproduces the BasinSubs R results).</p></div>
+          <div class="feature"><span class="num">02</span><h3>Porosity and water depth</h3><p>Porosity–depth fits and paleo-water depth from foraminifera.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Thermal history</h3><p>Thermal history and source-rock maturity.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Sections and your data</h3><p>2-D flexural backstripping and section restoration, plus desktop and Streamlit apps.</p></div>
         </div>
       </section>
 

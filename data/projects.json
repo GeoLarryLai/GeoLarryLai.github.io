@@ -63,7 +63,7 @@
       "hidden": false,
       "label": "Python · Rust",
       "page": "projects/SubsurfiX/index.html",
-      "description": "From a folder of well logs to a checked, correlated log set and a 3D property model for flow and heat simulations.",
+      "description": "SubsurfiX from a folder of well logs to a 3D property model you can simulate on. Log QC, gap filling, well correlation, property modeling, and flow and heat simulation in one Rust engine, run from Python or the command line, with every filled value traceable.",
       "image": {
         "src": "projects/SubsurfiX/figures/hero_3d_porosity_model.webp",
         "width": 1400,
@@ -84,7 +84,7 @@
       "hidden": false,
       "label": "Python",
       "page": "projects/pyLogDigitizer/index.html",
-      "description": "Turn scanned paper well logs into LAS files, with a local browser app to check and fix every step.",
+      "description": "pyLogDigitizer turns scanned paper well logs (TIFF) into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.",
       "image": {
         "src": "projects/pyLogDigitizer/figures/hero_scan_to_las.webp",
         "width": 1400,
@@ -105,7 +105,7 @@
       "hidden": false,
       "label": "Python · R",
       "page": "projects/pyBasinSubs/index.html",
-      "description": "Backstrip a basin's layers to rebuild how it sank and filled. A Python package extending the original BasinSubs R code from the 2022 paper.",
+      "description": "pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's a new Python package that extends my original R code, BasinSubs (Lai et al., 2021, *Sedimentary Geology*; Lai et al., 2022, *Communications Earth & Environment*), which stays available as its own repo.",
       "image": {
         "src": "projects/pyBasinSubs/figures/hero_geohistory_north_sea_30-4-1.webp",
         "width": 1400,
@@ -175,7 +175,7 @@
       "hidden": false,
       "label": "Python · Rust",
       "page": "projects/pyGeoMapper/index.html",
-      "description": "Map ground change and rock units from satellite images and elevation models, ending in 3D block diagrams.",
+      "description": "pyGeoMapper maps surface change and geology from satellite images and DEMs, all the way to 3D block diagrams you can open in a browser. Python with a Rust core.",
       "image": {
         "src": "projects/pyGeoMapper/figures/dod_and_spectral_change.webp",
         "width": 1400,

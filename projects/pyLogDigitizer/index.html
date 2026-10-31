@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Scanned well logs</p>
         <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" style="width:clamp(40px,2rem + 2vw,56px);height:auto" alt="">pyLogDigitizer</h1>
-        <p class="lede">pyLogDigitizer turns scanned paper well logs into LAS files, with a local browser app to check and fix every step.</p>
+        <p class="lede">pyLogDigitizer turns scanned paper well logs (TIFF) into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyLogDigitizer">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pylogdigitizer/">PyPI</a></li>
@@ -51,33 +51,32 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>Many old well logs exist only as paper scans. pyLogDigitizer finds the tracks and grid on a scan, straightens it, reads the depth labels, and traces each curve into numbers you can save as a LAS file.</p>
-          <p>A guided browser app runs on your own computer (nothing is uploaded), so you can click to fix a trace before export. An optional machine-learning model learns from your corrections. It is early-stage research software, so check every digitized curve before use.</p>
+          <p>pyLogDigitizer turns scanned paper well logs (TIFF) into LAS files. Lots of older wells only exist as paper scans, and digitizing them by hand is slow and hard to check. So I built a tool that does the tedious parts (finding tracks and grids, reading depth labels, tracing curves) and gives you a local browser app to check and fix every step. Curves that run off the track and come back on a backup scale get unwrapped automatically. Everything runs on your own machine and nothing is uploaded.</p>
         </div>
       </section>
 
       <figure class="teaser block">
         <img src="figures/hero_scan_to_las.webp" width="1400" height="1120" alt="A scanned paper log traced into a LAS curve">
-        <figcaption class="fig-cap">From a scanned paper log to a LAS curve.</figcaption>
+        <figcaption class="fig-cap">The whole idea in one picture: a scanned paper log going in and a LAS curve coming out.</figcaption>
       </figure>
 
       <section class="block">
         <h2>Examples</h2>
         <p>Example scans and LAS files are from the Kansas Geological Survey.</p>
         <div class="gallery">
-          <figure class="wide"><img src="figures/app_07_trace.webp" width="1500" height="900" loading="lazy" alt="Tracing step in the browser app"><figcaption>The guided app: a traced curve on the scan, ready to review and fix.</figcaption></figure>
-          <figure><img src="figures/ex_qc_vs_reference_las.webp" width="880" height="1210" loading="lazy" alt="Digitized curve against a reference LAS"><figcaption>A digitized curve checked against the matching Kansas LAS file.</figcaption></figure>
-          <figure><img src="figures/ex_ml_vs_conventional.webp" width="1083" height="390" loading="lazy" alt="ML and conventional cost maps compared"><figcaption>Held-out Kansas wells: match to the reference LAS with the standard and the ML cost map.</figcaption></figure>
+          <figure class="wide"><img src="figures/app_07_trace.webp" width="1500" height="900" loading="lazy" alt="Tracing step in the browser app"><figcaption>The guided app with a traced curve laid over the scan, ready for you to review and fix.</figcaption></figure>
+          <figure><img src="figures/ex_qc_vs_reference_las.webp" width="880" height="1210" loading="lazy" alt="Digitized curve against a reference LAS"><figcaption>A curve digitized with the assisted workflow, checked against the paired Kansas Geological Survey (KGS) LAS.</figcaption></figure>
+          <figure><img src="figures/ex_ml_vs_conventional.webp" width="1083" height="390" loading="lazy" alt="ML and conventional cost maps compared"><figcaption>On held-out Kansas wells, correlation and error against the reference LAS for the conventional and the ML cost map.</figcaption></figure>
         </div>
       </section>
 
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Layout and scales</h3><p>Finds tracks and grids, straightens the scan, reads depth labels, and calibrates scales, including backup scales.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Curve tracing</h3><p>A fast tracer in Rust with a Python fallback. Click anchor points to re-trace one stretch.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Optional ML</h3><p>A U-Net learns from your corrected traces, and batch runs send unsure curves to review.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Check and export</h3><p>Compares with a reference LAS and writes LAS 2.0. Everything runs locally.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Layout and scales</h3><p>Automatic track, grid and depth-label detection, plus scale calibration.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Curve tracing</h3><p>Fast curve tracing with click-to-fix anchors and backup-scale unwrapping.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Optional ML</h3><p>Optional U-Net cost map that learns from your corrections.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Check and export</h3><p>QC against a reference LAS and LAS 2.0 export.</p></div>
         </div>
       </section>
 

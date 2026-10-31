@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Rust &middot; Remote sensing and mapping</p>
         <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" style="width:clamp(40px,2rem + 2vw,56px);height:auto" alt="">pyGeoMapper</h1>
-        <p class="lede">pyGeoMapper maps what changed on the ground, and what it is made of, from satellite images and elevation models.</p>
+        <p class="lede">pyGeoMapper maps surface change and geology from satellite images and DEMs, all the way to 3D block diagrams you can open in a browser. Python with a Rust core.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyGeoMapper">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pygeomapper/">PyPI</a></li>
@@ -51,23 +51,22 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyGeoMapper compares elevation models and satellite images from before and after an event to map where the ground moved, rose, or dropped: landslides, floods, wildfires, earthquakes, volcanoes, and glaciers. It also measures terrain shape and sorts the land surface into rock units.</p>
-          <p>Results can be drawn as cross-sections and 3D block diagrams that open in a web browser. The core is written in Rust and used from Python. It is early-stage research software, so check results before use.</p>
+          <p>pyGeoMapper maps what changed on the ground, and what it's made of, using satellite images and elevation models (DEMs). I wanted one place to go from raw rasters to something a geologist can actually read: change maps after a landslide, flood, wildfire, earthquake, volcano or glacier event, unit maps scored against a real geologic map, and cross-sections and 3D block diagrams you can open in a browser. It's Python with a Rust core. (Not related to <code>The-Magicians-Code/PyGeoMapper</code>.)</p>
         </div>
       </section>
 
       <figure class="teaser block">
         <img src="figures/dod_and_spectral_change.webp" width="1400" height="448" alt="DEM of Difference and spectral change">
-        <figcaption class="fig-cap">Elevation change between two elevation models (DEM of Difference) next to spectral change from satellite images.</figcaption>
+        <figcaption class="fig-cap">A DEM of Difference and a spectral change map, the two basic ways the package spots change on the ground.</figcaption>
       </figure>
 
       <section class="block">
         <h2>Examples</h2>
         <p>Five notebooks walk through every module with public data.</p>
         <div class="gallery">
-          <figure><img src="figures/readme_myanmar_earthquake.webp" width="1000" height="926" loading="lazy" alt="Earthquake ground displacement"><figcaption>The 2025 Mw 7.7 Myanmar earthquake: ground displacement and offsets from Sentinel-1 radar.</figcaption></figure>
-          <figure><img src="figures/cross_section.webp" width="1600" height="1405" loading="lazy" alt="Geological cross-section"><figcaption>A cross-section of Sheep Mountain Anticline with bed attitudes from three-point fits.</figcaption></figure>
-          <figure class="wide"><img src="figures/auto_mapping_validation.webp" width="1600" height="533" loading="lazy" alt="Auto-mapped units against a USGS map"><figcaption>Sheep Mountain Anticline: auto-mapped units against the USGS map, scored on a held-out block.</figcaption></figure>
+          <figure><img src="figures/readme_myanmar_earthquake.webp" width="1000" height="926" loading="lazy" alt="Earthquake ground displacement"><figcaption>Ground displacement and offsets from the 2025 Mw 7.7 Myanmar earthquake, from Sentinel-1 (COMET LiCSAR).</figcaption></figure>
+          <figure><img src="figures/cross_section.webp" width="1600" height="1405" loading="lazy" alt="Geological cross-section"><figcaption>A Sheep Mountain Anticline cross-section with bed attitudes from 3-point solutions.</figcaption></figure>
+          <figure class="wide"><img src="figures/auto_mapping_validation.webp" width="1600" height="533" loading="lazy" alt="Auto-mapped units against a USGS map"><figcaption>Units auto-mapped at Sheep Mountain Anticline compared with the USGS map and scored on a held-out block.</figcaption></figure>
           <figure class="wide"><img src="figures/3d_block_diagram.webp" width="1400" height="642" loading="lazy" alt="3D geological block diagram"><figcaption>A 3D block diagram of the same area.</figcaption></figure>
         </div>
       </section>
@@ -75,10 +74,10 @@
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Surface change</h3><p>DEM of Difference with co-registration, spectral change, and 3D ground motion from radar and GPS.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Spectral and terrain</h3><p>Vegetation, burn, water, and mineral indices; slope, curvature, roughness, and multiscale terrain complexity.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Geological mapping</h3><p>Unsupervised and supervised unit maps, with accuracy scored on held-out blocks.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Sections and 3D</h3><p>Cross-sections, 3D block, cutaway, and fence diagrams, and an offline 3D viewer.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Surface change</h3><p>DEM of Difference, spectral change and InSAR/GNSS displacement for hazards.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Spectral and terrain</h3><p>Spectral indices and multiscale terrain metrics.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Geological mapping</h3><p>Auto-mapping of geologic units, scored on held-out blocks.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Sections and 3D</h3><p>Cross-sections, 3D block/fence diagrams and an offline WebGL viewer.</p></div>
         </div>
       </section>
 
