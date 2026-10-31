@@ -55,7 +55,8 @@
       "conda": null,
       "zenodo": null,
       "crate": null,
-      "citation": null
+      "citation": null,
+      "icon": "projects/pyLogCrafter/icon.png"
     },
     {
       "name": "SubsurfiX",
