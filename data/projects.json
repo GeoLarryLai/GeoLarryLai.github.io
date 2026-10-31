@@ -46,10 +46,10 @@
       "page": "projects/pyLogCrafter/index.html",
       "description": "Basin-scale well-log quality control, spatial normalization, gap filling, and electrofacies tools.",
       "image": {
-        "src": "projects/pyLogCrafter/pyLogCrafter_logo.webp",
-        "width": 1800,
-        "height": 1249,
-        "alt": "pyLogCrafter logo, two wavy log curves above the name."
+        "alt": "Electrofacies (sandstone, siltstone, carbonate) from 10,438 ML-processed wells in the Delaware Mountain Group, Permian Basin.",
+        "src": "projects/pyLogCrafter/delaware_basin_wells.webp",
+        "width": 1600,
+        "height": 900
       },
       "pypi": null,
       "conda": null,
