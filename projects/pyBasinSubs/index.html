@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyBasinSubs · Larry Syu-Heng Lai</title>
-  <meta name="description" content="A newer pyBasinSubs package is not published yet. The public BasinSubs repository holds R scripts for Taiwan Coastal Range subsidence.">
+  <meta name="description" content="pyBasinSubs rebuilds how a sedimentary basin sank and filled through time, by backstripping its layers.">
   <meta property="og:title" content="pyBasinSubs · Larry Syu-Heng Lai">
-  <meta property="og:description" content="A newer pyBasinSubs package is not published yet. The public BasinSubs repository holds R scripts for Taiwan Coastal Range subsidence.">
+  <meta property="og:description" content="pyBasinSubs rebuilds how a sedimentary basin sank and filled through time, by backstripping its layers.">
   <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -31,15 +31,19 @@
     <header class="page-head contour-bg">
       <div class="wrap">
         <a class="back" href="../../projects.html">&larr; Projects</a>
-        <p class="label">R &middot; Python &middot; Basin subsidence</p>
-        <h1>pyBasinSubs</h1>
-        <p class="lede">The original R code (BasinSubs) goes with a published paper. A Python version, pyBasinSubs, is on the way.</p>
+        <p class="label">Python &middot; R &middot; Basin subsidence</p>
+        <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" alt="">pyBasinSubs</h1>
+        <p class="lede">pyBasinSubs rebuilds how a sedimentary basin sank and filled through time. It is the Python version and extension of the original BasinSubs R code.</p>
         <ul class="btn-row">
-          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs on GitHub</a></li>
-          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.5823612">Zenodo</a></li>
+          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyBasinSubs">GitHub</a></li>
+          <li><a class="btn-pill outline" href="https://pypi.org/project/pybasinsubs/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832018">Zenodo</a></li>
+          <li><a class="btn-pill outline" href="https://github.com/GeoLarryLai/BasinSubs">Original R code (BasinSubs)</a></li>
         </ul>
         <ul class="facts">
-          <li><b>R code</b>BasinSubs v0.1.0, BSD-3-Clause</li>
+          <li><b>Version</b><span data-pypi="pybasinsubs">0.1.0</span></li>
+          <li><b>R code</b>BasinSubs, BSD-3-Clause</li>
+          <li><b>License</b>AGPL-3.0 or later</li>
         </ul>
       </div>
     </header>
@@ -47,34 +51,71 @@
     <div class="wrap">
 
       <section class="block">
-        <span class="card-tile contour-bg" style="--cpos: 50% 50%" aria-hidden="true"></span>
+        <h2>Overview</h2>
         <div class="prose">
-          <h2>Two versions</h2>
-          <ul>
-            <li><strong>BasinSubs (R, published).</strong> The original R scripts Larry Syu-Heng Lai wrote during his University of Oregon research, for subsidence analysis of mountain-building-era strata in the Coastal Range of eastern Taiwan. They are tied to that research: the data and results were produced with collaborators and used in the 2022 <em>Communications Earth &amp; Environment</em> paper (and the 2021 <em>Sedimentary Geology</em> paper). The code is archived on <a href="https://doi.org/10.5281/zenodo.5823612">Zenodo</a> and released under the BSD-3-Clause license. It is described below.</li>
-            <li><strong>pyBasinSubs (Python, on the way).</strong> A general Python package for basin subsidence analysis is on the way. It is not published yet.</li>
-          </ul>
-
-          <h2>R scripts</h2>
-          <ul>
-            <li><code>Porosity-depth function.R</code> calculates and plots a global average porosity–depth curve for sandy, muddy, and mean marine sediment.</li>
-            <li><code>Age PB dSL-N.R</code> and <code>Age PB dSL-S.R</code> fit a linear age–thickness model for the composite columns of the northern and southern Coastal Range. The columns are described in Lai et al. (2021) and Lai et al. (2022). The age models place foraminiferal paleobathymetry in time, including by interpolation and extrapolation. Around each age constraint (a unit boundary) the scripts average paleobathymetry and relative sea level, with uncertainties, for the subsidence calculation. Relative sea level is from Miller et al., <em>Science Advances</em> (<a href="https://doi.org/10.1126/sciadv.aaz1346">doi:10.1126/sciadv.aaz1346</a>).</li>
-            <li><code>Subsidence Analysis N.R</code> and <code>Subsidence Analysis S.R</code> decompact and backstrip the northern and southern sections, carry the errors through, and plot geohistory diagrams. Inputs are the porosity–depth functions (<code>Pofun.csv</code>), relative sea level at the age constraints (<code>SL_Unit_N.csv</code> or <code>SL_Unit_S.csv</code>), paleobathymetry at those constraints (<code>PB_Unit_N.csv</code> or <code>PB_Unit_S.csv</code>), unit thickness between the dated heights (<code>Ages_N_new.csv</code> or <code>Ages_S_new.csv</code>), and the lithology fractions in each unit (<code>Litho_N.csv</code> or <code>Litho_S.csv</code>).</li>
-          </ul>
-
-          <h2>Data and result folders</h2>
-          <ul>
-            <li><strong>Thickness.</strong> Unit thickness and its uncertainty between age constraints, paleobathymetry and the average at each constraint, and lithology fractions.</li>
-            <li><strong>Sealevel.</strong> Relative sea level from Miller et al., reorganized, plus the average and uncertainty at each unit boundary.</li>
-            <li><strong>Backstripping.</strong> Compiled porosity–depth functions and grain densities for sandy, muddy, and mean marine sediment, and the global average curves used in the analysis. Sources are in the supplement of Lai et al. (2022).</li>
-            <li><strong>Output results.</strong> The linear age models, the subsidence analysis, and long-term uplift and subsidence rates of Luzon arc crust in eastern Taiwan.</li>
-          </ul>
-
-          <h2>Citation</h2>
-          <p>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. <em>Communications Earth &amp; Environment</em>, 3, 100. <a href="https://doi.org/10.1038/s43247-022-00429-2">https://doi.org/10.1038/s43247-022-00429-2</a></p>
-          <p>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2021) Polygenetic mélange in the retrowedge foredeep of an active arc-continent collision, Coastal Range of eastern Taiwan. <em>Sedimentary Geology</em>, 418, 105901. <a href="https://doi.org/10.1016/j.sedgeo.2021.105901">https://doi.org/10.1016/j.sedgeo.2021.105901</a></p>
-          <p>Code: <a href="https://doi.org/10.5281/zenodo.5823612">Zenodo, doi:10.5281/zenodo.5823612</a>. Data: <a href="https://doi.org/10.6084/m9.figshare.19350530">figshare, doi:10.6084/m9.figshare.19350530</a>.</p>
+          <p>pyBasinSubs takes a column of dated sedimentary layers, removes their compaction and the weight of water and sediment, and shows how fast the basin floor went down or up through time. It adds uncertainty from Monte Carlo runs, thermal and maturity history, and 2D sections restored through time.</p>
+          <p>It grew out of the original R scripts, <a href="#r-code">BasinSubs</a>, written for the 2022 paper on eastern Taiwan. The R code stays as published; pyBasinSubs is a new, general package that works on any basin. It is early-stage research software, so check results before use.</p>
         </div>
+      </section>
+
+      <figure class="teaser block">
+        <img src="figures/hero_geohistory_north_sea_30-4-1.webp" width="1400" height="969" alt="Geohistory of North Sea well 30/4-1">
+        <figcaption class="fig-cap">Geohistory of North Sea well 30/4-1.</figcaption>
+      </figure>
+
+      <section class="block">
+        <h2>Examples</h2>
+        <p>Example notebooks cover each feature, from Taiwan to the North Sea.</p>
+        <div class="gallery">
+          <figure><img src="figures/nb3_geohistory_N.webp" width="996" height="644" loading="lazy" alt="Tectonic subsidence with uncertainty"><figcaption>Northern Coastal Range, Taiwan: total and tectonic subsidence with uncertainty bands.</figcaption></figure>
+          <figure><img src="figures/nb6_maturity_viking_30-4-1.webp" width="1312" height="523" loading="lazy" alt="Burial temperature and maturity"><figcaption>North Sea well 30/4-1: burial temperature and maturity with oil and gas windows.</figcaption></figure>
+          <figure class="wide"><img src="figures/nb8_viking_restored_sequence.webp" width="1600" height="1320" loading="lazy" alt="Section restored through time"><figcaption>North Viking Graben: a 2D section restored through time by flexural backstripping.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Backstripping</h3><p>1D backstripping with Monte Carlo uncertainty, erosion, and over-compaction.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Porosity and water depth</h3><p>Porosity–depth fits with confidence bands, and past water depth from foraminifera.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Thermal history</h3><p>Geotherms, stretching-factor fits, and maturity with oil and gas windows.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Sections and your data</h3><p>2D flexural backstripping and fault restoration, CSV templates, and desktop and browser apps.</p></div>
+        </div>
+      </section>
+
+      <section class="block" id="r-code">
+        <h2>The original R code</h2>
+        <div class="prose">
+          <p><a href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs</a> is the original set of R scripts from Larry Syu-Heng Lai&rsquo;s University of Oregon research on the Coastal Range of eastern Taiwan. It is tied to that research: the data and results were made with collaborators for the 2022 <em>Communications Earth &amp; Environment</em> paper and the 2021 <em>Sedimentary Geology</em> paper. It stays archived as published, on <a href="https://doi.org/10.5281/zenodo.5823612">Zenodo</a>, under the BSD-3-Clause license.</p>
+          <ul>
+            <li><strong>Porosity and age models.</strong> A global average porosity–depth curve, and linear age–thickness models that place paleo-water depth and relative sea level at each dated unit boundary.</li>
+            <li><strong>Subsidence analysis.</strong> Decompaction and backstripping of the northern and southern sections, with errors carried through, and geohistory plots.</li>
+            <li><strong>Data and results.</strong> Unit thickness, paleo-water depth, sea level, porosity–depth data, and the long-term uplift and subsidence rates of the arc crust.</li>
+          </ul>
+          <p>pyBasinSubs is a separate, general Python package. Its <code>legacy</code> mode reproduces the BasinSubs R results, and that part keeps the BSD-3-Clause notice.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Installation</h2>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install pybasinsubs</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>The apps and notebooks are optional add-ons; the README lists them.</p>
+      </section>
+
+      <section class="block">
+        <h2>Citation</h2>
+        <div class="cite-box">
+          <p>Lai, L.S.-H. (2026) pyBasinSubs. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832018">https://doi.org/10.5281/zenodo.23832018</a></p>
+        </div>
+        <p>Please also cite the method paper:</p>
+        <div class="cite-box">
+          <p>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. <em>Communications Earth &amp; Environment</em>, 3, 100. <a href="https://doi.org/10.1038/s43247-022-00429-2">https://doi.org/10.1038/s43247-022-00429-2</a></p>
+        </div>
+        <p>For the original R code: BasinSubs, Zenodo, <a href="https://doi.org/10.5281/zenodo.5823612">https://doi.org/10.5281/zenodo.5823612</a>. Data: figshare, <a href="https://doi.org/10.6084/m9.figshare.19350530">https://doi.org/10.6084/m9.figshare.19350530</a>.</p>
+        <p>pyBasinSubs is under the GNU Affero General Public License 3.0 or later.</p>
       </section>
 
       <a class="next-link" href="../pyCoreRelator/index.html">
@@ -92,5 +133,6 @@
     </div>
   </footer>
   <script src="../../js/site.js"></script>
+  <script src="../../js/pypi-version.js" defer></script>
 </body>
 </html>

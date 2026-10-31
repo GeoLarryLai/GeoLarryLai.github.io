@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SubsurfiX · Larry Syu-Heng Lai</title>
+  <meta name="description" content="SubsurfiX turns a folder of well logs into a checked, correlated log set and a 3D property model.">
+  <meta property="og:title" content="SubsurfiX · Larry Syu-Heng Lai">
+  <meta property="og:description" content="SubsurfiX turns a folder of well logs into a checked, correlated log set and a 3D property model.">
+  <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f0e8">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a></nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <header class="page-head contour-bg">
+      <div class="wrap">
+        <a class="back" href="../../projects.html">&larr; Projects</a>
+        <p class="label">Python &middot; Rust &middot; Well logs and subsurface models</p>
+        <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" alt="">SubsurfiX</h1>
+        <p class="lede">SubsurfiX takes a folder of well logs to a checked, correlated log set and a 3D property model you can run flow and heat simulations on.</p>
+        <ul class="btn-row">
+          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/SubsurfiX">GitHub</a></li>
+          <li><a class="btn-pill outline" href="https://pypi.org/project/subsurfix/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832007">Zenodo</a></li>
+        </ul>
+        <ul class="facts">
+          <li><b>Version</b><span data-pypi="subsurfix">0.1.0</span></li>
+          <li><b>License</b>AGPL-3.0 or later</li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="wrap">
+
+      <section class="block">
+        <h2>Overview</h2>
+        <div class="prose">
+          <p>SubsurfiX reads LAS files and well surveys, flags bad intervals, and fills gaps, marking where every value came from. It then correlates neighbouring wells as one network, builds grids, fills them with rock properties, and runs simple flow and heat checks.</p>
+          <p>The engine is written in Rust and is driven from Python or the command line. Example notebooks run each step on open data from the Kansas Geological Survey and FORCE 2020. It is early-stage research software, so check results before use.</p>
+        </div>
+      </section>
+
+      <figure class="teaser block">
+        <img src="figures/hero_3d_porosity_model.webp" width="1400" height="875" alt="3D porosity model built from 60 Kansas wells">
+        <figcaption class="fig-cap">A 3D porosity model built from 60 Kansas wells.</figcaption>
+      </figure>
+
+      <section class="block">
+        <h2>Examples</h2>
+        <p>One notebook per step, run on open well data.</p>
+        <div class="gallery">
+          <figure><img src="figures/ex_qc_gap_fill.webp" width="687" height="468" loading="lazy" alt="Raw, checked and gap-filled logs"><figcaption>One Kansas well: the raw log (grey), what QC kept (black), and filled samples (red).</figcaption></figure>
+          <figure><img src="figures/ex_property_maps.webp" width="752" height="504" loading="lazy" alt="Porosity maps of one layer"><figcaption>Porosity in one layer by kriging, SGS, SIS, and ML propagation.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_well_correlation.webp" width="758" height="416" loading="lazy" alt="Well correlation section"><figcaption>A west–east section: gamma ray on elevation (left) and on correlated layer time (right), where beds line up.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_heat_doublet.webp" width="821" height="285" loading="lazy" alt="Heat transport doublet"><figcaption>A heat transport check, and the cold front of an injector–producer pair through time.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>QC and gap fill</h3><p>Reads LAS files and surveys, masks bad intervals, and fills gaps with rules and LightGBM, tagging the source of every value.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Well correlation</h3><p>Dynamic time warping between neighbouring wells, solved as one network for all wells.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Grids and properties</h3><p>Regular or corner-point grids, upscaling, kriging, SGS, SIS, and ML P10/P50/P90 maps.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Flow and heat</h3><p>Pressure, tracer, water–oil, and heat transport, with export to OpenGeoSys.</p></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Installation</h2>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install subsurfix</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>Ready-built wheels are for Apple Silicon Macs. On other systems pip builds from source, which needs Rust, Python 3.10 or later, and a C/C++ compiler.</p>
+      </section>
+
+      <section class="block">
+        <h2>Citation</h2>
+        <div class="cite-box">
+          <p>Lai, L.S.-H. (2026) SubsurfiX. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832007">https://doi.org/10.5281/zenodo.23832007</a></p>
+        </div>
+        <p>SubsurfiX is under the GNU Affero General Public License 3.0 or later.</p>
+      </section>
+
+      <a class="next-link" href="../pyLogDigitizer/index.html">
+        <span class="label">Next project</span>
+        <strong>pyLogDigitizer <span aria-hidden="true">&rarr;</span></strong>
+        <em>Turn scanned paper well logs into LAS files, with a local browser app to check and fix every step.</em>
+      </a>
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-contour" aria-hidden="true"></div>
+    <div class="wrap footer-base">
+      <p class="footer-copy">&copy; 2026 Larry Syu-Heng Lai</p>
+    </div>
+  </footer>
+  <script src="../../js/site.js"></script>
+  <script src="../../js/pypi-version.js" defer></script>
+</body>
+</html>

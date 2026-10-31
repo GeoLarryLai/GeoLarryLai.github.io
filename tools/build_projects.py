@@ -38,9 +38,10 @@ def card(p, i):
     cite = ""
     if p.get("citation"):
         cite = f'\n            <div class="cite-box cite-line"><p>{e(p["citation"])}</p></div>'
+    icon = f'<img class="proj-icon" src="{e(p["icon"])}" width="44" height="44" alt="">' if p.get("icon") else ""
     return (f'          <article class="card" style="--i:{i}">\n'
             f'            <p class="label">{e(p["label"]).replace("·", "&middot;")}</p>\n'
-            f'            <h3><a href="{e(p["page"])}">{e(p["name"])} <span aria-hidden="true">&rarr;</span></a></h3>\n'
+            f'            <h3{' class="has-icon"' if p.get("icon") else ''}><a href="{e(p["page"])}">{icon}{e(p["name"])} <span aria-hidden="true">&rarr;</span></a></h3>\n'
             f'            <p>{e(p["description"])}</p>{badges(p)}{media}{cite}\n'
             f'          </article>')
 

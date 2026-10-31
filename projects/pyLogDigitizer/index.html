@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyLogDigitizer · Larry Syu-Heng Lai</title>
+  <meta name="description" content="pyLogDigitizer turns scanned paper well logs into LAS files.">
+  <meta property="og:title" content="pyLogDigitizer · Larry Syu-Heng Lai">
+  <meta property="og:description" content="pyLogDigitizer turns scanned paper well logs into LAS files.">
+  <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f0e8">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a></nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <header class="page-head contour-bg">
+      <div class="wrap">
+        <a class="back" href="../../projects.html">&larr; Projects</a>
+        <p class="label">Python &middot; Scanned well logs</p>
+        <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" alt="">pyLogDigitizer</h1>
+        <p class="lede">pyLogDigitizer turns scanned paper well logs into LAS files, with a local browser app to check and fix every step.</p>
+        <ul class="btn-row">
+          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyLogDigitizer">GitHub</a></li>
+          <li><a class="btn-pill outline" href="https://pypi.org/project/pylogdigitizer/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832013">Zenodo</a></li>
+        </ul>
+        <ul class="facts">
+          <li><b>Version</b><span data-pypi="pylogdigitizer">0.1.0</span></li>
+          <li><b>License</b>AGPL-3.0 or later</li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="wrap">
+
+      <section class="block">
+        <h2>Overview</h2>
+        <div class="prose">
+          <p>Many old well logs exist only as paper scans. pyLogDigitizer finds the tracks and grid on a scan, straightens it, reads the depth labels, and traces each curve into numbers you can save as a LAS file.</p>
+          <p>A guided browser app runs on your own computer (nothing is uploaded), so you can click to fix a trace before export. An optional machine-learning model learns from your corrections. It is early-stage research software, so check every digitized curve before use.</p>
+        </div>
+      </section>
+
+      <figure class="teaser block">
+        <img src="figures/hero_scan_to_las.webp" width="1400" height="1120" alt="A scanned paper log traced into a LAS curve">
+        <figcaption class="fig-cap">From a scanned paper log to a LAS curve.</figcaption>
+      </figure>
+
+      <section class="block">
+        <h2>Examples</h2>
+        <p>Example scans and LAS files are from the Kansas Geological Survey.</p>
+        <div class="gallery">
+          <figure class="wide"><img src="figures/app_07_trace.webp" width="1500" height="900" loading="lazy" alt="Tracing step in the browser app"><figcaption>The guided app: a traced curve on the scan, ready to review and fix.</figcaption></figure>
+          <figure><img src="figures/ex_qc_vs_reference_las.webp" width="880" height="1210" loading="lazy" alt="Digitized curve against a reference LAS"><figcaption>A digitized curve checked against the matching Kansas LAS file.</figcaption></figure>
+          <figure><img src="figures/ex_ml_vs_conventional.webp" width="1083" height="390" loading="lazy" alt="ML and conventional cost maps compared"><figcaption>Held-out Kansas wells: match to the reference LAS with the standard and the ML cost map.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Layout and scales</h3><p>Finds tracks and grids, straightens the scan, reads depth labels, and calibrates scales, including backup scales.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Curve tracing</h3><p>A fast tracer in Rust with a Python fallback. Click anchor points to re-trace one stretch.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Optional ML</h3><p>A U-Net learns from your corrected traces, and batch runs send unsure curves to review.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Check and export</h3><p>Compares with a reference LAS and writes LAS 2.0. Everything runs locally.</p></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Installation</h2>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install pylogdigitizer</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>The browser app, the faster tracer, and the ML model are optional add-ons; the README lists them.</p>
+      </section>
+
+      <section class="block">
+        <h2>Citation</h2>
+        <div class="cite-box">
+          <p>Lai, L.S.-H. (2026) pyLogDigitizer. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832013">https://doi.org/10.5281/zenodo.23832013</a></p>
+        </div>
+        <p>pyLogDigitizer is under the GNU Affero General Public License 3.0 or later.</p>
+      </section>
+
+      <a class="next-link" href="../pyBasinSubs/index.html">
+        <span class="label">Next project</span>
+        <strong>pyBasinSubs <span aria-hidden="true">&rarr;</span></strong>
+        <em>Backstrip a basin&#x27;s layers to rebuild how it sank and filled. A Python package extending the original BasinSubs R code from the 2022 paper.</em>
+      </a>
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-contour" aria-hidden="true"></div>
+    <div class="wrap footer-base">
+      <p class="footer-copy">&copy; 2026 Larry Syu-Heng Lai</p>
+    </div>
+  </footer>
+  <script src="../../js/site.js"></script>
+  <script src="../../js/pypi-version.js" defer></script>
+</body>
+</html>

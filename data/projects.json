@@ -1,5 +1,5 @@
 {
-  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (concept DOI only). A card may use 'images' (a list, stacked) instead of 'image'.",
+  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (concept DOI only). A card may use 'images' (a list, stacked) instead of 'image'. 'icon' (optional) is a small square PNG shown beside the card title.",
   "themes": [
     {
       "id": "strat",
@@ -35,7 +35,8 @@
       "conda": "pycorerelator",
       "zenodo": "10.5281/zenodo.17847259",
       "crate": null,
-      "citation": "Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. Sedimentology."
+      "citation": "Lai, L.S.-H., Sylvester, Z., Covault, J.A., Gomberg, J.S., Nieminski, N.M. (Accepted 2026) Reproducible event-bed correlation with uncertainty: pyCoreRelator. Sedimentology.",
+      "icon": "projects/pyCoreRelator/icon.png"
     },
     {
       "name": "pyLogCrafter",
@@ -57,19 +58,67 @@
       "citation": null
     },
     {
+      "name": "SubsurfiX",
+      "theme": "strat",
+      "hidden": false,
+      "label": "Python · Rust",
+      "page": "projects/SubsurfiX/index.html",
+      "description": "From a folder of well logs to a checked, correlated log set and a 3D property model for flow and heat simulations.",
+      "image": {
+        "src": "projects/SubsurfiX/figures/hero_3d_porosity_model.webp",
+        "width": 1400,
+        "height": 875,
+        "alt": "3D porosity model built from 60 Kansas wells."
+      },
+      "pypi": "subsurfix",
+      "conda": null,
+      "zenodo": "10.5281/zenodo.23832007",
+      "crate": null,
+      "citation": "Lai, L.S.-H. (2026) SubsurfiX. Zenodo, https://doi.org/10.5281/zenodo.23832007",
+      "pepy": false,
+      "icon": "projects/SubsurfiX/icon.png"
+    },
+    {
+      "name": "pyLogDigitizer",
+      "theme": "strat",
+      "hidden": false,
+      "label": "Python",
+      "page": "projects/pyLogDigitizer/index.html",
+      "description": "Turn scanned paper well logs into LAS files, with a local browser app to check and fix every step.",
+      "image": {
+        "src": "projects/pyLogDigitizer/figures/hero_scan_to_las.webp",
+        "width": 1400,
+        "height": 1120,
+        "alt": "A scanned paper log traced into a LAS curve."
+      },
+      "pypi": "pylogdigitizer",
+      "conda": null,
+      "zenodo": "10.5281/zenodo.23832013",
+      "crate": null,
+      "citation": "Lai, L.S.-H. (2026) pyLogDigitizer. Zenodo, https://doi.org/10.5281/zenodo.23832013",
+      "pepy": false,
+      "icon": "projects/pyLogDigitizer/icon.png"
+    },
+    {
       "name": "pyBasinSubs",
       "theme": "strat",
       "hidden": false,
-      "label": "R · Python",
+      "label": "Python · R",
       "page": "projects/pyBasinSubs/index.html",
-      "description": "Original R scripts for basin subsidence analyses of the Taiwan Coastal Range, tied to the 2022 paper. A Python version is on the way.",
-      "image": null,
-      "tile": "30% 60%",
-      "pypi": null,
+      "description": "Backstrip a basin's layers to rebuild how it sank and filled. A Python package extending the original BasinSubs R code from the 2022 paper.",
+      "image": {
+        "src": "projects/pyBasinSubs/figures/hero_geohistory_north_sea_30-4-1.webp",
+        "width": 1400,
+        "height": 969,
+        "alt": "Geohistory of North Sea well 30/4-1."
+      },
+      "pypi": "pybasinsubs",
       "conda": null,
-      "zenodo": "10.5281/zenodo.5823612",
+      "zenodo": "10.5281/zenodo.23832018",
       "crate": null,
-      "citation": "Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. Communications Earth & Environment, 3, 100. https://doi.org/10.1038/s43247-022-00429-2"
+      "citation": "Lai, L.S.-H. (2026) pyBasinSubs. Zenodo, https://doi.org/10.5281/zenodo.23832018",
+      "pepy": false,
+      "icon": "projects/pyBasinSubs/icon.png"
     },
     {
       "name": "pyTopoComplexity",
@@ -88,7 +137,8 @@
       "conda": "pytopocomplexity",
       "zenodo": "10.5281/zenodo.11239338",
       "crate": null,
-      "citation": "Lai, L. S.-H., Booth, A. M., Duvall, A. R., and Herzig, E. (2025) Short Communication: Multiscale topographic complexity analysis with pyTopoComplexity. Earth Surface Dynamics, 13(3), 417–435, https://doi.org/10.5194/esurf-13-417-2025"
+      "citation": "Lai, L. S.-H., Booth, A. M., Duvall, A. R., and Herzig, E. (2025) Short Communication: Multiscale topographic complexity analysis with pyTopoComplexity. Earth Surface Dynamics, 13(3), 417–435, https://doi.org/10.5194/esurf-13-417-2025",
+      "icon": "projects/pyTopoComplexity/icon.png"
     },
     {
       "name": "pyValleyWidth",
@@ -116,7 +166,29 @@
           "height": 737,
           "alt": "Congo Canyon long profile with channel steepness, canyon width and canyon-top depth."
         }
-      ]
+      ],
+      "icon": "projects/pyValleyWidth/icon.png"
+    },
+    {
+      "name": "pyGeoMapper",
+      "theme": "topo",
+      "hidden": false,
+      "label": "Python · Rust",
+      "page": "projects/pyGeoMapper/index.html",
+      "description": "Map ground change and rock units from satellite images and elevation models, ending in 3D block diagrams.",
+      "image": {
+        "src": "projects/pyGeoMapper/figures/dod_and_spectral_change.webp",
+        "width": 1400,
+        "height": 448,
+        "alt": "DEM of Difference and spectral change maps."
+      },
+      "pypi": "pygeomapper",
+      "conda": null,
+      "zenodo": "10.5281/zenodo.23832020",
+      "crate": null,
+      "citation": "Lai, L.S.-H. (2026) pyGeoMapper. Zenodo, https://doi.org/10.5281/zenodo.23832020",
+      "pepy": false,
+      "icon": "projects/pyGeoMapper/icon.png"
     },
     {
       "name": "pyPetrograph",
@@ -135,7 +207,8 @@
       "conda": null,
       "zenodo": "10.5281/zenodo.23659316",
       "crate": null,
-      "citation": "Lai, L.S.-H. (2026) pyPetrograph. Zenodo, https://doi.org/10.5281/zenodo.23659316"
+      "citation": "Lai, L.S.-H. (2026) pyPetrograph. Zenodo, https://doi.org/10.5281/zenodo.23659316",
+      "icon": "projects/pyPetrograph/icon.png"
     },
     {
       "name": "pyRockImageLab",
@@ -154,7 +227,8 @@
       "conda": null,
       "zenodo": "10.5281/zenodo.23656974",
       "crate": null,
-      "citation": "Lai, L.S.-H. (2026) pyRockImageLab. Zenodo, https://doi.org/10.5281/zenodo.23656974"
+      "citation": "Lai, L.S.-H. (2026) pyRockImageLab. Zenodo, https://doi.org/10.5281/zenodo.23656974",
+      "icon": "projects/pyRockImageLab/icon.png"
     }
   ]
 }

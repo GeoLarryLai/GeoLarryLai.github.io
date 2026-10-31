@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pyGeoMapper · Larry Syu-Heng Lai</title>
+  <meta name="description" content="pyGeoMapper maps ground change and rock units from satellite images and elevation models.">
+  <meta property="og:title" content="pyGeoMapper · Larry Syu-Heng Lai">
+  <meta property="og:description" content="pyGeoMapper maps ground change and rock units from satellite images and elevation models.">
+  <meta property="og:image" content="https://geolarrylai.github.io/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f4f0e8">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html">Larry Syu-Heng Lai<span>Quantitative geoscientist</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Site"><a href="../../index.html">Home</a><a href="../../about.html">About</a><a href="../../projects.html" aria-current="page">Projects</a><a href="../../research/index.html">Research</a></nav>
+    </div>
+  </header>
+  <main id="main">
+
+    <header class="page-head contour-bg">
+      <div class="wrap">
+        <a class="back" href="../../projects.html">&larr; Projects</a>
+        <p class="label">Python &middot; Rust &middot; Remote sensing and mapping</p>
+        <h1 class="has-icon"><img class="proj-icon" src="icon.png" width="56" height="56" alt="">pyGeoMapper</h1>
+        <p class="lede">pyGeoMapper maps what changed on the ground, and what it is made of, from satellite images and elevation models.</p>
+        <ul class="btn-row">
+          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyGeoMapper">GitHub</a></li>
+          <li><a class="btn-pill outline" href="https://pypi.org/project/pygeomapper/">PyPI</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832020">Zenodo</a></li>
+        </ul>
+        <ul class="facts">
+          <li><b>Version</b><span data-pypi="pygeomapper">0.1.0</span></li>
+          <li><b>License</b>AGPL-3.0 or later</li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="wrap">
+
+      <section class="block">
+        <h2>Overview</h2>
+        <div class="prose">
+          <p>pyGeoMapper compares elevation models and satellite images from before and after an event to map where the ground moved, rose, or dropped: landslides, floods, wildfires, earthquakes, volcanoes, and glaciers. It also measures terrain shape and sorts the land surface into rock units.</p>
+          <p>Results can be drawn as cross-sections and 3D block diagrams that open in a web browser. The core is written in Rust and used from Python. It is early-stage research software, so check results before use.</p>
+        </div>
+      </section>
+
+      <figure class="teaser block">
+        <img src="figures/dod_and_spectral_change.webp" width="1400" height="448" alt="DEM of Difference and spectral change">
+        <figcaption class="fig-cap">Elevation change between two elevation models (DEM of Difference) next to spectral change from satellite images.</figcaption>
+      </figure>
+
+      <section class="block">
+        <h2>Examples</h2>
+        <p>Five notebooks walk through every module with public data.</p>
+        <div class="gallery">
+          <figure><img src="figures/readme_myanmar_earthquake.webp" width="1000" height="926" loading="lazy" alt="Earthquake ground displacement"><figcaption>The 2025 Mw 7.7 Myanmar earthquake: ground displacement and offsets from Sentinel-1 radar.</figcaption></figure>
+          <figure><img src="figures/cross_section.webp" width="1600" height="1405" loading="lazy" alt="Geological cross-section"><figcaption>A cross-section of Sheep Mountain Anticline with bed attitudes from three-point fits.</figcaption></figure>
+          <figure class="wide"><img src="figures/auto_mapping_validation.webp" width="1600" height="533" loading="lazy" alt="Auto-mapped units against a USGS map"><figcaption>Sheep Mountain Anticline: auto-mapped units against the USGS map, scored on a held-out block.</figcaption></figure>
+          <figure class="wide"><img src="figures/3d_block_diagram.webp" width="1400" height="642" loading="lazy" alt="3D geological block diagram"><figcaption>A 3D block diagram of the same area.</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Key features</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Surface change</h3><p>DEM of Difference with co-registration, spectral change, and 3D ground motion from radar and GPS.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Spectral and terrain</h3><p>Vegetation, burn, water, and mineral indices; slope, curvature, roughness, and multiscale terrain complexity.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Geological mapping</h3><p>Unsupervised and supervised unit maps, with accuracy scored on held-out blocks.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Sections and 3D</h3><p>Cross-sections, 3D block, cutaway, and fence diagrams, and an offline 3D viewer.</p></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Installation</h2>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install pygeomapper</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>Extra features (STAC search, ML, 3D views, spectral and DEM tools) are optional add-ons; the README lists them.</p>
+      </section>
+
+      <section class="block">
+        <h2>Citation</h2>
+        <div class="cite-box">
+          <p>Lai, L.S.-H. (2026) pyGeoMapper. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832020">https://doi.org/10.5281/zenodo.23832020</a></p>
+        </div>
+        <p>pyGeoMapper is under the GNU Affero General Public License 3.0 or later.</p>
+      </section>
+
+      <a class="next-link" href="../pyPetrograph/index.html">
+        <span class="label">Next project</span>
+        <strong>pyPetrograph <span aria-hidden="true">&rarr;</span></strong>
+        <em>ML-applied toolkits for rock thin-section petrographic analysis.</em>
+      </a>
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-contour" aria-hidden="true"></div>
+    <div class="wrap footer-base">
+      <p class="footer-copy">&copy; 2026 Larry Syu-Heng Lai</p>
+    </div>
+  </footer>
+  <script src="../../js/site.js"></script>
+  <script src="../../js/pypi-version.js" defer></script>
+</body>
+</html>
