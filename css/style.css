@@ -308,9 +308,8 @@ body.home main { padding: 0; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: auto auto;
-  justify-content: start;
-  gap: 1.5rem clamp(2.5rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem 4vw;
   align-items: end;
   width: min(100% - 2 * var(--gutter), var(--page-max));
   margin: 0 auto;
