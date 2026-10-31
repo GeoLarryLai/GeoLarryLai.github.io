@@ -719,3 +719,5 @@ body.home .home-intro, body.home .expertises { position: relative; z-index: 1; }
 .card h3 .proj-icon, .card img.proj-icon:first-child { display: block; flex: none; width: 44px; height: 44px; margin: 0; border-radius: 0; }
 .page-head h1.has-icon { display: flex; align-items: center; gap: 0.9rem; }
 .page-head h1 .proj-icon { flex: none; width: clamp(40px, 2rem + 2vw, 56px); height: auto; }
+.next-link strong.has-next-icon { display: flex; align-items: center; gap: 0.7rem; }
+.next-link .next-icon { flex: none; display: block; }
