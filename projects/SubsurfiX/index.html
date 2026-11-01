@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Rust &middot; Well logs and subsurface models</p>
         <h1>SubsurfiX</h1>
-        <p class="lede">SubsurfiX takes you from a folder of well logs to a 3D property model you can simulate on: log clean-up, gap filling, well correlation, faulted grids, property modeling, and flow, heat and CO&#8322; storage simulation in one Rust engine, run from Python or the command line, with every filled value traceable.</p>
+        <p class="lede">Automated workflows for subsurface geological analysis and reservoir modeling, from well-log QC to flow and heat simulation, with a Rust engine and a Python interface.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/SubsurfiX">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832007">Zenodo</a></li>
@@ -62,30 +62,42 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>SubsurfiX takes you from a folder of well logs to a checked, correlated log set and a 3D property model you can run flow and heat simulations on. I built it because these steps usually live in separate tools, and every hand-off (cleaning logs, filling gaps, correlating wells, gridding, simulating) is where things get lost or quietly changed. Here it's one project file and one run: every filled value carries a provenance code, so you always know what was measured and what was filled. The engine is in Rust, and you drive it from Python or the command line.</p>
+          <p>SubsurfiX is developed to automate workflows for subsurface geological analysis and reservoir modeling, including (1) machine-learning (ML) or statistically assisted well-log quality control (QC) and data-gap prediction, (2) core-to-log calibration and 3D property modeling, (3) stratigraphic correlation and top picking, and (4) flow and heat simulations for injection&ndash;production purposes. The engine is written in <a href="https://www.rust-lang.org/">Rust</a> and wrapped in a Python skin.</p>
         </div>
       </section>
 
       <figure class="teaser block">
-        <img src="figures/hero_3d_porosity_model.webp" width="1400" height="876" alt="3D porosity model built from 60 Kansas wells">
-        <figcaption class="fig-cap">A 3D porosity model built from 60 Kansas wells, the end product of the log-to-model workflow.</figcaption>
+        <img src="figures/hero_3d_porosity_model.webp" width="1800" height="700" alt="3D porosity and permeability model built from 60 Kansas wells.">
+        <figcaption class="fig-cap">3D property model from 60 Kansas wells (11 &times; 11 km, 12 layers, vertical exaggeration 40&times;), the end product of the log-to-model workflow. Left: porosity. Right: permeability (log scale), derived from porosity (k = 10<sup>&minus;1 + 14&phi;</sup> millidarcy, doubled in clean rock).</figcaption>
       </figure>
 
       <section class="block">
         <h2>Examples</h2>
         <p>Each step has an executed notebook on open data from the Kansas Geological Survey and FORCE 2020. The flow examples (09, 10 and 14) run on the whole 11 &times; 11 km Kansas model.</p>
         <div class="gallery">
-          <figure><img src="figures/ex_qc_gap_fill.webp" width="687" height="468" loading="lazy" alt="Raw, cleaned and gap-filled logs"><figcaption>One Kansas well: the raw log (grey), what the clean-up kept (black) and the filled samples (red).</figcaption></figure>
-          <figure><img src="figures/ex_well_correlation.webp" width="758" height="416" loading="lazy" alt="Well correlation section"><figcaption>A west&ndash;east section, by depth (left) and after correlation (right), where the beds line up.</figcaption></figure>
-          <figure class="wide"><img src="figures/ex_property_maps.webp" width="752" height="504" loading="lazy" alt="Porosity maps of one layer"><figcaption>Porosity in one layer, mapped four ways side by side (kriging, simulation and machine learning).</figcaption></figure>
+          <figure><img src="figures/ex_qc_gap_fill.webp" width="687" height="468" loading="lazy" alt="Raw, cleaned and gap-filled logs."><figcaption>One Kansas well: the raw log (grey), what the clean-up kept (black) and the filled samples (red).</figcaption></figure>
+          <figure><img src="figures/ex_well_correlation.webp" width="1329" height="726" loading="lazy" alt="West&ndash;east well correlation section."><figcaption>Eight Kansas wells, west to east, with the formation tops picked by the Kansas Geological Survey (KGS). Left: by depth, colour bands join the same interval from well to well. Right: the same wells on relative geological time from the dynamic time warping (DTW) correlation, where the beds line up.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_property_maps.webp" width="1222" height="1057" loading="lazy" alt="Porosity maps of one layer by four methods, one box per method."><figcaption>Porosity in one grid layer, 20&ndash;25 m below the Mississippian top (the top of the Mississippian carbonates, 952&ndash;1029 m below sea level in these wells), mapped by four methods. Each box is one method, each map has its own colour bar, and triangles are the well data in that layer. Kriging, estimate and variance from one run: the smooth best estimate and how uncertain it is (Matheron 1963). Sequential Gaussian simulation (SGS), one realization and the mean of 8: equally likely porosity maps (Deutsch &amp; Journel 1998, GSLIB). Sequential indicator simulation (SIS), one realization: clean or tight rock (Journel 1983; Deutsch &amp; Journel 1998, GSLIB). Machine learning (ML) P50: the median of a quantile regression forest (Meinshausen 2006). All are SubsurfiX&rsquo;s own implementations based on these methods.</figcaption></figure>
         </div>
+      </section>
+
+      <section class="block">
+        <h2>FIM-OBL and MODFLOW 6 on the Kansas model</h2>
+        <figure class="media-block" style="max-width:640px;margin-left:auto;margin-right:auto">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/methods_compare_kansas-poster.webp" width="960" height="1310" aria-label="Cold-water injection on the whole Kansas model, MODFLOW 6 and FIM-OBL pressure and temperature."><source src="videos/methods_compare_kansas.mp4" type="video/mp4"></video>
+          <figcaption><p>Purpose: check that SubsurfiX&rsquo;s fully implicit solver with operator-based linearization (FIM-OBL) reproduces MODFLOW 6, the U.S. Geological Survey standard code, for water flow and heat on a real reservoir model.</p>
+          <ul><li>Temperatures agree closely: the largest difference in any cell is 6.4 &deg;C, the mean 0.31 &deg;C.</li><li>The cold front reaches the producer after 65 years in FIM-OBL and 40 years in MODFLOW 6; after 200 years the producer is at 69.1 &deg;C and 63.5 &deg;C.</li><li>FIM-OBL ran in 107 s, MODFLOW 6 in 5.9 s.</li></ul>
+          <p>Key settings: whole Kansas Geological Survey model (22 &times; 22 &times; 12 cells, about 11 &times; 11 km, 60 m thick, 80 &deg;C); 0.05 m&sup3;/s of 30 &deg;C water for 200 years; wells 2.7 km apart. Neither run includes gravity.</p></figcaption>
+        </figure>
       </section>
 
       <section class="block">
         <h2>Same solver, different fluids</h2>
         <figure class="media-block">
-          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/fluids_compare-poster.webp" width="1440" height="332" aria-label="Water, gas and CO2 injection compared on a Kansas model window"><source src="videos/fluids_compare.mp4" type="video/mp4"></video>
-          <figcaption>Water pushing oil, gas pushed into a black oil, and CO&#8322; pushed into brine, on the same 5 &times; 5 km window of the Kansas model with the same wells and times. Colours show how much of the pore space the injected fluid fills. After 40 years the injector pressure was 24.8 MPa for water, 14.5 MPa for gas and 13.6 MPa for CO&#8322;, and CO&#8322; reached the producer after 18 years.</figcaption>
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/fluids_compare_kansas-poster.webp" width="1440" height="742" aria-label="Water, gas and CO2 injection compared with FIM-OBL on the whole Kansas model."><source src="videos/fluids_compare_kansas.mp4" type="video/mp4"></video>
+          <figcaption><p>Purpose: show how three injected fluids (water into oil, gas into a black oil, carbon dioxide (CO&#8322;) into brine) spread through the same reservoir with FIM-OBL.</p>
+          <ul><li>CO&#8322; reaches the producer after 20 years and gas after 32 years.</li><li>The water front stays within about 2 km of the injector and does not reach the producer in 100 years.</li><li>Mass-balance errors stay below 2e-9 in all three runs.</li></ul>
+          <p>Key settings: whole Kansas model (22 &times; 22 &times; 12 cells), 100 years, wells 3.6 km apart; rates 0.0025 m&sup3;/s water, 0.006 m&sup3;/s gas, 0.02 m&sup3;/s CO&#8322;.</p></figcaption>
         </figure>
       </section>
 
