@@ -77,6 +77,14 @@
       <section class="block">
         <h2>Browser app</h2>
         <p>Start it with <code>pypetrograph-app</code> (or its alias <code>pypetrograph-web</code>). It walks through the AMICS workflow: files, legend, image and footer, non-grain regions, scale, grain outlines, minerals, grain size, and outputs. Nothing is saved until you press an export button, and the exports match notebook 4 exactly.</p>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyPetrograph_optical_demo-poster.webp" width="1280" height="720" aria-label="Measuring porosity on three plane-polarized light photos in the pyPetrograph browser app"><source src="videos/pyPetrograph_optical_demo.mp4" type="video/mp4"></video>
+          <figcaption>Porosity from photos (sped up): mark a few examples of pores and grains, train the model, and get the pore share of every photo.</figcaption>
+        </figure>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyPetrograph_amics_demo-poster.webp" width="1280" height="720" aria-label="Counting grains on one AMICS sample in the pyPetrograph browser app"><source src="videos/pyPetrograph_amics_demo.mp4" type="video/mp4"></video>
+          <figcaption>Grains from an AMICS set (sped up): outline every grain on the backscatter image, name each one from the mineral map, and export counts, grain sizes and figures.</figcaption>
+        </figure>
         <div class="gallery">
           <figure><img src="figures/app_web_legend.webp" width="1200" height="712" loading="lazy" alt="Browser app legend step"><figcaption>Legend: names read from the legend image, which you can edit, add, delete, or recolor.</figcaption></figure>
           <figure><img src="figures/app_web_segmentation_running.webp" width="1200" height="712" loading="lazy" alt="Browser app grain segmentation step"><figcaption>Grain outlines: SegmentEveryGrain runs with live progress, and you can click or draw a box to add a grain.</figcaption></figure>

@@ -33,14 +33,14 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Rust &middot; Well logs and subsurface models</p>
         <h1>SubsurfiX</h1>
-        <p class="lede">SubsurfiX takes you from a folder of well logs to a 3D property model you can simulate on. Log QC, gap filling, well correlation, property modeling, and flow and heat simulation in one Rust engine, run from Python or the command line, with every filled value traceable.</p>
+        <p class="lede">SubsurfiX takes you from a folder of well logs to a 3D property model you can simulate on: log clean-up, gap filling, well correlation, faulted grids, property modeling, and flow, heat and CO&#8322; storage simulation in one Rust engine, run from Python or the command line, with every filled value traceable.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/SubsurfiX">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/subsurfix/">PyPI</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832007">Zenodo</a></li>
         </ul>
         <ul class="facts">
-          <li><b>Version</b><span data-pypi="subsurfix">0.1.0</span></li>
+          <li><b>Version</b><span data-pypi="subsurfix">0.1.2</span></li>
           <li><b>License</b>AGPL-3.0 or later</li>
         </ul>
         <img class="head-mark" src="logo-mark.webp" width="480" height="480" alt="SubsurfiX logo">
@@ -57,28 +57,37 @@
       </section>
 
       <figure class="teaser block">
-        <img src="figures/hero_3d_porosity_model.webp" width="1400" height="875" alt="3D porosity model built from 60 Kansas wells">
-        <figcaption class="fig-cap">A 3D porosity model built from 60 Kansas wells, the end product of the whole workflow.</figcaption>
+        <img src="figures/hero_3d_porosity_model.webp" width="1400" height="876" alt="3D porosity model built from 60 Kansas wells">
+        <figcaption class="fig-cap">A 3D porosity model built from 60 Kansas wells, the end product of the log-to-model workflow.</figcaption>
       </figure>
 
       <section class="block">
         <h2>Examples</h2>
-        <p>One notebook per step, run on open well data.</p>
+        <p>Each step has an executed notebook on open data from the Kansas Geological Survey and FORCE 2020. The flow examples (09, 10 and 14) run on the whole 11 &times; 11 km Kansas model.</p>
         <div class="gallery">
-          <figure><img src="figures/ex_qc_gap_fill.webp" width="687" height="468" loading="lazy" alt="Raw, checked and gap-filled logs"><figcaption>One Kansas well, showing the raw log (grey), what QC kept (black) and the filled samples (red), so you can see exactly what was touched.</figcaption></figure>
-          <figure><img src="figures/ex_property_maps.webp" width="752" height="504" loading="lazy" alt="Porosity maps of one layer"><figcaption>Porosity in one layer mapped four ways (kriging, SGS, SIS and ML propagation), side by side for comparison.</figcaption></figure>
-          <figure class="wide"><img src="figures/ex_well_correlation.webp" width="758" height="416" loading="lazy" alt="Well correlation section"><figcaption>A west–east section with GR plotted on elevation (left) and on correlated layer time (right). On the right, the beds line up.</figcaption></figure>
-          <figure class="wide"><img src="figures/ex_heat_doublet.webp" width="821" height="285" loading="lazy" alt="Heat transport doublet"><figcaption>A heat transport check against the Ogata–Banks solution, plus the cold front of an injector–producer doublet moving through time.</figcaption></figure>
+          <figure><img src="figures/ex_qc_gap_fill.webp" width="687" height="468" loading="lazy" alt="Raw, cleaned and gap-filled logs"><figcaption>One Kansas well: the raw log (grey), what the clean-up kept (black) and the filled samples (red).</figcaption></figure>
+          <figure><img src="figures/ex_well_correlation.webp" width="758" height="416" loading="lazy" alt="Well correlation section"><figcaption>A west&ndash;east section, by depth (left) and after correlation (right), where the beds line up.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_property_maps.webp" width="752" height="504" loading="lazy" alt="Porosity maps of one layer"><figcaption>Porosity in one layer, mapped four ways side by side (kriging, simulation and machine learning).</figcaption></figure>
         </div>
+      </section>
+
+      <section class="block">
+        <h2>Same solver, different fluids</h2>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/fluids_compare-poster.webp" width="1440" height="332" aria-label="Water, gas and CO2 injection compared on a Kansas model window"><source src="videos/fluids_compare.mp4" type="video/mp4"></video>
+          <figcaption>Water pushing oil, gas pushed into a black oil, and CO&#8322; pushed into brine, on the same 5 &times; 5 km window of the Kansas model with the same wells and times. Colours show how much of the pore space the injected fluid fills. After 40 years the injector pressure was 24.8 MPa for water, 14.5 MPa for gas and 13.6 MPa for CO&#8322;, and CO&#8322; reached the producer after 18 years.</figcaption>
+        </figure>
       </section>
 
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>QC and gap fill</h3><p>Log QC and gap filling with a provenance code on every value.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Well correlation</h3><p>Network DTW well correlation.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Grids and properties</h3><p>Grids, kriging/SGS/SIS/ML property models.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Flow and heat</h3><p>Flow and heat simulation, export to OpenGeoSys.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Log clean-up and gap filling</h3><p>Read LAS files and well surveys, mark bad sections, and fill gaps with rules and LightGBM. Every value carries a code that says whether it was measured or filled.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Well correlation</h3><p>Match the same beds from well to well automatically, solving all wells together.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Grids and properties</h3><p>Regular grids, or corner-point grids with faults read from GRDECL files. Fill them with porosity and rock type by kriging, simulation or machine learning, with P10/P50/P90 cases.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Flow and heat (FIM-OBL)</h3><p>A fully implicit finite-volume solver for water, water&ndash;oil, oil&ndash;gas and CO&#8322;&ndash;brine, plus heat, on regular and faulted grids. Flow diagnostics show where the fluid goes and how long it takes.</p></div>
+          <div class="feature"><span class="num">05</span><h3>CO&#8322; storage screening</h3><p>A vertical-equilibrium model, after the MRST co2lab papers, that runs in seconds and reports structural and residual trapping. Example 13 compares it with FIM-OBL on the same case.</p></div>
+          <div class="feature"><span class="num">06</span><h3>MODFLOW 6 and data exchange</h3><p>Groundwater flow and heat through MODFLOW 6 and FloPy, Leapfrog through OMF files, and OpenGeoSys mesh files (.vtu).</p></div>
         </div>
       </section>
 
@@ -88,7 +97,7 @@
           <pre data-copy-src><code>pip install subsurfix</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>Ready-built wheels are for Apple Silicon Macs. On other systems pip builds from source, which needs Rust, Python 3.10 or later, and a C/C++ compiler.</p>
+        <p>Needs Python 3.12 or newer. Ready-built wheels are for Apple Silicon Macs. On other systems pip builds from source, which needs Rust, a C/C++ compiler and libclang. Examples 09 and 10 also need the MODFLOW 6 program.</p>
       </section>
 
       <section class="block">
