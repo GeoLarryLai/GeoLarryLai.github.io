@@ -149,7 +149,7 @@
       "page": "projects/pyValleyWidth/index.html",
       "description": "Measure valley width from a DTM with an elevation-threshold method, built on pytopotoolbox.",
       "pypi": "pyvalleywidth",
-      "conda": "pyvalleywidth",
+      "conda": null,
       "zenodo": "10.5281/zenodo.23656980",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyValleyWidth. Zenodo, https://doi.org/10.5281/zenodo.23656980",
