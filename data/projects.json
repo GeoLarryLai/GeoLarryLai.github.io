@@ -72,7 +72,7 @@
         "alt": "3D porosity and permeability model built from 60 Kansas wells."
       },
       "pypi": "subsurfix",
-      "conda": null,
+      "conda": "subsurfix",
       "zenodo": "10.5281/zenodo.23832007",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) SubsurfiX. Zenodo, https://doi.org/10.5281/zenodo.23832007",
@@ -93,7 +93,7 @@
         "alt": "A scanned paper log traced into a LAS curve."
       },
       "pypi": "pylogdigitizer",
-      "conda": null,
+      "conda": "pylogdigitizer",
       "zenodo": "10.5281/zenodo.23832013",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyLogDigitizer. Zenodo, https://doi.org/10.5281/zenodo.23832013",
@@ -114,7 +114,7 @@
         "alt": "Geohistory of North Sea well 30/4-1."
       },
       "pypi": "pybasinsubs",
-      "conda": null,
+      "conda": "pybasinsubs",
       "zenodo": "10.5281/zenodo.23832018",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyBasinSubs. Zenodo, https://doi.org/10.5281/zenodo.23832018",
@@ -149,7 +149,7 @@
       "page": "projects/pyValleyWidth/index.html",
       "description": "Measure valley width from a DTM with an elevation-threshold method, built on pytopotoolbox.",
       "pypi": "pyvalleywidth",
-      "conda": null,
+      "conda": "pyvalleywidth",
       "zenodo": "10.5281/zenodo.23656980",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyValleyWidth. Zenodo, https://doi.org/10.5281/zenodo.23656980",
@@ -184,7 +184,7 @@
         "alt": "DEM of Difference and spectral change maps."
       },
       "pypi": "pygeomapper",
-      "conda": null,
+      "conda": "pygeomapper",
       "zenodo": "10.5281/zenodo.23832020",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyGeoMapper. Zenodo, https://doi.org/10.5281/zenodo.23832020",
@@ -205,7 +205,7 @@
         "alt": "pyPetrograph browser app Outputs step: knolling sheet and export buttons."
       },
       "pypi": "pypetrograph",
-      "conda": null,
+      "conda": "pypetrograph",
       "zenodo": "10.5281/zenodo.23659316",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyPetrograph. Zenodo, https://doi.org/10.5281/zenodo.23659316",
@@ -225,7 +225,7 @@
         "alt": "pyRockImageLab browser app Mark core sections step."
       },
       "pypi": "pyrockimagelab",
-      "conda": null,
+      "conda": "pyrockimagelab",
       "zenodo": "10.5281/zenodo.23656974",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyRockImageLab. Zenodo, https://doi.org/10.5281/zenodo.23656974",

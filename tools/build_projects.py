@@ -16,13 +16,13 @@ def badges(p):
     out = []
     if p.get("pypi"):
         n = p["pypi"]
-        out.append((f"https://pypi.org/project/{n}/", f"https://img.shields.io/pypi/v/{n}.svg", "PyPI version"))
+        out.append((f"https://pypi.org/project/{n}/", f"https://img.shields.io/pypi/v/{n}?color=orange", "PyPI version"))
     if p.get("crate"):
         n = p["crate"]
         out.append((f"https://crates.io/crates/{n}", f"https://img.shields.io/crates/v/{n}.svg", "crates.io version"))
     if p.get("conda"):
         n = p["conda"]
-        out.append((f"https://anaconda.org/conda-forge/{n}", f"https://img.shields.io/conda/vn/conda-forge/{n}.svg", "conda-forge version"))
+        out.append((f"https://anaconda.org/conda-forge/{n}", f"https://img.shields.io/conda/vn/conda-forge/{n}?label=conda-forge&color=green", "conda-forge version"))
     if not out:
         return ""
     li = "".join(f'<li><a href="{e(h)}"><img src="{e(s)}" alt="{e(a)}" height="20" loading="lazy"></a></li>' for h, s, a in out)
