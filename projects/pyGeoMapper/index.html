@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyGeoMapper · Larry Syu-Heng Lai</title>
-  <meta name="description" content="pyGeoMapper maps ground change and rock units from satellite images and elevation models.">
+  <meta name="description" content="Geologic mapping, 3D structural reconstruction, and surface-change analysis from satellite imagery and elevation models.">
   <meta property="og:title" content="pyGeoMapper · Larry Syu-Heng Lai">
-  <meta property="og:description" content="pyGeoMapper maps ground change and rock units from satellite images and elevation models.">
+  <meta property="og:description" content="Geologic mapping, 3D structural reconstruction, and surface-change analysis from satellite imagery and elevation models.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -33,12 +33,11 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Rust &middot; Remote sensing and mapping</p>
         <h1>pyGeoMapper</h1>
-        <p class="lede">pyGeoMapper maps surface change and geology from satellite images and DEMs, all the way to 3D block diagrams you can open in a browser. Python with a Rust core.</p>
+        <p class="lede">Python and Rust workflows for geologic mapping, 3D structural reconstruction, and surface-change analysis from satellite imagery and elevation models.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyGeoMapper">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832020">Zenodo</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pygeomapper/">PyPI</a></li>
-          <li><a class="btn-pill outline" href="https://anaconda.org/conda-forge/pygeomapper">conda-forge</a></li>
         </ul>
         <div class="head-badges">
           <p>
@@ -49,8 +48,6 @@
             <a href="https://pypi.org/project/pygeomapper/"><img src="https://img.shields.io/badge/python-3.10%2B-lightgrey" alt="Python versions" height="20"></a>
             <a href="https://pypi.org/project/pygeomapper/"><img src="https://img.shields.io/pypi/v/pygeomapper?color=orange" alt="PyPI version" height="20"></a>
             <a href="https://pepy.tech/projects/pygeomapper"><img src="https://img.shields.io/pepy/dt/pygeomapper?label=pypi%20downloads&color=orange" alt="PyPI downloads" height="20"></a>
-            <a href="https://anaconda.org/conda-forge/pygeomapper"><img src="https://img.shields.io/conda/vn/conda-forge/pygeomapper?label=conda-forge&color=green" alt="conda-forge version" height="20"></a>
-            <a href="https://anaconda.org/conda-forge/pygeomapper"><img src="https://img.shields.io/conda/dn/conda-forge/pygeomapper?label=conda%20downloads&color=green" alt="conda downloads" height="20"></a>
           </p>
         </div>
         <img class="head-mark" src="logo-mark.webp" width="480" height="480" alt="pyGeoMapper logo">
@@ -62,30 +59,56 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyGeoMapper maps what changed on the ground, and what it's made of, using satellite images and elevation models (DEMs). I wanted one place to go from raw rasters to something a geologist can actually read: change maps after a landslide, flood, wildfire, earthquake, volcano or glacier event, unit maps scored against a real geologic map, and cross-sections and 3D block diagrams you can open in a browser. It's Python with a Rust core. (Not related to <code>The-Magicians-Code/PyGeoMapper</code>.)</p>
+          <p>Field geology connects maps and structures in three spatial dimensions with change through time. pyGeoMapper brings these 3+1D perspectives into a Python workflow with a Rust core: supervised geologic mapping from terrain features and Google AlphaEarth embeddings, cross-sections and browser-viewable 3D structural models, and land-surface change analysis. It combines multiscale terrain analysis through <a href="https://github.com/GeoLarryLai/pyTopoComplexity">pyTopoComplexity</a> with DEM differencing, spectral indices, InSAR, and optical feature tracking to support interpretation of landslides, earthflows, earthquakes, glaciers, fires, and floods.</p>
+          <p>The package is under active development. Its methods are experimental and not fully validated; results require geological interpretation and independent checks.</p>
+        </div>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyGeoMapper_workflow-poster.webp" width="1920" height="1080" aria-label="pyGeoMapper workflow: geologic mapping, cross-sections, rotating 3D models, and surface-change examples."><source src="videos/pyGeoMapper_workflow.mp4" type="video/mp4"></video>
+          <figcaption>A 62.5-second overview of the mapping, structural reconstruction, and surface-change workflows. Silent; loops automatically.</figcaption>
+        </figure>
+      </section>
+
+      <section class="block">
+        <h2>Data types</h2>
+        <p>pyGeoMapper can read, analyze, and visualize:</p>
+        <ul>
+          <li><strong>Elevation:</strong> DEMs and lidar (Copernicus GLO-30, USGS 3DEP lidar); terrain derivatives, CWT complexity, and DEM of Difference.</li>
+          <li><strong>Optical imagery:</strong> multispectral Sentinel-2 and Landsat, and NAIP aerial RGB; spectral indices (NDVI, NBR, NDWI, BSI, clay and iron ratios), index change, and optical feature-tracking velocity.</li>
+          <li><strong>Satellite embeddings:</strong> 64-band Google AlphaEarth annual embeddings for classification and embedding change.</li>
+          <li><strong>InSAR:</strong> Sentinel-1 LiCSAR displacement, offsets, and wrapped phase; UAVSAR unwrapped phase to line-of-sight displacement; Okada fault models.</li>
+          <li><strong>Ice velocity:</strong> NASA ITS_LIVE velocity grids and speed change.</li>
+          <li><strong>Geology:</strong> map polygons as training and validation labels, bed attitudes (strike/dip), and fault traces for cross-sections and 3D block models.</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Landscape features and geologic mapping</h2>
+        <p>Supervised machine learning uses geomorphic surface features and surface-geology constraints to map geologic units, which are reconstructed as cross-sections and 3D structural models.</p>
+        <div class="gallery">
+          <figure class="wide"><img src="figures/cwt_multiscale.webp" width="1403" height="795" loading="lazy" alt="Multiscale CWT complexity"><figcaption>Sheep Mountain, Wyoming — <strong>DEM</strong> + 2D Mexican-hat <strong>continuous wavelet transform</strong> (<a href="https://github.com/GeoLarryLai/pyTopoComplexity">pyTopoComplexity</a>): ridges and valleys, mean complexity, A–A′ energy profile, and dominant wavelength.</figcaption></figure>
+          <figure class="wide"><img src="figures/auto_mapping_validation.webp" width="1665" height="2197" loading="lazy" alt="Automatic geologic mapping at Sheep Mountain"><figcaption>Sheep Mountain, Wyoming — <strong>64-band AlphaEarth embeddings</strong> + <strong>supervised ML</strong>, trained on USGS geologic map units in the northwest half and validated on the held-out southeast half (accuracy 91.0%, macro-F1 0.89).</figcaption></figure>
+          <figure class="wide"><img src="figures/cross_section.webp" width="1576" height="1270" loading="lazy" alt="Cross-section"><figcaption>Sheep Mountain, Wyoming — <strong>mapped units + 3-point bed attitudes</strong> projected to A–A′ and B–B′ (~60° apart), with the published SW-dipping ~50° basement thrust.</figcaption></figure>
+          <figure class="wide"><img src="figures/3d_block_diagram_rotate.gif" width="1400" height="643" loading="lazy" alt="Rotating Sheep Mountain block and sections"><figcaption>Sheep Mountain, Wyoming — <strong>reconstructed 3D geologic block</strong> with matching faulted A–A′ and B–B′ sections; 72 frames at 3 fps (about 24 seconds per turn).</figcaption></figure>
         </div>
       </section>
 
-      <figure class="teaser block">
-        <img src="figures/dod_and_spectral_change.webp" width="1400" height="448" alt="DEM of Difference and spectral change">
-        <figcaption class="fig-cap">A DEM of Difference and a spectral change map, the two basic ways the package spots change on the ground.</figcaption>
-      </figure>
-
       <section class="block">
-        <h2>Examples</h2>
-        <p>Five notebooks walk through every module with public data.</p>
+        <h2>Surface change</h2>
+        <p>Toolkits detect surface change at different temporal and spatial scales using elevation, optical, radar, and velocity data. Five <a href="https://github.com/GeoLarryLai/pyGeoMapper/tree/main/notebooks">notebooks</a> walk through the methods with public data.</p>
         <div class="gallery">
-          <figure><img src="figures/readme_myanmar_earthquake.webp" width="1000" height="926" loading="lazy" alt="Earthquake ground displacement"><figcaption>Ground displacement and offsets from the 2025 Mw 7.7 Myanmar earthquake, from Sentinel-1 (COMET LiCSAR).</figcaption></figure>
-          <figure><img src="figures/cross_section.webp" width="1600" height="1405" loading="lazy" alt="Geological cross-section"><figcaption>A Sheep Mountain Anticline cross-section with bed attitudes from 3-point solutions.</figcaption></figure>
-          <figure class="wide"><img src="figures/auto_mapping_validation.webp" width="1600" height="533" loading="lazy" alt="Auto-mapped units against a USGS map"><figcaption>Units auto-mapped at Sheep Mountain Anticline compared with the USGS map and scored on a held-out block.</figcaption></figure>
-          <figure class="wide"><img src="figures/3d_block_diagram.webp" width="1400" height="642" loading="lazy" alt="3D geological block diagram"><figcaption>A 3D block diagram of the same area.</figcaption></figure>
+          <figure class="wide"><img src="figures/oso_landslide.webp" width="1501" height="1218" loading="lazy" alt="2014 Oso landslide, Washington"><figcaption>2014 Oso landslide, Washington — <strong>DEMs</strong> (pre COP30, post 3DEP lidar) → DEM of Difference (red = erosion, blue = deposit); <strong>Sentinel-2</strong> spectral change (ΔNDVI, ΔNBR); and terrain Δ complexity via CWT (<a href="https://github.com/GeoLarryLai/pyTopoComplexity">pyTopoComplexity</a>).</figcaption></figure>
+          <figure class="wide"><img src="figures/holiday_farm_fire.webp" width="2057" height="759" loading="lazy" alt="Holiday Farm Fire, Oregon"><figcaption>2020 Holiday Farm Fire, Oregon — <strong>Sentinel-2</strong> SWIR–NIR–red composites before and after, and <strong>burn-ratio change (ΔNBR)</strong>; cyan outline marks higher debris-flow hazard.</figcaption></figure>
+          <figure class="wide"><img src="figures/yolo_bypass_flood.webp" width="2057" height="756" loading="lazy" alt="Yolo Bypass Flood, California"><figcaption>2019 Yolo Bypass flood, California — <strong>Sentinel-2</strong> before and during the flood, and <strong>water-index change (ΔNDWI)</strong>; cyan outline is the mapped shoreline.</figcaption></figure>
+          <figure><img src="figures/case1a_myanmar_earthquake.webp" width="1499" height="1702" loading="lazy" alt="Myanmar 2025 earthquake LiCSAR"><figcaption>2025 Mw 7.7 Sagaing Fault earthquake, Myanmar — <strong>Sentinel-1 LiCSAR InSAR</strong>: north–south displacement, azimuth and range offsets, and wrapped phase.</figcaption></figure>
+          <figure><img src="figures/slumgullion_earthflow.webp" width="2610" height="2176" loading="lazy" alt="Slumgullion Earthflow, Colorado"><figcaption>Slumgullion Earthflow, Colorado — <strong>NAIP optical feature tracking</strong> (velocity 2017–2023), <strong>UAVSAR</strong> LOS and rewrapped phase (12–19 August 2011), and <strong>DEM difference</strong> 2024−2015 (red = lowering, blue = raising). Arrows are optical motion only.</figcaption></figure>
+          <figure class="wide"><img src="figures/case1d_jakobshavn_glacier.webp" width="1864" height="940" loading="lazy" alt="Jakobshavn ITS_LIVE glacier velocity"><figcaption>Jakobshavn Isbræ, West Greenland — <strong>NASA ITS_LIVE velocity</strong>: 2018 surface speed with flow directions, and 2018−2016 speed change.</figcaption></figure>
         </div>
       </section>
 
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Surface change</h3><p>DEM of Difference, spectral change and InSAR/GNSS displacement for hazards.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Surface change</h3><p>DEM of Difference, spectral-index change, InSAR, and optical feature tracking for surface-change analysis.</p></div>
           <div class="feature"><span class="num">02</span><h3>Spectral and terrain</h3><p>Spectral indices and multiscale terrain metrics.</p></div>
           <div class="feature"><span class="num">03</span><h3>Geological mapping</h3><p>Auto-mapping of geologic units, scored on held-out blocks.</p></div>
           <div class="feature"><span class="num">04</span><h3>Sections and 3D</h3><p>Cross-sections, 3D block/fence diagrams and an offline WebGL viewer.</p></div>
@@ -98,13 +121,13 @@
           <pre data-copy-src><code>pip install pygeomapper</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>Extra features (STAC search, ML, 3D views, spectral and DEM tools) are optional add-ons; the README lists them.</p>
+        <p>Requires Python 3.10 or newer. One standard installation includes the mapping, machine-learning, and 3D-viewing dependencies; no extras are needed.</p>
       </section>
 
       <section class="block">
         <h2>Citation</h2>
         <div class="cite-box">
-          <p>Lai, L.S.-H. (2026) pyGeoMapper. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832020">https://doi.org/10.5281/zenodo.23832020</a></p>
+          <p>Lai, L.S.-H. (2026) pyGeoMapper (version 0.3.0). Zenodo, <a href="https://doi.org/10.5281/zenodo.23832020">https://doi.org/10.5281/zenodo.23832020</a></p>
         </div>
         <p>pyGeoMapper is under the GNU Affero General Public License 3.0 or later.</p>
       </section>

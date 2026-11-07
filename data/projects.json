@@ -176,12 +176,12 @@
       "hidden": false,
       "label": "Python · Rust",
       "page": "projects/pyGeoMapper/index.html",
-      "description": "pyGeoMapper maps surface change and geology from satellite images and DEMs, all the way to 3D block diagrams you can open in a browser. Python with a Rust core.",
+      "description": "Python with a Rust core for supervised geologic mapping, cross-sections and 3D structural models, and surface-change analysis from elevation, optical, InSAR, and velocity data.",
       "image": {
-        "src": "projects/pyGeoMapper/figures/dod_and_spectral_change.webp",
-        "width": 1400,
-        "height": 448,
-        "alt": "DEM of Difference and spectral change maps."
+        "src": "projects/pyGeoMapper/figures/oso_landslide.webp",
+        "width": 1501,
+        "height": 1218,
+        "alt": "Oso landslide: DEM of Difference, NDVI and NBR change, and CWT terrain-complexity change."
       },
       "pypi": "pygeomapper",
       "conda": "pygeomapper",
