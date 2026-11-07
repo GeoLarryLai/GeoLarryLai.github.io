@@ -177,19 +177,27 @@
       "label": "Python · Rust",
       "page": "projects/pyGeoMapper/index.html",
       "description": "Python with a Rust core for supervised geologic mapping, cross-sections and 3D structural models, and surface-change analysis from elevation, optical, InSAR, and velocity data.",
-      "image": {
-        "src": "projects/pyGeoMapper/figures/oso_landslide.webp",
-        "width": 1501,
-        "height": 1218,
-        "alt": "Oso landslide: DEM of Difference, NDVI and NBR change, and CWT terrain-complexity change."
-      },
       "pypi": "pygeomapper",
       "conda": "pygeomapper",
       "zenodo": "10.5281/zenodo.23832020",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyGeoMapper. Zenodo, https://doi.org/10.5281/zenodo.23832020",
       "pepy": false,
-      "icon": "projects/pyGeoMapper/icon.png"
+      "icon": "projects/pyGeoMapper/icon.png",
+      "images": [
+        {
+          "src": "projects/pyGeoMapper/figures/auto_mapping_validation_card.webp",
+          "width": 1665,
+          "height": 935,
+          "alt": "Sheep Mountain: ML training with the USGS geologic map and held-out geologic-map prediction."
+        },
+        {
+          "src": "projects/pyGeoMapper/figures/3d_block_diagram.webp",
+          "width": 1489,
+          "height": 667,
+          "alt": "Static Sheep Mountain 3D geologic block and matching cross-sections with a SW-dipping basement thrust."
+        }
+      ]
     },
     {
       "name": "pyPetrograph",
