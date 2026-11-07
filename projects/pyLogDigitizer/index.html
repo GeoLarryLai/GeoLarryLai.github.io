@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyLogDigitizer · Larry Syu-Heng Lai</title>
-  <meta name="description" content="pyLogDigitizer turns scanned paper well logs into LAS files.">
+  <meta name="description" content="pyLogDigitizer converts inked well-log scans and colour digital-print PDFs into LAS files, with local review and overlay QA.">
   <meta property="og:title" content="pyLogDigitizer · Larry Syu-Heng Lai">
-  <meta property="og:description" content="pyLogDigitizer turns scanned paper well logs into LAS files.">
+  <meta property="og:description" content="pyLogDigitizer converts inked well-log scans and colour digital-print PDFs into LAS files, with local review and overlay QA.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -31,9 +31,9 @@
     <header class="page-head contour-bg">
       <div class="wrap">
         <a class="back" href="../../projects.html">&larr; Projects</a>
-        <p class="label">Python &middot; Scanned well logs</p>
+        <p class="label">Python &middot; Well-log prints</p>
         <h1>pyLogDigitizer</h1>
-        <p class="lede">pyLogDigitizer turns scanned paper well logs (TIFF) into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
+        <p class="lede">pyLogDigitizer turns inked paper scans (TIFF) and clean colour digital-print PDFs into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyLogDigitizer">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832013">Zenodo</a></li>
@@ -62,32 +62,36 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyLogDigitizer turns scanned paper well logs (TIFF) into LAS files. Lots of older wells only exist as paper scans, and digitizing them by hand is slow and hard to check. So I built a tool that does the tedious parts (finding tracks and grids, reading depth labels, tracing curves) and gives you a local browser app to check and fix every step. Curves that run off the track and come back on a backup scale get unwrapped automatically. Everything runs on your own machine and nothing is uploaded.</p>
+          <p>pyLogDigitizer converts two kinds of well-log print into LAS files: inked paper scans (TIFF) and clean colour digital-print PDFs, using shared scale, depth, null-value, and LAS export code. The scan workflow locates tracks and grids, reads depth labels, and traces curve ink; the digital-print workflow reads coloured vector paths directly, without rasterizing them or applying a scan model. Overlay QA draws grids and traces back onto the original print. A local browser editor supports review and correction before export, including curves that leave a track and return on a backup scale. All processing stays on your own machine; nothing is uploaded.</p>
+          <p>The package is under active development. Many functions are experimental and not fully validated; inspect overlays and exported curves before using the results.</p>
         </div>
       </section>
 
       <figure class="teaser block">
-        <img src="figures/hero_scan_to_las.webp" width="1400" height="1120" alt="A scanned paper log traced into a LAS curve">
+        <img src="figures/hero_scan_to_las.webp" width="1800" height="1440" alt="Chitwood 12 paper log scan and the digitized LAS curve">
         <figcaption class="fig-cap">The whole idea in one picture: a scanned paper log going in and a LAS curve coming out.</figcaption>
       </figure>
 
       <section class="block">
         <h2>Examples</h2>
-        <p>Example scans and LAS files are from the Kansas Geological Survey.</p>
         <div class="gallery">
-          <figure class="wide"><img src="figures/app_07_trace.webp" width="1500" height="900" loading="lazy" alt="Tracing step in the browser app"><figcaption>The guided app with a traced curve laid over the scan, ready for you to review and fix.</figcaption></figure>
-          <figure><img src="figures/ex_qc_vs_reference_las.webp" width="880" height="1210" loading="lazy" alt="Digitized curve against a reference LAS"><figcaption>A curve digitized with the assisted workflow, checked against the paired Kansas Geological Survey (KGS) LAS.</figcaption></figure>
-          <figure><img src="figures/ex_ml_vs_conventional.webp" width="1083" height="390" loading="lazy" alt="ML and conventional cost maps compared"><figcaption>On held-out Kansas wells, correlation and error against the reference LAS for the conventional and the ML cost map.</figcaption></figure>
+          <figure class="wide"><img src="figures/app_07_trace.webp" width="1500" height="900" loading="lazy" alt="Tracing in the local browser app"><figcaption>The local browser app: a traced curve laid over the scan, with tools to pin, exclude and re-trace before you export.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_qc_chitwood.webp" width="1400" height="1937" loading="lazy" alt="Chitwood 12 QC vs KGS LAS"><figcaption>Chitwood 12 (KGS): digitized GR against the paired KGS LAS, with a depth plot and a cross-plot.</figcaption></figure>
+          <figure class="wide"><img src="figures/overlay_scan_chitwood.webp" width="1702" height="1017" loading="lazy" alt="Chitwood 12 scan overlay"><figcaption>Chitwood 12 (KGS): traced GR and snapped grid lines drawn on the original scan, so you can check that the grid sits on the printed lines in every track.</figcaption></figure>
+          <figure class="wide"><img src="figures/overlay_pdf_forge_cbl_compare.webp" width="1900" height="1239" loading="lazy" alt="Utah FORGE CBL original vs extracted grids and curves"><figcaption>Utah FORGE 78B-32 CBL: original colour print (left) → extracted grids and curves drawn back in contrasting colours (right).</figcaption></figure>
         </div>
+        <p>Scan examples are from the <a href="https://www.kgs.ku.edu/">Kansas Geological Survey</a>. The colour digital-print example is the public Utah FORGE 78B-32 CBL (<a href="https://gdr.openei.org/">GDR / OpenEI</a>).</p>
       </section>
 
       <section class="block">
         <h2>Key features</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Layout and scales</h3><p>Automatic track, grid and depth-label detection, plus scale calibration.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Curve tracing</h3><p>Fast curve tracing with click-to-fix anchors and backup-scale unwrapping.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Optional ML</h3><p>Optional U-Net cost map that learns from your corrections.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Check and export</h3><p>QC against a reference LAS and LAS 2.0 export.</p></div>
+          <div class="feature"><span class="num">01</span><h3>Inked scan workflow</h3><p>Detect tracks and grids, deskew scans, read depth labels, and separate curve ink with a bundled ONNX segmenter before tracing with a Rust engine or Python fallback.</p></div>
+          <div class="feature"><span class="num">02</span><h3>Colour digital-print PDFs</h3><p>Extract coloured vector paths directly, identify per-track grids and scales, and digitize curves without rasterizing the PDF or using the scan model.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Overlay quality checks</h3><p>Draw snapped grid lines and traced curves on the original scan or rendered PDF page to check alignment by eye.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Local browser editor</h3><p>Pin and drag anchors, exclude regions, re-trace curves, adjust track edges and scales, and correct header text before export.</p></div>
+          <div class="feature"><span class="num">05</span><h3>Backup scales and nulls</h3><p>Unwrap curves that run off a track onto a backup scale; handle log scales and null values where a fixed-scale curve is clipped.</p></div>
+          <div class="feature"><span class="num">06</span><h3>LAS 2.0 export</h3><p>Write depth-calibrated LAS 2.0 curves at 0.5 ft spacing by default, with 0.25 ft spacing available.</p></div>
         </div>
       </section>
 
@@ -97,7 +101,7 @@
           <pre data-copy-src><code>pip install pylogdigitizer</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>The browser app, the faster tracer, and the ML model are optional add-ons; the README lists them.</p>
+        <p>Requires Python 3.10 or newer. Review the README for the scan and digital-print PDF workflows.</p>
       </section>
 
       <section class="block">

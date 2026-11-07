@@ -85,12 +85,12 @@
       "hidden": false,
       "label": "Python",
       "page": "projects/pyLogDigitizer/index.html",
-      "description": "pyLogDigitizer turns scanned paper well logs (TIFF) into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.",
+      "description": "pyLogDigitizer turns inked paper scans (TIFF) and clean colour digital-print PDFs into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.",
       "image": {
         "src": "projects/pyLogDigitizer/figures/hero_scan_to_las.webp",
-        "width": 1400,
-        "height": 1120,
-        "alt": "A scanned paper log traced into a LAS curve."
+        "width": 1800,
+        "height": 1440,
+        "alt": "Chitwood 12 paper log scan and its digitized LAS curve."
       },
       "pypi": "pylogdigitizer",
       "conda": "pylogdigitizer",
