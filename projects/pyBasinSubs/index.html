@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyBasinSubs · Larry Syu-Heng Lai</title>
-  <meta name="description" content="pyBasinSubs rebuilds how a sedimentary basin sank and filled through time, by backstripping its layers.">
+  <meta name="description" content="pyBasinSubs explores how sedimentary basins sank and filled through time: 1-D backstripping and decompaction, thermal history, and 2-D flexural restoration in a local browser app.">
   <meta property="og:title" content="pyBasinSubs · Larry Syu-Heng Lai">
-  <meta property="og:description" content="pyBasinSubs rebuilds how a sedimentary basin sank and filled through time, by backstripping its layers.">
+  <meta property="og:description" content="pyBasinSubs explores how sedimentary basins sank and filled through time: 1-D backstripping and decompaction, thermal history, and 2-D flexural restoration in a local browser app.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -31,16 +31,14 @@
     <header class="page-head contour-bg">
       <div class="wrap">
         <a class="back" href="../../projects.html">&larr; Projects</a>
-        <p class="label">Python &middot; R &middot; Basin subsidence</p>
+        <p class="label">Python &middot; Basin analysis</p>
         <h1>pyBasinSubs</h1>
-        <p class="lede">pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyBasinSubs">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.1038/s43247-022-00429-2">Paper</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832018">Zenodo</a></li>
           <li><a class="btn-pill outline" href="https://pypi.org/project/pybasinsubs/">PyPI</a></li>
           <li><a class="btn-pill outline" href="https://anaconda.org/conda-forge/pybasinsubs">conda-forge</a></li>
-          <li><a class="btn-pill outline" href="https://github.com/GeoLarryLai/BasinSubs">Original R code (BasinSubs)</a></li>
         </ul>
         <div class="head-badges">
           <p>
@@ -64,48 +62,22 @@
 
       <section class="block">
         <h2>Overview</h2>
-        <div class="prose">
-          <p>pyBasinSubs reconstructs how a sedimentary basin sank and filled through time by backstripping its layers. It's the Python version, and an extension, of my original R code, <a href="#r-code">BasinSubs</a>, which I wrote for our work on the Coastal Range of eastern Taiwan (<a href="https://doi.org/10.1038/s43247-022-00429-2">Lai et al., 2022, <em>Communications Earth &amp; Environment</em></a>).</p>
-          <p>pyBasinSubs brings that backstripping workflow into Python and goes further: Monte Carlo uncertainty, thermal history and maturity, 2-D flexural backstripping and section restoration, CSV templates and apps for your own data.</p>
-        </div>
+        <div class="prose"><p>pyBasinSubs is a Python tool for 1-D and 2-D backstripping and decompaction basin analysis. Start with a well, stratigraphic column or interpreted section to explore subsidence, burial, thermal history and structural restoration. The method paper is <a href="https://doi.org/10.1038/s43247-022-00429-2">Lai et al. (2022)</a>, <em>Extremely rapid up-and-down motions of island arc crust during arc-continent collision</em>, <em>Communications Earth &amp; Environment</em> 3, 100.</p><p>Version 0.2.0 combines 1-D Airy backstripping and decompaction with optional thermal views: a time-evolving column and geotherm, burial temperature, and kinetic Easy%Ro oil, wet-gas and dry-gas windows. The 2-D workflow provides flexural backstripping and decompaction, restoration comparisons, and an explicit fixed-trace growth-reconstruction prototype.</p><p>The local browser app uses step-by-step workflows for inputs, compaction, calculation and export. Start it with <code>pybasinsubs-app</code> or its alias <code>pybasinsubs-ui</code>; <code>pybasinsubs-tracer</code> opens the fault editor directly. It runs locally, and input files stay on the user&#x27;s computer. Python notebooks provide worked examples using the same calculation engines.</p></div>
       </section>
-
-      <figure class="teaser block">
-        <img src="figures/hero_geohistory_north_sea_30-4-1.webp" width="1400" height="969" alt="Geohistory of North Sea well 30/4-1">
-        <figcaption class="fig-cap">A geohistory (burial) plot for North Sea well 30/4-1, showing how the basin sank and filled through time.</figcaption>
-      </figure>
-
       <section class="block">
-        <h2>Examples</h2>
-        <p>Example notebooks cover each feature, from Taiwan to the North Sea.</p>
-        <div class="gallery">
-          <figure><img src="figures/nb3_geohistory_N.webp" width="996" height="644" loading="lazy" alt="Tectonic subsidence with uncertainty"><figcaption>Northern Coastal Range (Taiwan): a geohistory with total and tectonic subsidence and their uncertainty bands.</figcaption></figure>
-          <figure><img src="figures/nb6_maturity_viking_30-4-1.webp" width="1312" height="523" loading="lazy" alt="Burial temperature and maturity"><figcaption>North Sea well 30/4-1: burial temperature and maturity (Easy%Ro), with the oil and gas windows marked.</figcaption></figure>
-          <figure class="wide"><img src="figures/nb8_viking_restored_sequence.webp" width="1600" height="1320" loading="lazy" alt="Section restored through time"><figcaption>A 2-D section across the North Viking Graben, restored step by step through time by flexural backstripping.</figcaption></figure>
-        </div>
+        <h2>1-D basin history</h2>
+<figure class="media-block"><video controls autoplay muted loop playsinline preload="metadata" poster="videos/hero_geohistory_north_sea_30-4-1-poster.webp" width="1320" height="660" aria-label="North Sea well 30/4-1 — 1-D Airy backstripping + decompaction. Oldest to youngest, with a time-evolving thin stratigraphic column."><source src="videos/hero_geohistory_north_sea_30-4-1.mp4" type="video/mp4"><a href="videos/hero_geohistory_north_sea_30-4-1.mp4">Watch the MP4</a></video><figcaption>North Sea well 30/4-1 — 1-D Airy backstripping + decompaction. Oldest to youngest, with a time-evolving thin stratigraphic column.</figcaption></figure><figure class="media-block"><video controls autoplay muted loop playsinline preload="metadata" poster="videos/thermal_history_north_sea_30-4-1-poster.webp" width="1320" height="660" aria-label="North Sea well 30/4-1 — thermal column + geotherm. Kinetic Easy%Ro oil, wet-gas and dry-gas windows."><source src="videos/thermal_history_north_sea_30-4-1.mp4" type="video/mp4"><a href="videos/thermal_history_north_sea_30-4-1.mp4">Watch the MP4</a></video><figcaption>North Sea well 30/4-1 — thermal column + geotherm. Kinetic Easy%Ro oil, wet-gas and dry-gas windows.</figcaption></figure>
       </section>
-
       <section class="block">
-        <h2>Key features</h2>
-        <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Backstripping</h3><p>1-D backstripping with Monte Carlo uncertainty (reproduces the BasinSubs R results).</p></div>
-          <div class="feature"><span class="num">02</span><h3>Porosity and water depth</h3><p>Porosity–depth fits and paleo-water depth from foraminifera.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Thermal history</h3><p>Thermal history and source-rock maturity.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Sections and your data</h3><p>2-D flexural backstripping and section restoration, plus desktop and Streamlit apps.</p></div>
-        </div>
+        <h2>2-D restoration and thermal history</h2>
+<figure class="media-block"><video controls autoplay muted loop playsinline preload="metadata" poster="videos/vg1_growth_restoration-poster.webp" width="1376" height="606" aria-label="Viking Graben VG1 — fixed-trace vertical-shear reconstruction. One stripped unit per timestep, remaining slipped/top-clipped traces, and aligned apparent-throw and decompacted sedimentation rates."><source src="videos/vg1_growth_restoration.mp4" type="video/mp4"><a href="videos/vg1_growth_restoration.mp4">Watch the MP4</a></video><figcaption>Viking Graben VG1 — fixed-trace vertical-shear reconstruction. One stripped unit per timestep, remaining slipped/top-clipped traces, and aligned apparent-throw and decompacted sedimentation rates.</figcaption></figure><figure class="media-block"><video controls autoplay muted loop playsinline preload="metadata" poster="videos/vg1_section_thermal_history-poster.webp" width="1376" height="748" aria-label="Viking Graben VG1 — whole-section thermal history at 59 mW/m². Isotherms and kinetic Easy%Ro window overlays, with percent-in-window lines for remaining units. Independent steady columns, not 2-D heat conduction."><source src="videos/vg1_section_thermal_history.mp4" type="video/mp4"><a href="videos/vg1_section_thermal_history.mp4">Watch the MP4</a></video><figcaption>Viking Graben VG1 — whole-section thermal history at 59 mW/m². Isotherms and kinetic Easy%Ro window overlays, with percent-in-window lines for remaining units. Independent steady columns, not 2-D heat conduction.</figcaption></figure><div class="prose"><h3>Interpretation limits</h3><p>Under active development: many functions, especially fault restoration, are experimental and not fully validated. Use geological constraints; a restored section is not a unique solution.</p><p>The fixed-trace growth prototype infers nonnegative, distributed apparent throw, not resolved down-dip slip, geological heave or curved-fault balancing. Zero is an assumed datum. The westernmost fault&#x27;s footwall is flattened separately toward the datum and is not counted as throw. Traces remain user-controlled inputs; default VG1 traces were not replaced, and the optional tip-extension assist was not applied. The oldest interval retains the last constrained 170.3-Ma geometry, not an inferred 252-Ma section. Growth reconstruction is an explicit step, not part of ordinary Run section.</p></div>
       </section>
-
-      <section class="block" id="r-code">
-        <h2>The original R code</h2>
-        <div class="prose">
-          <p><a href="https://github.com/GeoLarryLai/BasinSubs">BasinSubs</a> is the original set of R scripts from Larry Syu-Heng Lai&rsquo;s University of Oregon research on the Coastal Range of eastern Taiwan. It is tied to that research: the data and results were made with collaborators for the 2022 <em>Communications Earth &amp; Environment</em> paper. It stays archived as published, on <a href="https://doi.org/10.5281/zenodo.5823612">Zenodo</a>, under the BSD-3-Clause license.</p>
-          <ul>
-            <li><strong>Porosity and age models.</strong> A global average porosity–depth curve, and linear age–thickness models that place paleo-water depth and relative sea level at each dated unit boundary.</li>
-            <li><strong>Subsidence analysis.</strong> Decompaction and backstripping of the northern and southern sections, with errors carried through, and geohistory plots.</li>
-            <li><strong>Data and results.</strong> Unit thickness, paleo-water depth, sea level, porosity–depth data, and the long-term uplift and subsidence rates of the arc crust.</li>
-          </ul>
-          <p>pyBasinSubs is a separate, general Python package.</p>
-        </div>
+      <section class="block">
+        <h2>Local browser workflows</h2>
+<figure class="media-block"><video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyBasinSubs_column_demo-poster.webp" width="1920" height="1080" aria-label="1-D column wizard demo. North Sea well 30/4-1: step-by-step Airy backstripping and thermal history. Silent, sped-up walkthrough, about 38 seconds."><source src="videos/pyBasinSubs_column_demo.mp4" type="video/mp4"><a href="videos/pyBasinSubs_column_demo.mp4">Watch the MP4</a></video><figcaption>1-D column wizard demo. North Sea well 30/4-1: step-by-step Airy backstripping and thermal history. Silent, sped-up walkthrough, about 38 seconds.</figcaption></figure><figure class="media-block"><video controls autoplay muted loop playsinline preload="metadata" poster="videos/pyBasinSubs_section_demo-poster.webp" width="1920" height="1080" aria-label="2-D section wizard demo. Viking Graben VG1: flexural backstripping, growth reconstruction and thermal history. Silent, sped-up walkthrough, about 50 seconds."><source src="videos/pyBasinSubs_section_demo.mp4" type="video/mp4"><a href="videos/pyBasinSubs_section_demo.mp4">Watch the MP4</a></video><figcaption>2-D section wizard demo. Viking Graben VG1: flexural backstripping, growth reconstruction and thermal history. Silent, sped-up walkthrough, about 50 seconds.</figcaption></figure>
+      </section>
+      <section class="block">
+        <h2>Key features</h2><div class="feature-grid"><div class="feature"><span class="num">01</span><h3>1-D basin history</h3><p>Airy backstripping and decompaction with erosion, over-compaction and Monte Carlo uncertainty, using bundled examples or a column CSV.</p></div><div class="feature"><span class="num">02</span><h3>Thermal history and maturity</h3><p>Column/geotherm and burial-temperature views with kinetic Easy%Ro maturity windows.</p></div><div class="feature"><span class="num">03</span><h3>2-D restoration and growth</h3><p>Flexural backstripping and decompaction, interpreted fault traces, and fixed-trace growth reconstruction with aligned apparent-throw and decompacted sedimentation rates.</p></div><div class="feature"><span class="num">04</span><h3>Whole-section thermal timesteps</h3><p>Isotherms and oil, wet-gas and dry-gas window overlays, with percent-in-window lines for remaining units through time. These are independent steady columns, not 2-D heat conduction.</p></div></div>
       </section>
 
       <section class="block">
@@ -114,20 +86,19 @@
           <pre data-copy-src><code>pip install pybasinsubs</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>The apps and notebooks are optional add-ons; the README lists them.</p>
+        <p>Python 3.10 or newer. Start the local browser app with <code>pybasinsubs-app</code> or <code>pybasinsubs-ui</code>; <code>pybasinsubs-tracer</code> opens the fault editor directly.</p>
       </section>
 
       <section class="block">
         <h2>Citation</h2>
-        <div class="cite-box">
-          <p>Lai, L.S.-H. (2026) pyBasinSubs. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832018">https://doi.org/10.5281/zenodo.23832018</a></p>
-        </div>
-        <p>Please also cite the method paper:</p>
-        <div class="cite-box">
-          <p>Lai, L.S.-H., Dorsey, R.J., Horng, C.-S., Chi, W.-R., Shea, K.-S., and Yen, J.-Y. (2022) Extremely rapid up-and-down motions of island arc crust during arc-continent collision. <em>Communications Earth &amp; Environment</em>, 3, 100. <a href="https://doi.org/10.1038/s43247-022-00429-2">https://doi.org/10.1038/s43247-022-00429-2</a></p>
-        </div>
-        <p>For the original R code: BasinSubs, Zenodo, <a href="https://doi.org/10.5281/zenodo.5823612">https://doi.org/10.5281/zenodo.5823612</a>. Data: figshare, <a href="https://doi.org/10.6084/m9.figshare.19350530">https://doi.org/10.6084/m9.figshare.19350530</a>.</p>
-        <p>pyBasinSubs is under the GNU Affero General Public License 3.0 or later.</p>
+        <div class="cite-box"><p>Lai, L.S.-H. (2026) pyBasinSubs. Zenodo. <a href="https://doi.org/10.5281/zenodo.23832018">https://doi.org/10.5281/zenodo.23832018</a></p></div>
+        <p>License: AGPL-3.0-or-later.</p>
+        <ul class="btn-row">
+          <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyBasinSubs">GitHub</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.1038/s43247-022-00429-2">Paper</a></li>
+          <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832018">Zenodo</a></li>
+          <li><a class="btn-pill outline" href="https://pypi.org/project/pybasinsubs/">PyPI</a></li>
+        </ul>
       </section>
 
       <a class="next-link" href="../pyCoreRelator/index.html">
