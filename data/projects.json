@@ -227,10 +227,10 @@
       "page": "projects/pyRockImageLab/index.html",
       "description": "Interactive tools to crop, orthorectify, stitch and mosaic geological core and outcrop photographs.",
       "image": {
-        "src": "projects/pyRockImageLab/figures/app_start.webp",
+        "src": "projects/pyRockImageLab/figures/app_web_mark_sections.webp",
         "width": 1440,
         "height": 860,
-        "alt": "pyRockImageLab local browser app: crop core-box photos or stitch close-up photos."
+        "alt": "pyRockImageLab browser app Mark core sections step."
       },
       "pypi": "pyrockimagelab",
       "conda": "pyrockimagelab",
