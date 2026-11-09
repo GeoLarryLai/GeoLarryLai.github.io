@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SubsurfiX · Larry Syu-Heng Lai</title>
-  <meta name="description" content="SubsurfiX turns a folder of well logs into a checked, correlated log set and a 3D property model.">
+  <meta name="description" content="SubsurfiX automates subsurface workflows from well-log QC and correlation to 3D property models and flow and heat simulation, with a Rust core and a Python interface.">
   <meta property="og:title" content="SubsurfiX · Larry Syu-Heng Lai">
-  <meta property="og:description" content="SubsurfiX turns a folder of well logs into a checked, correlated log set and a 3D property model.">
+  <meta property="og:description" content="SubsurfiX automates subsurface workflows from well-log QC and correlation to 3D property models and flow and heat simulation, with a Rust core and a Python interface.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Rust &middot; Well logs and subsurface models</p>
         <h1>SubsurfiX</h1>
-        <p class="lede">Automated workflows for subsurface geological analysis and reservoir modeling, from well-log QC to flow and heat simulation, with a Rust engine and a Python interface.</p>
+        <p class="lede">Automated workflows for subsurface geological analysis and reservoir modeling, from well-log QC to flow and heat simulation, with a Rust core and a Python interface.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/SubsurfiX">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832007">Zenodo</a></li>
@@ -62,7 +62,8 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>SubsurfiX is developed to automate workflows for subsurface geological analysis and reservoir modeling, including (1) machine-learning (ML) or statistically assisted well-log quality control (QC) and data-gap prediction, (2) core-to-log calibration and 3D property modeling, (3) Dynamic Time Warping (DTW) assisted stratigraphic correlation between wells, and (4) flow and heat simulations for injection&ndash;production purposes. The engine is written in <a href="https://www.rust-lang.org/">Rust</a> and wrapped in a Python skin.</p>
+          <p>SubsurfiX is developed to automate workflows for subsurface geological analysis and reservoir modeling, including (1) machine-learning (ML) or statistically assisted well-log quality control (QC) and data-gap prediction, (2) core-to-log calibration and 3D property modeling, (3) Dynamic Time Warping (DTW) assisted stratigraphic correlation between wells, and (4) flow and heat simulations for injection&ndash;production purposes. The core is written in <a href="https://www.rust-lang.org/">Rust</a> and wrapped in a Python interface.</p>
+          <p>Version 0.2.0 adds an experimental finite-element (FEM) solver for coupled water flow and heat beside the finite-volume (FVM) solvers, an FVM-versus-FEM comparison on the Kansas model, and a Kansas CO&#8322;-into-brine comparison with and without two branching faults. The package is under active development; many functions are still experimental and not fully validated.</p>
         </div>
       </section>
 
@@ -73,7 +74,7 @@
 
       <section class="block">
         <h2>Examples</h2>
-        <p>Each step has an executed notebook on open data from the Kansas Geological Survey and FORCE 2020. The flow examples (09, 10 and 14) run on the whole 11 &times; 11 km Kansas model.</p>
+        <p>Each step has an executed notebook on open data from the Kansas Geological Survey and FORCE 2020. The flow examples run on the whole 11 &times; 11 km Kansas model.</p>
         <div class="gallery">
           <figure><img src="figures/ex_qc_gap_fill.webp" width="687" height="468" loading="lazy" alt="Raw, cleaned and gap-filled logs."><figcaption>One Kansas well: the raw log (grey), what the clean-up kept (black) and the filled samples (red).</figcaption></figure>
           <figure><img src="figures/ex_well_correlation.webp" width="1329" height="726" loading="lazy" alt="West&ndash;east well correlation section."><figcaption>Eight Kansas wells, west to east, with the formation tops picked by the Kansas Geological Survey (KGS). Left: by depth, colour bands join the same interval from well to well. Right: the same wells on relative geological time from the dynamic time warping (DTW) correlation, where the beds line up.</figcaption></figure>
@@ -82,20 +83,39 @@
       </section>
 
       <section class="block">
-        <h2>FIM-OBL and MODFLOW 6 on the Kansas model</h2>
+        <h2>Flow and heat methods</h2>
+        <div class="prose">
+          <p>The finite-volume method (FVM) and the finite-element method (FEM) are the two spatial methods. SubsurfiX provides two FVM solvers: an open-DARTS-inspired fully implicit solver with operator-based linearization (FIM-OBL) for water, water&ndash;oil, oil&ndash;gas and CO&#8322;&ndash;brine with heat, and a MODFLOW-inspired control-volume finite-difference solver, translated into Rust, for single-fluid pressure and heat. The official USGS MODFLOW 6 program is a separate, optional external check. The FEM solver is an experimental OpenGeoSys-style continuous Galerkin solver for coupled water flow and heat on unfaulted grids. Multiphase flow and faulted models remain FVM-only.</p>
+          <p>Meshes are corner-point grids, including faulted grids read from GRDECL files, and conforming hexahedral bulk meshes shared by FVM and FEM.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>FVM versus FEM on the Kansas model</h2>
         <figure class="media-block" style="max-width:640px;margin-left:auto;margin-right:auto">
-          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/methods_compare_kansas-poster.webp" width="960" height="1310" aria-label="Cold-water injection on the whole Kansas model, MODFLOW 6 and FIM-OBL pressure and temperature."><source src="videos/methods_compare_kansas.mp4" type="video/mp4"></video>
-          <figcaption><p>Purpose: check that SubsurfiX&rsquo;s fully implicit solver with operator-based linearization (FIM-OBL) reproduces MODFLOW 6, the U.S. Geological Survey standard code, for water flow and heat on a real reservoir model.</p>
-          <ul><li>Temperatures agree closely: the largest difference in any cell is 6.4 &deg;C, the mean 0.31 &deg;C.</li><li>The cold front reaches the producer after 65 years in FIM-OBL and 40 years in MODFLOW 6; after 200 years the producer is at 69.1 &deg;C and 63.5 &deg;C.</li><li>FIM-OBL ran in 107 s, MODFLOW 6 in 5.9 s.</li></ul>
-          <p>Key settings: whole Kansas Geological Survey model (22 &times; 22 &times; 12 cells, about 11 &times; 11 km, 60 m thick, 80 &deg;C); 0.05 m&sup3;/s of 30 &deg;C water for 200 years; wells 2.7 km apart. Neither run includes gravity.</p></figcaption>
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/fem_vs_fim_kansas-poster.webp" width="960" height="1310" aria-label="Cold-water injection on the whole Kansas model: FVM and FEM pressure above FVM and FEM temperature."><source src="videos/fem_vs_fim_kansas.mp4" type="video/mp4"></video>
+          <figcaption><p>Purpose: compare FVM and FEM pressure and temperature for cold-water injection on the same unfaulted Kansas reservoir model. Top row: pressure; bottom row: temperature; FVM on the left, FEM on the right. This is an experimental comparison, not a claim that the two methods give identical results.</p>
+          <ul><li>Producer temperature after 200 years: 69.08 &deg;C (FVM) and 65.36 &deg;C (FEM); the largest producer-temperature difference over the report times is 3.72 &deg;C.</li><li>First reported producer cooling of more than 1 &deg;C: 65 years (FVM) and 45 years (FEM).</li><li>Mean absolute temperature difference over active cells and report times: 0.414 &deg;C. FEM water and energy balance errors: 1.0 &times; 10<sup>&minus;7</sup> and 8.3 &times; 10<sup>&minus;9</sup>.</li></ul>
+          <p>Key settings: whole Kansas Geological Survey model (22 &times; 22 &times; 12 cells, 11 &times; 11 km, 60 m thick, 4656 active cells, unfaulted); 0.05 m&sup3;/s of 30 &deg;C water into an 80 &deg;C reservoir for 200 years; wells 2.7 km apart, producer held at 20 MPa; no gravity. The FVM results use the FIM-OBL solver.</p></figcaption>
         </figure>
       </section>
 
       <section class="block">
-        <h2>Same solver, different fluids</h2>
+        <h2>CO&#8322; into brine: no faults versus two branching faults</h2>
+        <figure class="media-block" style="max-width:800px;margin-left:auto;margin-right:auto">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/faulted_co2_kansas-poster.webp" width="1280" height="1310" aria-label="Kansas FVM pressure and CO2 saturation: no faults above two branching no-throw faults drawn as pink surfaces."><source src="videos/faulted_co2_kansas.mp4" type="video/mp4"></video>
+          <figcaption><p>Purpose: show how two branching, low-permeability faults change pressure build-up and CO&#8322; spreading for the same injection on the Kansas model, with FVM. Upper row: no faults; lower row: two no-throw branching faults, drawn as smooth pink surfaces and section traces. FEM is not shown because faulted multiphase FEM is not available.</p>
+          <ul><li>Peak injector bottom-hole pressure: 21.272 MPa without faults and 43.215 MPa with faults. Without faults no cell rises above the 20 MPa initial pressure, so that row shows no pressure plume.</li><li>CO&#8322; reaches the producer in both cases within 100 years; component balance errors stay below 10<sup>&minus;7</sup>.</li><li>The faulted pressure is well above a rough lithostatic estimate (about 25.5 MPa). The model has no fracture opening or geomechanics, so this result does not establish field feasibility.</li></ul>
+          <p>Key settings: same Kansas model, wells and properties in both rows; 0.008 m&sup3;/s of CO&#8322; into 50 &deg;C brine for 100 years; fluid-property tables for 5&ndash;200 MPa (the CO&#8322;&ndash;brine property model is valid to 60 MPa; neither run needed property values outside that range); faults as transmissibility multipliers of 10<sup>&minus;4</sup> on 477 of 13,052 connections, with no throw.</p>
+          <p><small>Solver wall time on a MacBook Pro (Apple M4 Pro), 8 threads: no faults 48.0 s, two faults 56.7 s (+8.7 s); one sequential run each, not a repeated benchmark.</small></p></figcaption>
+        </figure>
+      </section>
+
+      <section class="block">
+        <h2>Same FVM solver, different fluids</h2>
         <figure class="media-block">
-          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/fluids_compare_kansas-poster.webp" width="1440" height="742" aria-label="Water, gas and CO2 injection compared with FIM-OBL on the whole Kansas model."><source src="videos/fluids_compare_kansas.mp4" type="video/mp4"></video>
-          <figcaption><p>Purpose: show how three injected fluids (water into oil, gas into a black oil, carbon dioxide (CO&#8322;) into brine) spread through the same reservoir with FIM-OBL.</p>
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/fluids_compare_kansas-poster.webp" width="1440" height="742" aria-label="Water, gas and CO2 injection compared with the same FVM solver on the whole Kansas model."><source src="videos/fluids_compare_kansas.mp4" type="video/mp4"></video>
+          <figcaption><p>Purpose: show how three injected fluids (water into oil, gas into a black oil, carbon dioxide (CO&#8322;) into brine) spread through the same reservoir with the FIM-OBL solver under FVM.</p>
           <ul><li>CO&#8322; reaches the producer after 20 years and gas after 32 years.</li><li>The water front stays within about 2 km of the injector and does not reach the producer in 100 years.</li><li>Mass-balance errors stay below 2e-9 in all three runs.</li></ul>
           <p>Key settings: whole Kansas model (22 &times; 22 &times; 12 cells), 100 years, wells 3.6 km apart; rates 0.0025 m&sup3;/s water, 0.006 m&sup3;/s gas, 0.02 m&sup3;/s CO&#8322;.</p></figcaption>
         </figure>
@@ -106,10 +126,10 @@
         <div class="feature-grid">
           <div class="feature"><span class="num">01</span><h3>Log clean-up and gap filling</h3><p>Read LAS files and well surveys, mark bad sections, and fill gaps with rules and LightGBM. Every value carries a code that says whether it was measured or filled.</p></div>
           <div class="feature"><span class="num">02</span><h3>Well correlation</h3><p>Match the same beds from well to well automatically, solving all wells together.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Grids and properties</h3><p>Regular grids, or corner-point grids with faults read from GRDECL files. Fill them with porosity and rock type by kriging, simulation or machine learning, with P10/P50/P90 cases.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Flow and heat (FIM-OBL)</h3><p>A fully implicit finite-volume solver for water, water&ndash;oil, oil&ndash;gas and CO&#8322;&ndash;brine, plus heat, on regular and faulted grids. Flow diagnostics show where the fluid goes and how long it takes.</p></div>
-          <div class="feature"><span class="num">05</span><h3>CO&#8322; storage screening</h3><p>A vertical-equilibrium model, after the MRST co2lab papers, that runs in seconds and reports structural and residual trapping. Example 13 compares it with FIM-OBL on the same case.</p></div>
-          <div class="feature"><span class="num">06</span><h3>MODFLOW 6 and data exchange</h3><p>Groundwater flow and heat through MODFLOW 6 and FloPy, Leapfrog through OMF files, and OpenGeoSys mesh files (.vtu).</p></div>
+          <div class="feature"><span class="num">03</span><h3>Grids and properties</h3><p>Regular grids, corner-point grids with faults read from GRDECL files, and hexahedral bulk meshes. Fill them with porosity and rock type by kriging, simulation or machine learning, with P10/P50/P90 cases.</p></div>
+          <div class="feature"><span class="num">04</span><h3>Flow and heat (FVM)</h3><p>Two finite-volume solvers: fully implicit FIM-OBL for water, water&ndash;oil, oil&ndash;gas and CO&#8322;&ndash;brine, plus heat, on regular and faulted grids, and a MODFLOW-inspired solver for single-fluid pressure and heat. Flow diagnostics show where the fluid goes and how long it takes.</p></div>
+          <div class="feature"><span class="num">05</span><h3>Water and heat (FEM, experimental)</h3><p>An OpenGeoSys-style continuous Galerkin finite-element solver for coupled water flow and heat on unfaulted grids, using the same water, rock and wells as FVM so the two compare directly.</p></div>
+          <div class="feature"><span class="num">06</span><h3>CO&#8322; screening and data exchange</h3><p>A vertical-equilibrium CO&#8322; model after MRST that runs in seconds; optional MODFLOW 6 checks through FloPy; Leapfrog through OMF files and OpenGeoSys mesh files (.vtu).</p></div>
         </div>
       </section>
 
@@ -125,9 +145,9 @@
       <section class="block">
         <h2>Citation</h2>
         <div class="cite-box">
-          <p>Lai, L.S.-H. (2026) SubsurfiX. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832007">https://doi.org/10.5281/zenodo.23832007</a></p>
+          <p>Lai, L.S.-H. (2026) SubsurfiX (version 0.2.0). Zenodo, <a href="https://doi.org/10.5281/zenodo.24072565">https://doi.org/10.5281/zenodo.24072565</a></p>
         </div>
-        <p>SubsurfiX is under the GNU Affero General Public License 3.0 or later.</p>
+        <p>All versions: <a href="https://doi.org/10.5281/zenodo.23832007">https://doi.org/10.5281/zenodo.23832007</a>. SubsurfiX is under the GNU Affero General Public License 3.0 or later.</p>
       </section>
 
       <a class="next-link" href="../pyLogDigitizer/index.html">
