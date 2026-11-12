@@ -100,10 +100,11 @@ pip install -e .</code></pre>
           <div class="feature"><span class="num">01</span><h3>Colour scans</h3><p>Tell the curves apart by ink colour on colour image scans.</p></div>
           <div class="feature"><span class="num">02</span><h3>Black-and-white scans</h3><p>Tell the curves apart by line style: solid, dashed or dotted, thin or thick.</p></div>
           <div class="feature"><span class="num">03</span><h3>Layout and header</h3><p>Find tracks, grid lines and depth numbers on their own, and read curve names and scales with OCR.</p></div>
-          <div class="feature"><span class="num">04</span><h3>LAS out</h3><p>Write LAS 2.0 at 0.5 ft (or 0.25 ft), never smoothed; off-scale stretches are read on the backup scale where they wrap back in.</p></div>
+          <div class="feature"><span class="num">04</span><h3>LAS out</h3><p>Write LAS 2.0 at 0.5 ft by default, or any depth step you type, never smoothed; off-scale stretches are read on the backup scale where they wrap back in.</p></div>
+          <div class="feature"><span class="num">05</span><h3>Vector and mixed PDFs</h3><p>Vector PDFs (curves stored as lines, not pixels) are detected automatically and read straight from the file, with no tracing; mixed PDFs take the header from the PDF text and trace the curves (experimental).</p></div>
         </div>
         <div class="prose">
-          <p>It opens TIFF, PNG, JPEG and PDF. Scanned PDFs are read from the image on the first page; digital-print PDFs that still carry vector curves are read directly (experimental). Multi-page files use only the first page.</p>
+          <p>It opens TIFF, PNG, JPEG and PDF, plus an optional LAS file as a reference. Scanned PDFs are read from the image on the first page; digital-print PDFs that still carry vector curves are read straight from their line drawings (experimental). Multi-page files use only the first page, except vector PDFs, where the page with the curves is found on its own.</p>
           <p><strong>Limitations.</strong> It works best on colour scans. Black-ink scans have higher uncertainty, since there is no colour to say which stroke belongs to which curve. It needs a readable header and printed scales (or you type them in the app), and so far it has been tested on Kansas Geological Survey style sheets.</p>
         </div>
       </section>
@@ -133,7 +134,7 @@ pip install -e .</code></pre>
           <figure class="wide"><img src="figures/ex_linestyle_usa.webp" width="1198" height="566" loading="lazy" alt="USA A 16 scan, curve ink labelled by line style, and per-curve traces"><figcaption>USA &#8216;A&#8217; 16 (KGS), 3900&ndash;3960 ft: the 1-bit scan, the ink labelled by line style, and the traces drawn back in their style.</figcaption></figure>
           <figure class="wide"><img src="figures/ex_qc_usa.webp" width="1177" height="673" loading="lazy" alt="USA A 16 traces against the KGS LAS"><figcaption>USA &#8216;A&#8217; 16 (KGS): three line-style traces against the KGS LAS. It works, but less exactly than on a colour scan.</figcaption></figure>
         </div>
-        <p>All example scans and LAS files are from the <a href="https://www.kgs.ku.edu/">Kansas Geological Survey</a>. The source of this material is the Kansas Geological Survey website at http://www.kgs.ku.edu/. All Rights Reserved.</p>
+        <p>All example scans and LAS files are from the <a href="https://www.kgs.ku.edu/">Kansas Geological Survey</a>. The source of this material is the Kansas Geological Survey website at http://www.kgs.ku.edu/. All Rights Reserved. Notebook 06 downloads its vector PDF and LAS on demand from the Illinois Basin &ndash; Decatur Project (credit: Illinois State Geological Survey, IBDP, U.S. Department of Energy; <a href="https://doi.org/10.18141/1854144">doi:10.18141/1854144</a>; <a href="https://co2datashare.org/view/license/e27b2b34-a3fc-463f-adbf-bd14c83640f4">IBDP dataset license</a>); they are not stored in the repository, and that example data is for non-commercial use only.</p>
       </section>
 
       <section class="block">
@@ -150,7 +151,14 @@ pip install -e .</code></pre>
             <source src="videos/app_demo_stone_color.webm" type="video/webm">
             <source src="videos/app_demo_stone_color.mp4" type="video/mp4">
           </video>
-          <figcaption>STONE 5-19 (KGS) colour raster in the app, from opening the scan to one LAS with every curve. The analysis wait is sped up.</figcaption>
+          <figcaption>STONE 5-19 (KGS) colour raster in the app, from opening the scan to one LAS with every curve at a typed depth step. The analysis wait is sped up.</figcaption>
+        </figure>
+        <figure class="media-block" style="margin-top:2rem">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/app_demo_vector_ccs1-poster.webp" width="1280" height="720" aria-label="The local browser app on the IBDP CCS1 vector PDF: recognised as a vector PDF, tracing skipped, straight to checking and saving.">
+            <source src="videos/app_demo_vector_ccs1.webm" type="video/webm">
+            <source src="videos/app_demo_vector_ccs1.mp4" type="video/mp4">
+          </video>
+          <figcaption>IBDP CCS1 vector PDF in the app: recognised as a vector PDF, so tracing is skipped and it goes straight to checking and saving, here against the LAS it was plotted from. The loading wait is sped up.</figcaption>
         </figure>
       </section>
 
@@ -163,6 +171,7 @@ pip install -e .</code></pre>
             <li><strong>03</strong> Retrain the bundled ink segmenter (optional).</li>
             <li><strong>04</strong> STONE 5-19 colour scan to LAS.</li>
             <li><strong>05</strong> USA &#8216;A&#8217; 16 black-and-white scan to LAS by line style.</li>
+            <li><strong>06</strong> IBDP CCS1: a 12-curve vector PDF read without tracing, checked against its LAS.</li>
           </ul>
         </div>
       </section>
@@ -170,7 +179,7 @@ pip install -e .</code></pre>
       <section class="block">
         <h2>Citation</h2>
         <div class="cite-box">
-          <p>Lai, L.S.-H. (2026) pyLogDigitizer (version 0.3.0). Zenodo, <a href="https://doi.org/10.5281/zenodo.24150637">https://doi.org/10.5281/zenodo.24150637</a></p>
+          <p>Lai, L.S.-H. (2026) pyLogDigitizer (version 0.4.0). Zenodo, <a href="https://doi.org/10.5281/zenodo.24166606">https://doi.org/10.5281/zenodo.24166606</a></p>
         </div>
         <p>All versions (concept DOI): <a href="https://doi.org/10.5281/zenodo.23832013">https://doi.org/10.5281/zenodo.23832013</a>. The header Zenodo button and the projects-page card keep the concept DOI, which already resolves. pyLogDigitizer is under the GNU Affero General Public License 3.0 or later.</p>
       </section>
