@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyLogDigitizer · Larry Syu-Heng Lai</title>
-  <meta name="description" content="pyLogDigitizer turns scanned well-log prints, colour or black-and-white, into LAS files, with a local browser app to check and fix every step.">
+  <meta name="description" content="pyLogDigitizer turns well-log image scans, colour or black-and-white, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step.">
   <meta property="og:title" content="pyLogDigitizer · Larry Syu-Heng Lai">
-  <meta property="og:description" content="pyLogDigitizer turns scanned well-log prints, colour or black-and-white, into LAS files, with a local browser app to check and fix every step.">
+  <meta property="og:description" content="pyLogDigitizer turns well-log image scans, colour or black-and-white, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Well-log prints</p>
         <h1>pyLogDigitizer</h1>
-        <p class="lede">pyLogDigitizer turns scanned well-log prints into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
+        <p class="lede">pyLogDigitizer turns well-log image scans, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyLogDigitizer">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832013">Zenodo</a></li>
@@ -97,12 +97,13 @@ pip install -e .</code></pre>
       <section class="block">
         <h2>What it can do</h2>
         <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Colour scans</h3><p>Tell the curves apart by ink colour on colour raster scans (TIFF, JPEG or a raster PDF page).</p></div>
+          <div class="feature"><span class="num">01</span><h3>Colour scans</h3><p>Tell the curves apart by ink colour on colour image scans.</p></div>
           <div class="feature"><span class="num">02</span><h3>Black-and-white scans</h3><p>Tell the curves apart by line style: solid, dashed or dotted, thin or thick.</p></div>
           <div class="feature"><span class="num">03</span><h3>Layout and header</h3><p>Find tracks, grid lines and depth numbers on their own, and read curve names and scales with OCR.</p></div>
           <div class="feature"><span class="num">04</span><h3>LAS out</h3><p>Write LAS 2.0 at 0.5 ft (or 0.25 ft), never smoothed; off-scale stretches are read on the backup scale where they wrap back in.</p></div>
         </div>
         <div class="prose">
+          <p>It opens TIFF, PNG, JPEG and PDF. Scanned PDFs are read from the image on the first page; digital-print PDFs that still carry vector curves are read directly (experimental). Multi-page files use only the first page.</p>
           <p><strong>Limitations.</strong> It works best on colour scans. Black-ink scans have higher uncertainty, since there is no colour to say which stroke belongs to which curve. It needs a readable header and printed scales (or you type them in the app), and so far it has been tested on Kansas Geological Survey style sheets.</p>
         </div>
       </section>
