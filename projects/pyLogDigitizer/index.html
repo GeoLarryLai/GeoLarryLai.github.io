@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyLogDigitizer · Larry Syu-Heng Lai</title>
-  <meta name="description" content="pyLogDigitizer converts inked well-log scans and colour digital-print PDFs into LAS files, with local review and overlay QA.">
+  <meta name="description" content="pyLogDigitizer turns scanned well-log prints, colour or black-and-white, into LAS files, with a local browser app to check and fix every step.">
   <meta property="og:title" content="pyLogDigitizer · Larry Syu-Heng Lai">
-  <meta property="og:description" content="pyLogDigitizer converts inked well-log scans and colour digital-print PDFs into LAS files, with local review and overlay QA.">
+  <meta property="og:description" content="pyLogDigitizer turns scanned well-log prints, colour or black-and-white, into LAS files, with a local browser app to check and fix every step.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Well-log prints</p>
         <h1>pyLogDigitizer</h1>
-        <p class="lede">pyLogDigitizer turns inked paper scans (TIFF) and clean colour digital-print PDFs into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
+        <p class="lede">pyLogDigitizer turns scanned well-log prints into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyLogDigitizer">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832013">Zenodo</a></li>
@@ -62,54 +62,116 @@
       <section class="block">
         <h2>Overview</h2>
         <div class="prose">
-          <p>pyLogDigitizer converts two kinds of well-log print into LAS files: inked paper scans (TIFF) and clean colour digital-print PDFs, using shared scale, depth, null-value, and LAS export code. The scan workflow locates tracks and grids, reads depth labels, and traces curve ink; the digital-print workflow reads coloured vector paths directly, without rasterizing them or applying a scan model. Overlay QA draws grids and traces back onto the original print. A local browser editor supports review and correction before export, including curves that leave a track and return on a backup scale. All processing stays on your own machine; nothing is uploaded.</p>
-          <p>The package is under active development. Many functions are experimental and not fully validated; inspect overlays and exported curves before using the results.</p>
-        </div>
-      </section>
-
-      <figure class="teaser block">
-        <img src="figures/hero_scan_to_las.webp" width="1800" height="1440" alt="Chitwood 12 paper log scan and the digitized LAS curve">
-        <figcaption class="fig-cap">The whole idea in one picture: a scanned paper log going in and a LAS curve coming out.</figcaption>
-      </figure>
-
-      <section class="block">
-        <h2>Examples</h2>
-        <div class="gallery">
-          <figure class="wide"><img src="figures/app_07_trace.webp" width="1500" height="900" loading="lazy" alt="Tracing in the local browser app"><figcaption>The local browser app: a traced curve laid over the scan, with tools to pin, exclude and re-trace before you export.</figcaption></figure>
-          <figure class="wide"><img src="figures/ex_qc_chitwood.webp" width="1400" height="1937" loading="lazy" alt="Chitwood 12 QC vs KGS LAS"><figcaption>Chitwood 12 (KGS): digitized GR against the paired KGS LAS, with a depth plot and a cross-plot.</figcaption></figure>
-          <figure class="wide"><img src="figures/overlay_scan_chitwood.webp" width="1702" height="1017" loading="lazy" alt="Chitwood 12 scan overlay"><figcaption>Chitwood 12 (KGS): traced GR and snapped grid lines drawn on the original scan, so you can check that the grid sits on the printed lines in every track.</figcaption></figure>
-          <figure class="wide"><img src="figures/overlay_pdf_forge_cbl_compare.webp" width="1900" height="1239" loading="lazy" alt="Utah FORGE CBL original vs extracted grids and curves"><figcaption>Utah FORGE 78B-32 CBL: original colour print (left) → extracted grids and curves drawn back in contrasting colours (right).</figcaption></figure>
-        </div>
-        <p>Scan examples are from the <a href="https://www.kgs.ku.edu/">Kansas Geological Survey</a>. The colour digital-print example is the public Utah FORGE 78B-32 CBL (<a href="https://gdr.openei.org/">GDR / OpenEI</a>).</p>
-      </section>
-
-      <section class="block">
-        <h2>Key features</h2>
-        <div class="feature-grid">
-          <div class="feature"><span class="num">01</span><h3>Inked scan workflow</h3><p>Detect tracks and grids, deskew scans, read depth labels, and separate curve ink with a bundled ONNX segmenter before tracing with a Rust engine or Python fallback.</p></div>
-          <div class="feature"><span class="num">02</span><h3>Colour digital-print PDFs</h3><p>Extract coloured vector paths directly, identify per-track grids and scales, and digitize curves without rasterizing the PDF or using the scan model.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Overlay quality checks</h3><p>Draw snapped grid lines and traced curves on the original scan or rendered PDF page to check alignment by eye.</p></div>
-          <div class="feature"><span class="num">04</span><h3>Local browser editor</h3><p>Pin and drag anchors, exclude regions, re-trace curves, adjust track edges and scales, and correct header text before export.</p></div>
-          <div class="feature"><span class="num">05</span><h3>Backup scales and nulls</h3><p>Unwrap curves that run off a track onto a backup scale; handle log scales and null values where a fixed-scale curve is clipped.</p></div>
-          <div class="feature"><span class="num">06</span><h3>LAS 2.0 export</h3><p>Write depth-calibrated LAS 2.0 curves at 0.5 ft spacing by default, with 0.25 ft spacing available.</p></div>
+          <p>Many older wells exist only as printed logs. pyLogDigitizer does the tedious parts of digitizing them: it finds the tracks, grid and depth numbers, reads the curve names and scales from the header, tells the curves apart and traces each one into a LAS file. On colour scans the ink colour separates the curves; on black-and-white scans their line style does.</p>
+          <p>The package is under active development. Many functions are experimental and not fully validated; check the traces before using the results.</p>
         </div>
       </section>
 
       <section class="block">
         <h2>Installation</h2>
+        <p>Requires Python 3.10 or newer. From PyPI:</p>
         <div class="tabs" data-copy-root>
           <pre data-copy-src><code>pip install pylogdigitizer</code></pre>
           <button class="copy" type="button">Copy</button>
         </div>
-        <p>Requires Python 3.10 or newer. Review the README for the scan and digital-print PDF workflows.</p>
+        <p>or from the <code>conda-forge</code> repository with <code>conda</code>:</p>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>conda install pylogdigitizer</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>From GitHub (latest development version):</p>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pip install git+https://github.com/GeoLarryLai/pyLogDigitizer</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>or from a local clone:</p>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>git clone https://github.com/GeoLarryLai/pyLogDigitizer
+cd pyLogDigitizer
+pip install -e .</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <p>Installing from source builds the Rust tracer and needs a Rust toolchain. Without it everything still works, only slower.</p>
+      </section>
+
+      <section class="block">
+        <h2>What it can do</h2>
+        <div class="feature-grid">
+          <div class="feature"><span class="num">01</span><h3>Colour scans</h3><p>Tell the curves apart by ink colour on colour raster scans (TIFF, JPEG or a raster PDF page).</p></div>
+          <div class="feature"><span class="num">02</span><h3>Black-and-white scans</h3><p>Tell the curves apart by line style: solid, dashed or dotted, thin or thick.</p></div>
+          <div class="feature"><span class="num">03</span><h3>Layout and header</h3><p>Find tracks, grid lines and depth numbers on their own, and read curve names and scales with OCR.</p></div>
+          <div class="feature"><span class="num">04</span><h3>LAS out</h3><p>Write LAS 2.0 at 0.5 ft (or 0.25 ft), never smoothed; off-scale stretches are read on the backup scale where they wrap back in.</p></div>
+        </div>
+        <div class="prose">
+          <p><strong>Limitations.</strong> It works best on colour scans. Black-ink scans have higher uncertainty, since there is no colour to say which stroke belongs to which curve. It needs a readable header and printed scales (or you type them in the app), and so far it has been tested on Kansas Geological Survey style sheets.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Examples</h2>
+        <div class="prose">
+          <p><strong>STONE 5-19, colour raster.</strong> A triple combo written by plotting software and stored as pixels only, so every curve is recovered from its coloured ink.</p>
+          <p class="fig-cap">Data: STONE 5-19, BEREXCO, LLC., API 15-055-22611, Finney County, Kansas; a crop of the colour log scan 600699.tif and its LAS, from the <a href="https://chasm.kgs.ku.edu/ords/qualified.well_page.DisplayWell?f_kid=1054891848">KGS well page</a>.</p>
+        </div>
+        <div class="gallery">
+          <figure class="wide"><img src="figures/ex_color_stone_detect.webp" width="1472" height="638" loading="lazy" alt="STONE 5-19 auto-detected track borders, grid lines, OCR scale labels and eight traced curves next to the raw crop"><figcaption>STONE 5-19 (KGS), 4600&ndash;4700 ft: what pyLogDigitizer found on its own &mdash; tracks and the depth column, grid lines, OCR&#8217;d header scales and eight traced curves in their print colours, next to the raw crop.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_color_stone_trace.webp" width="1276" height="506" loading="lazy" alt="STONE 5-19 pre-traced ink next to traced GR, RILD, CNPOR and DPOR"><figcaption>STONE 5-19 (KGS): each curve&#8217;s own ink next to its trace, for GR, RILD, CNPOR and DPOR.</figcaption></figure>
+        </div>
+        <div class="prose">
+          <p><strong>Challenging examples: black-and-white ink scans.</strong> Older scans are harder: with no colour, crossing or touching curves are told apart only by their line style, so the traces carry more uncertainty. Where one curve&#8217;s dashes are hidden under another curve&#8217;s stroke, those depths are left empty in the LAS rather than filled with the other curve&#8217;s values.</p>
+          <p class="fig-cap">Data: Chitwood 12, Lion Oil Co., API 15-151-10469, Pratt County, Kansas; scan 260245.tif and its LAS, from the <a href="https://chasm.kgs.ku.edu/ords/qualified.well_page.DisplayWell?f_kid=1001272599">KGS well page</a>.</p>
+        </div>
+        <div class="gallery">
+          <figure><img src="figures/overlay_scan_chitwood.webp" width="1702" height="1111" loading="lazy" alt="Chitwood 12 scan with the traced GR and snapped grid lines"><figcaption>Chitwood 12 (KGS): traced GR and snapped grid lines on the original scan.</figcaption></figure>
+          <figure><img src="figures/ex_qc_chitwood.webp" width="1702" height="1111" loading="lazy" alt="Chitwood 12 digitized GR against the KGS LAS, depth plot and cross-plot"><figcaption>Chitwood 12 (KGS): digitized GR against the paired KGS LAS, depth plot and cross-plot.</figcaption></figure>
+        </div>
+        <div class="prose">
+          <p class="fig-cap">Data: USA &#8216;A&#8217; 16, Helmerich and Payne, Inc., API 15-055-20536, Finney County, Kansas; a crop of scan 4342.tif and its LAS, from the <a href="https://chasm.kgs.ku.edu/ords/qualified.well_page.DisplayWell?f_kid=1006052147">KGS well page</a>.</p>
+        </div>
+        <div class="gallery">
+          <figure class="wide"><img src="figures/ex_linestyle_usa.webp" width="1198" height="566" loading="lazy" alt="USA A 16 scan, curve ink labelled by line style, and per-curve traces"><figcaption>USA &#8216;A&#8217; 16 (KGS), 3900&ndash;3960 ft: the 1-bit scan, the ink labelled by line style, and the traces drawn back in their style.</figcaption></figure>
+          <figure class="wide"><img src="figures/ex_qc_usa.webp" width="1177" height="673" loading="lazy" alt="USA A 16 traces against the KGS LAS"><figcaption>USA &#8216;A&#8217; 16 (KGS): three line-style traces against the KGS LAS. It works, but less exactly than on a colour scan.</figcaption></figure>
+        </div>
+        <p>All example scans and LAS files are from the <a href="https://www.kgs.ku.edu/">Kansas Geological Survey</a>. The source of this material is the Kansas Geological Survey website at http://www.kgs.ku.edu/. All Rights Reserved.</p>
+      </section>
+
+      <section class="block">
+        <h2>Interactive app</h2>
+        <div class="tabs" data-copy-root>
+          <pre data-copy-src><code>pylogdigitizer-app</code></pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <div class="prose">
+          <p>Run it in a folder with your scans. It opens a local browser app that walks a scan through five tabs: open the scan, check tracks and depth, check the curves and their OCR&#8217;d header and scales, trace and fix, then check the logs beside the scan and save the LAS.</p>
+        </div>
+        <figure class="media-block">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/app_demo_stone_color-poster.webp" width="1280" height="720" aria-label="The local browser app on the STONE 5-19 colour raster: open the scan, check tracks and depth, the curves and header, trace, then check and save.">
+            <source src="videos/app_demo_stone_color.webm" type="video/webm">
+            <source src="videos/app_demo_stone_color.mp4" type="video/mp4">
+          </video>
+          <figcaption>STONE 5-19 (KGS) colour raster in the app, from opening the scan to one LAS with every curve. The analysis wait is sped up.</figcaption>
+        </figure>
+      </section>
+
+      <section class="block">
+        <h2>Notebooks</h2>
+        <div class="prose">
+          <ul>
+            <li><strong>01</strong> Black-and-white scans traced automatically, then with a few saved clicks.</li>
+            <li><strong>02</strong> Train the optional U-Net cost map on paired KGS wells and batch-digitize.</li>
+            <li><strong>03</strong> Retrain the bundled ink segmenter (optional).</li>
+            <li><strong>04</strong> STONE 5-19 colour scan to LAS.</li>
+            <li><strong>05</strong> USA &#8216;A&#8217; 16 black-and-white scan to LAS by line style.</li>
+          </ul>
+        </div>
       </section>
 
       <section class="block">
         <h2>Citation</h2>
         <div class="cite-box">
-          <p>Lai, L.S.-H. (2026) pyLogDigitizer. Zenodo, <a href="https://doi.org/10.5281/zenodo.23832013">https://doi.org/10.5281/zenodo.23832013</a></p>
+          <p>Lai, L.S.-H. (2026) pyLogDigitizer (version 0.3.0). Zenodo, <a href="https://doi.org/10.5281/zenodo.24150637">https://doi.org/10.5281/zenodo.24150637</a></p>
         </div>
-        <p>pyLogDigitizer is under the GNU Affero General Public License 3.0 or later.</p>
+        <p>All versions (concept DOI): <a href="https://doi.org/10.5281/zenodo.23832013">https://doi.org/10.5281/zenodo.23832013</a>. The header Zenodo button and the projects-page card keep the concept DOI, which already resolves. pyLogDigitizer is under the GNU Affero General Public License 3.0 or later.</p>
       </section>
 
       <a class="next-link" href="../pyBasinSubs/index.html">
