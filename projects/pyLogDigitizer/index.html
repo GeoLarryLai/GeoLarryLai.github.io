@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>pyLogDigitizer · Larry Syu-Heng Lai</title>
-  <meta name="description" content="pyLogDigitizer turns well-log image scans, colour or black-and-white, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step.">
+  <meta name="description" content="pyLogDigitizer is a machine-learning-assisted digitizer that turns well-log image scans, colour or black-and-white, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step.">
   <meta property="og:title" content="pyLogDigitizer · Larry Syu-Heng Lai">
-  <meta property="og:description" content="pyLogDigitizer turns well-log image scans, colour or black-and-white, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step.">
+  <meta property="og:description" content="pyLogDigitizer is a machine-learning-assisted digitizer that turns well-log image scans, colour or black-and-white, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step.">
   <meta property="og:image" content="https://www.geolarrylai.com/assets/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
         <a class="back" href="../../projects.html">&larr; Projects</a>
         <p class="label">Python &middot; Well-log prints</p>
         <h1>pyLogDigitizer</h1>
-        <p class="lede">pyLogDigitizer turns well-log image scans, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
+        <p class="lede">pyLogDigitizer is a machine-learning-assisted digitizer that turns well-log image scans, and digital-print PDFs, into LAS files, with a local browser app to check and fix every step. Nothing leaves your machine.</p>
         <ul class="btn-row">
           <li><a class="btn-pill" href="https://github.com/GeoLarryLai/pyLogDigitizer">GitHub</a></li>
           <li><a class="btn-pill outline" href="https://doi.org/10.5281/zenodo.23832013">Zenodo</a></li>
@@ -99,7 +99,7 @@ pip install -e .</code></pre>
         <div class="feature-grid">
           <div class="feature"><span class="num">01</span><h3>Colour scans</h3><p>Tell the curves apart by ink colour on colour image scans.</p></div>
           <div class="feature"><span class="num">02</span><h3>Black-and-white scans</h3><p>Tell the curves apart by line style: solid, dashed or dotted, thin or thick.</p></div>
-          <div class="feature"><span class="num">03</span><h3>Layout and header</h3><p>Find tracks, grid lines and depth numbers on their own, and read curve names and scales with OCR.</p></div>
+          <div class="feature"><span class="num">03</span><h3>ML-assisted layout and header</h3><p>A bundled U-Net (a small neural network) sorts every pixel of a scan into paper, grid, curve or text so tracing follows only curve ink, and deep-learning OCR reads curve names and scales from the header. Both are pretrained, run on an ordinary computer with no training per file, and can be retrained on your own scans.</p></div>
           <div class="feature"><span class="num">04</span><h3>LAS out</h3><p>Write LAS 2.0 at 0.5 ft by default, or any depth step you type, never smoothed; off-scale stretches are read on the backup scale where they wrap back in.</p></div>
           <div class="feature"><span class="num">05</span><h3>Vector and mixed PDFs</h3><p>Vector PDFs (curves stored as lines, not pixels) are detected automatically and read straight from the file, with no tracing; mixed PDFs take the header from the PDF text and trace the curves (experimental).</p></div>
         </div>
