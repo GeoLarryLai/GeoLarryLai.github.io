@@ -3,7 +3,7 @@ id: AI_EDITING_LOG
 path: AI_EDITING_LOG.md
 audience: LLM
 purpose: domain ledger so new chats skip rediscovery
-updated: 2026-10-20
+updated: 2026-11-12
 quality_gate: visual check at 1440 and phone width, links and images resolve
 ---
 
@@ -80,15 +80,15 @@ References the user cited: rubenkuipers.design (cards, fonts), watracz.com (case
 ## CONTRACTS
 
 Break = bug.
-- Repo is public (GitHub Free cannot serve a public site from a private repo). Pages custom domain is `www.larrysyuhenglai.com` (`CNAME`). The bare domain still forwards to www at Squarespace. No further push unless the user asks.
-- `css/style.css` is the only stylesheet (`projects/project.css` deleted). `js/site.js` = nav toggle, tabs, copy buttons. `js/reveal.js` = stagger-card reveal.
+- Repo is public (GitHub Free cannot serve a public site from a private repo). Pages custom domain is `www.geolarrylai.com` (`CNAME` file; DNS CNAME → `geolarrylai.github.io`). The apex `geolarrylai.com` is still on Squarespace and currently 301-redirects to `http://www.geolarrylai.com` (not HTTPS). Squarespace still needs the apex forwarding target changed to `https://www.geolarrylai.com`. `geolarry.com` is NXDOMAIN and is not a site domain. No further DNS/Squarespace edits unless the user asks.
+- `css/style.css` is the only stylesheet (`projects/project.css` deleted). `js/site.js` = nav toggle, tabs, copy buttons, home expertise slider, reduced-motion video autoplay off, and scroll fade-in for `[data-reveal]`. `js/reveal.js` animates `.stagger .card` on `projects.html` and `research/index.html` (and is also included on `index.html`). `js/pypi-version.js` fills live package versions on project pages.
 - Palette: paper `#f4f0e8`, ink `#1b2330`, muted `#5a6370`, rust `#7c341f`, ridge `#1a3948`.
 - Every page uses the shared head (og, favicon, theme-color, `js` class script), header with `.nav-toggle`, and footer with `.footer-contour`. The front page keeps its skydive closing block.
 - Page width: `--page-max: clamp(1160px, 80vw, 1600px)`; `.teaser` caps at 1280px; reading columns keep their own caps.
 - Front page: intro (label, h1, portrait flush on the contour band) + one sliding expertise row (`.slider[data-slider]`, scroll-snap, arrows from `js/site.js`) + contact block over the skydive photo. No `.stagger` on the front page.
 - Every inner page footer is only the contour strip and "(c) 2026 Larry Syu-Heng Lai" (`.footer-base`). Bluesky is not used anywhere.
 - Animated figures are looping muted `<video autoplay muted loop playsinline>` with a `-poster.webp`; the GIF originals stay in `assets/from-site/`. `research__quantitative-stratigraphic-analysis.gif` stays a GIF (100 KB). Reduced-motion users get no autoplay (`site.js`).
-- `og:image` is the absolute URL `https://geolarrylai.github.io/assets/og-image.png` on every page.
+- `og:image` is the absolute URL `https://www.geolarrylai.com/assets/og-image.png` on every page.
 - Photos are never cropped on project/research pages (`height:auto`).
 - Videos: `preload="none"` + poster, except the pyLogCrafter overview (autoplay, muted, no loop, 720p copy `pyLogCrafter_explain_720p.mp4`; the 1080p original is kept, unused).
 - `404.html` uses root-absolute paths. `cv.html` stays as the redirect to `about.html#resume`.
@@ -105,7 +105,7 @@ Break = bug.
 - Local server: run `python3 -m http.server 8765 --bind 127.0.0.1` as a background terminal (a `nohup` from a short shell dies).
 - `portrait-full-body.webp` on About is the reframed chest-up photo (576×1024). The front page uses `portrait-cutout-hd.webp`.
 - Unknown facts left blank: pyValleyWidth version/license/install; pyPetrograph Python version; pyBasinSubs license; research project years, funding, coordinates (except Eastern Taiwan "23.5N 121.4E", taken from the plan).
-- Enforce HTTPS on the custom domain after DNS propagates (GitHub Settings, Pages).
+- `https://www.geolarrylai.com` already serves the GitHub Pages site. The remaining HTTPS gap is the Squarespace apex redirect: `https://geolarrylai.com` still 301s to `http://www.geolarrylai.com`. Change that target to `https://www.geolarrylai.com` in Squarespace (DNS/registrar), not in this repo.
 
 ---
 
@@ -194,3 +194,5 @@ Decision: every project page now Overview → visuals → Key features. pyCoreRe
 - 2026-11-12: pyLogDigitizer page: describe it as a machine-learning-assisted digitizer in the lede, meta and card; retitle feature 03 to ML-assisted layout and header and add the U-Net and deep-learning OCR wording | Files: projects/pyLogDigitizer/index.html, data/projects.json, projects.html, projects/SubsurfiX/index.html | Cache_bump: none | Status: DONE
 - 2026-11-12: Align package cards, ledes, meta and next-project teasers with current README overviews for pyTopoComplexity, pyCoreRelator, pyValleyWidth, pyRockImageLab, pyPetrograph and pyBasinSubs; leave pyLogDigitizer, pyGeoMapper and SubsurfiX website overviews (already consistent); do not touch pyLogCrafter | Files: data/projects.json, projects.html, projects/pyTopoComplexity/index.html, projects/pyCoreRelator/index.html, projects/pyValleyWidth/index.html, projects/pyRockImageLab/index.html, projects/pyPetrograph/index.html, projects/pyBasinSubs/index.html, projects/pyGeoMapper/index.html (pyPetrograph teaser only), projects/pyLogDigitizer/index.html (pyBasinSubs teaser only) | Cache_bump: none | Status: DONE
 - 2026-11-12: Trim project card descriptions and next-project teasers to short, brief lines; leave project-page ledes and meta descriptions unchanged | Files: data/projects.json, projects.html, projects/pyTopoComplexity/index.html, projects/pyCoreRelator/index.html, projects/pyValleyWidth/index.html, projects/pyRockImageLab/index.html, projects/pyPetrograph/index.html, projects/pyBasinSubs/index.html, projects/pyGeoMapper/index.html, projects/pyLogDigitizer/index.html, projects/SubsurfiX/index.html, projects/pyLogCrafter/index.html (pyRockImageLab teaser only) | Cache_bump: none | Status: DONE
+
+- 2026-11-12: Quick consistency and style fixes (local only, not committed). Renamed the front-page heading and slider aria-labels from "Expertises" to "Expertise". Recolored About Résumé/CV `.btn-blue` from one-off `#2563b8`/`#1b4c92` to `--ridge`/`--ridge-2`. Synced `pyLogCrafter` CSS cache tag and bumped every page to `?v=20261112a` for the button-color change. Added the missing conda-forge pill on `pyGeoMapper` (`https://anaconda.org/conda-forge/pygeomapper`), matching other project pages. Updated CONTRACTS/OPEN: custom domain is `www.geolarrylai.com`, `og:image` uses that host, `site.js` description matches the file, and the Squarespace apex still forwards to `http://www.geolarrylai.com` (needs `https://`). `geolarry.com` is NXDOMAIN. Did not touch unlinked/upcoming research or goSPL-LandLab-Bridge cards. | Files: index.html, about.html, css/style.css, projects/pyGeoMapper/index.html, projects/pyLogCrafter/index.html, all other HTML pages (cache bump only), this log | Cache_bump: 20261112a | Status: DONE (not pushed)
