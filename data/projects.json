@@ -1,5 +1,5 @@
 {
-  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (concept DOI only). A card may use 'images' (a list, stacked) instead of 'image'. 'icon' (optional) is a small square PNG shown beside the card title.",
+  "_note": "Source of truth for projects.html. Edit here, then run: python3 tools/build_projects.py. Badges: PyPI version and pepy downloads come from 'pypi' (set 'pepy': false until pepy.tech lists the package), conda from 'conda', crates.io from 'crate' (only if a Rust crate exists), DOI from 'zenodo' (all-versions DOI). A card may use 'images' (a list, stacked) instead of 'image'. 'icon' (optional) is a small square PNG shown beside the card title.",
   "themes": [
     {
       "id": "strat",
