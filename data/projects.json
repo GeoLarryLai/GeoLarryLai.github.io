@@ -107,19 +107,27 @@
       "label": "Python",
       "page": "projects/pyBasinSubs/index.html",
       "description": "1-D and 2-D backstripping and basin analysis, in a local browser app or notebooks.",
-      "image": {
-        "src": "projects/pyBasinSubs/videos/hero_geohistory_north_sea_30-4-1-poster.webp",
-        "width": 1320,
-        "height": 660,
-        "alt": "North Sea well 30/4-1: 1-D Airy backstripping and decompaction."
-      },
       "pypi": "pybasinsubs",
       "conda": "pybasinsubs",
       "zenodo": "10.5281/zenodo.23832018",
       "crate": null,
       "citation": "Lai, L.S.-H. (2026) pyBasinSubs. Zenodo, https://doi.org/10.5281/zenodo.23832018",
       "pepy": false,
-      "icon": "projects/pyBasinSubs/icon.png"
+      "icon": "projects/pyBasinSubs/icon.png",
+      "images": [
+        {
+          "src": "projects/pyBasinSubs/figures/hero_geohistory_north_sea_30-4-1_0ma.webp",
+          "width": 1320,
+          "height": 660,
+          "alt": "North Sea well 30/4-1: 1-D Airy backstripping and decompaction at the present day (0 Ma)."
+        },
+        {
+          "src": "projects/pyBasinSubs/figures/vg1_growth_restoration_0ma.webp",
+          "width": 1375,
+          "height": 605,
+          "alt": "VG1 section: 2-D fixed-trace spatial reconstruction at the present day (0 Ma)."
+        }
+      ]
     },
     {
       "name": "pyTopoComplexity",
