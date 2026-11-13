@@ -106,7 +106,7 @@
       "hidden": false,
       "label": "Python",
       "page": "projects/pyBasinSubs/index.html",
-      "description": "1-D and 2-D backstripping and basin analysis, in a local browser app or notebooks.",
+      "description": "1D and 2D backstripping and basin analysis, in a local browser app or notebooks.",
       "pypi": "pybasinsubs",
       "conda": "pybasinsubs",
       "zenodo": "10.5281/zenodo.23832018",
@@ -119,13 +119,13 @@
           "src": "projects/pyBasinSubs/figures/thermal_history_north_sea_30-4-1_199ma.webp",
           "width": 1320,
           "height": 660,
-          "alt": "North Sea well 30/4-1: 1-D thermal history and geotherm at 199 Ma (base / TD)."
+          "alt": "North Sea well 30/4-1: 1D thermal history and geotherm at 199 Ma (base / TD)."
         },
         {
           "src": "projects/pyBasinSubs/figures/vg1_growth_restoration_0ma.webp",
           "width": 1375,
           "height": 605,
-          "alt": "VG1 section: 2-D fixed-trace spatial reconstruction at the present day (0 Ma)."
+          "alt": "VG1 section: 2D fixed-trace spatial reconstruction at the present day (0 Ma)."
         }
       ]
     },
