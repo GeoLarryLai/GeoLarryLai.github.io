@@ -64,7 +64,7 @@
       "hidden": false,
       "label": "Python · Rust",
       "page": "projects/SubsurfiX/index.html",
-      "description": "Rust-powered subsurface analysis and reservoir modeling, from well logs to flow and heat simulation.",
+      "description": "Automated workflows for subsurface geological analysis to reservoir modeling, with a Rust core and a Python interface.",
       "image": {
         "src": "projects/SubsurfiX/figures/hero_3d_porosity_model.webp",
         "width": 1464,
